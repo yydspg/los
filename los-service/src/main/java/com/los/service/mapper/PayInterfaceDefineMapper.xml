@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.los.service.mapper.PayInterfaceDefineMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.los.service.entity.PayInterfaceDefine">
+        <id column="if_code" property="ifCode" />
+        <result column="if_name" property="ifName" />
+        <result column="is_mch_mode" property="isMchMode" />
+        <result column="is_isv_mode" property="isIsvMode" />
+        <result column="config_page_type" property="configPageType" />
+        <result column="isv_params" property="isvParams" />
+        <result column="isvsub_mch_params" property="isvsubMchParams" />
+        <result column="normal_mch_params" property="normalMchParams" />
+        <result column="way_codes" property="wayCodes" />
+        <result column="icon" property="icon" />
+        <result column="bg_color" property="bgColor" />
+        <result column="state" property="state" />
+        <result column="remark" property="remark" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        if_code, if_name, is_mch_mode, is_isv_mode, config_page_type, isv_params, isvsub_mch_params, normal_mch_params, way_codes, icon, bg_color, state, remark, created_at, updated_at
+    </sql>
+
+</mapper>

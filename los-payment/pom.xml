@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <artifactId>los</artifactId>
+        <groupId>com.pg</groupId>
+        <version>Final</version>
+    </parent>
+
+
+    <artifactId>los-payment</artifactId>
+    <version>${isys.version}</version>
+    <description>los-payment</description>
+
+
+    <!--
+    ${basedir} 是一个Maven内置的预定义属性，它表示当前Maven项目的根目录路径。
+    ../ 表示相对于当前项目根目录的上一级目录。
+    所以结合在一起，projectRootDir 属性被设置为当前项目根目录的父目录路径。这意味着在项目其他地方引用 projectRootDir 时，它将指向包含当前项目的上级目录位置
+    -->
+
+    <!-- 项目属性 -->
+    <properties>
+        <projectRootDir>${basedir}/../</projectRootDir>
+    </properties>
+
+    <!-- 项目依赖声明 -->
+    <dependencies>
+        <dependency>
+            <groupId>com.pg</groupId>
+            <artifactId>los-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.pg</groupId>
+            <artifactId>los-components-oss</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.pg</groupId>
+            <artifactId>los-components-mq</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>  <!-- 删除spring boot默认json映射器： Jackson， 引入fastJSON   -->
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.datatype</groupId>
+                    <artifactId>jackson-datatype-jdk17</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.datatype</groupId>
+                    <artifactId>jackson-datatype-jsr310</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <artifactId>jackson-module-parameter-names</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- freemarker -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+
+        <!-- hibernate.validator插件 -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+        <!-- 添加redis支持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!--wx_pay  https://github.com/wechat-group/WxJava  -->
+        <dependency>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-pay</artifactId>
+            <version>4.3.9.B</version>
+        </dependency>
+
+        <!-- 生成二维码工具包 zxing -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+        </dependency>
+        <!--paypal 支付 -->
+        <dependency>
+            <groupId>com.paypal.sdk</groupId>
+            <artifactId>checkout-sdk</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!--TODO 理解 作为可执行jar -->
+    <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <!-- resources资源配置项 -->
+        <resources>
+            <!-- 通用资源文件 -->
+            <resource><directory>src/main/resources</directory><includes><include>**/*.*</include></includes></resource>
+
+            <!-- 放置通用配置yml文件， 开发时仅配置一套参数即可。   实际生产环境下应在每个项目下 与jar同级目录下新建application.yml覆写对应参数。  -->
+            <resource>
+                <directory>../conf/devCommons</directory>
+                <includes><include>**/*.yml</include></includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <configuration>
+                    <container>
+                        <entrypoint>
+                            sh,-c,java $JVM_OPTS -cp $( cat /app/jib-classpath-file ) $( cat /app/jib-main-class-file ) $JAVA_ARGS
+                        </entrypoint>
+                    </container>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

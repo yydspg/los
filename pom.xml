@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.pg</groupId>  <!--组织名 -->
+    <artifactId>los</artifactId> <!-- 项目名称 -->
+    <packaging>pom</packaging> <!-- 项目的最终打包类型/发布形式, 可选[jar, war, pom, maven-plugin]等 -->
+
+    <name>los</name>
+    <version>Final</version> <!--pom 版本号/项目总版本号,每个子项目引入的版本号必须一致,最外层的pom.xml版本号保持不变,始终为Final,更新版本更改isys.version属性 -->
+    <description>los支付系统</description>
+
+
+    <!--继承 Springboot Parent-->
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <version>3.2.2</version>
+    </parent>
+
+    <!--声明子项目-->
+    <modules>
+        <module>los-components</module>                                          <!--组件-->
+        <module>los-payment</module>                                             <!--支付统一网关-->
+        <module>los-service</module>                                             <!--db service-->
+        <module>los-manager</module>                                             <!--运营端-->
+        <module>los-merchant</module>                                            <!--商户端-->
+        <module>los-core</module>
+    </modules>
+    <properties>
+        <isys.version>1.0</isys.version>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jjwt.version>0.9.1</jjwt.version>
+        <mybatis.plus.starter.version>3.5.4.1</mybatis.plus.starter.version>
+        <fastjson2.version>2.0.42</fastjson2.version>
+        <knife4j.version>4.3.0</knife4j.version>
+        <jeepay.sdk.java.version>1.6.0</jeepay.sdk.java.version>
+        <rocketmq.spring.boot.starter.version>2.2.3</rocketmq.spring.boot.starter.version>
+        <spring.security.version>5.4.8</spring.security.version> <!-- 用于core的scope依赖 -->
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- 依赖 [ core ]包。  -->
+            <dependency>
+                <groupId>com.pg</groupId>
+                <artifactId>los-core</artifactId>
+                <version>${isys.version}</version>
+            </dependency>
+
+            <!-- [ service ]包, 会自动传递依赖[ core ]包。  -->
+            <dependency>
+                <groupId>com.pg</groupId>
+                <artifactId>los-service</artifactId>
+                <version>${isys.version}</version>
+            </dependency>
+
+            <!-- [ oss ]包  -->
+            <dependency>
+                <groupId>com.pg</groupId>
+                <artifactId>los-components-oss</artifactId>
+                <version>${isys.version}</version>
+            </dependency>
+
+            <!-- [ mq ]包  -->
+            <dependency>
+                <groupId>com.pg</groupId>
+                <artifactId>los-components-mq</artifactId>
+                <version>${isys.version}</version>
+            </dependency>
+
+            <!-- JWT  -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
+            <!-- 生成二维码依赖 -->
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>3.5.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>3.5.2</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>4.38.149.ALL</version>
+            </dependency>
+            <!-- 阿里云oss组件  -->
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>3.16.1</version>
+            </dependency>
+            <!-- 添加对rocketMQ的支持  -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.spring.boot.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyum.openservices</groupId>
+                <artifactId>ons-client</artifactId>
+                <version>${aliyun-openservices-ons-client.version}</version>
+            </dependency>
+            <!-- Knife4j  -->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.jeequan</groupId>
+                <artifactId>jeepay-sdk-java</artifactId>
+                <version>${jeepay.sdk.java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.starter.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <optional>true</optional> <!-- 其他模块默认不引入 -->
+            <scope>provided</scope> <!-- 编译阶段生效 -->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.18</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

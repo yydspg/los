@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>los-components</artifactId>
+    <packaging>pom</packaging>
+
+    <parent>
+        <artifactId>los</artifactId>
+        <groupId>com.pg</groupId>
+        <version>Final</version>
+    </parent>
+
+    <version>Final</version>
+    <name>los-components</name>
+    <description>los-components</description>
+
+
+    <modules>
+        <module>los-components-mq</module>
+        <module>los-components-oss</module>
+    </modules>
+
+</project>
