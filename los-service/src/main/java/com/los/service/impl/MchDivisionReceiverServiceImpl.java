@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
 * @since 2024-02-05
 */
 @Service
-    public class MchDivisionReceiverServiceImpl extends ServiceImpl<MchDivisionReceiverMapper, MchDivisionReceiver> implements MchDivisionReceiverService {
+public class MchDivisionReceiverServiceImpl extends ServiceImpl<MchDivisionReceiverMapper, MchDivisionReceiver> implements MchDivisionReceiverService {
 
-    }
+}

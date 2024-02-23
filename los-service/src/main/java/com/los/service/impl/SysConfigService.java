@@ -23,7 +23,7 @@ import java.util.Set;
 */
 /*
 使用MutablePair,同时封装分组名和数据库配置
- *TODO 以后可以尝试使用caffine进行本地缓存
+ TODO 以后可以尝试使用caffine进行本地缓存
  */
 @Service
 public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> implements ISysConfigService {

@@ -41,10 +41,75 @@
         <result column="created_at" property="createdAt" />
         <result column="updated_at" property="updatedAt" />
     </resultMap>
+    <!--交易统计-->
+    <select id="payCount" resultType="java.util.Map" parameterType="java.util.Map" >
+        SELECT ROUND(IFNULL(SUM(amount) - SUM(refund_amount), 0)/100, 2) AS payAmount, IFNULL(COUNT(1), 0) AS payCount
+        FROM t_pay_order
+        WHERE 1=1
+        <if test="state != null"> AND state = #{state} </if>
+        <if test="refundState != null"> AND refund_state = #{refundState} </if>
+        <if test="mchNo != null"> AND mch_no = #{mchNo} </if>
+        <if test="createTimeStart != null"> AND created_at &gt;= #{createTimeStart} </if>
+        <if test="createTimeEnd != null"> AND created_at &lt;= #{createTimeEnd} </if>
+        ;
+    </select>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        pay_order_id, mch_no, isv_no, app_id, mch_name, mch_type, mch_order_no, if_code, way_code, amount, mch_fee_rate, mch_fee_amount, currency, state, notify_state, client_ip, subject, body, channel_extra, channel_user, channel_order_no, refund_state, refund_times, refund_amount, division_mode, division_state, division_last_time, err_code, err_msg, ext_param, notify_url, return_url, expired_time, success_time, created_at, updated_at
-    </sql>
+    <!--支付方式统计-->
+    <select id="payTypeCount" resultType="java.util.Map" parameterType="java.util.Map" >
+        SELECT COUNT(1) AS typeCount, ROUND(IFNULL(SUM(amount) - SUM(refund_amount), 0)/100, 2) AS typeAmount, way_code as wayCode
+        FROM t_pay_order
+        WHERE 1=1
+        <if test="state != null"> AND state = #{state} </if>
+        <if test="refundState != null"> AND refund_state = #{refundState} </if>
+        <if test="mchNo != null"> AND mch_no = #{mchNo} </if>
+        <if test="createTimeStart != null"> AND created_at &gt;= #{createTimeStart} </if>
+        <if test="createTimeEnd != null"> AND created_at &lt;= #{createTimeEnd} </if>
+        GROUP BY way_code
+    </select>
+
+    <!--成功、退款订单统计
+    1.DATE_FORMAT(FLOOR(created_at), '%m-%d') AS groupDate
+
+    FLOOR(created_at)：首先对created_at字段（假设为datetime类型）进行向下取整，得到日期部分（去掉时间部分）。
+    DATE_FORMAT(..., '%m-%d')：然后利用DATE_FORMAT函数将这个日期格式化为 '月-日' 的格式，例如 '01-01' 表示1月1日。
+    AS groupDate：将格式化后的日期字段重命名为groupDate，作为查询结果的一个列。
+
+    2.ROUND(IFNULL(SUM(amount) - SUM(refund_amount), 0)/100, 2) AS payAmount
+
+    SUM(amount)：计算amount字段（假设为订单金额）的总和。
+    SUM(refund_amount)：计算refund_amount字段（假设为退款金额）的总和。
+    SUM(amount) - SUM(refund_amount)：计算订单总金额减去退款总金额，得到净收入。
+    IFNULL(..., 0)：如果SUM(amount) - SUM(refund_amount)的结果为NULL（即没有订单或全部退款），则用0代替。
+    /100：假设金额是以分为单位存储的，此处将金额转换为元，因为要除以100。
+    ROUND(..., 2)：最后对上述结果进行四舍五入，保留两位小数，得到最终的净收入金额（payAmount）
+    -->
+    <select id="selectOrderCount" resultType="java.util.Map" parameterType="java.util.Map" >
+        SELECT DATE_FORMAT(FLOOR(created_at),'%m-%d') groupDate, ROUND(IFNULL(SUM(amount) - SUM(refund_amount), 0)/100, 2) AS payAmount,
+        ROUND(IFNULL(SUM(refund_amount), 0)/100, 2) AS refundAmount
+        FROM t_pay_order
+        WHERE  1=1 -- 这是一个通用占位符，实际作用是方便后续添加其他条件
+        AND state in (2,5) -- 选择状态为2或5的订单记录
+        <if test="mchNo != null"> AND mch_no = #{mchNo} </if>
+        <if test="createTimeStart != null"> AND created_at &gt;= #{createTimeStart} </if>
+        <if test="createTimeEnd != null"> AND created_at &lt;= #{createTimeEnd} </if>
+        GROUP BY groupDate -- 按照格式化后的created_at字段（月-日形式）进行分组
+        ORDER BY groupDate desc
+    </select>
+
+    <!-- 更新订单退款金额和次数 -->
+    <update id="updateRefundAmountAndCount">
+
+        update t_pay_order
+        set refund_times = refund_times + 1, <!-- 退款次数 +1 -->
+        refund_state = CASE WHEN refund_amount + #{currentRefundAmount} >= amount THEN 2 ELSE 1 END,  <!-- 更新是否已全额退款。 此更新需在refund_amount更新之前，否则需要去掉累加逻辑 -->
+        `state` = CASE WHEN refund_state = 2 THEN 5 ELSE 2 END,  <!-- 更新支付状态是否已退款。 此更新需在refund_state更新之后，如果全额退款则修改支付状态为已退款 -->
+        refund_amount = refund_amount + #{currentRefundAmount}   <!-- 退款金额累加 -->
+        where
+        pay_order_id = #{payOrderId} and `state` = 2 <!-- 订单号 & 成功状态的可退款 -->
+        and refund_amount + #{currentRefundAmount} &lt;= amount  <!-- 已退款金额 + 本次退款金额 小于等于订单金额 -->
+        and refund_state in (0, 1) <!-- 只有未发生退款和部分退款可退 -->
+
+    </update>
+
 
 </mapper>

@@ -13,6 +13,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
 * <p>
@@ -34,6 +35,11 @@ public class RefundOrder extends BaseModel {
 
     public static  LambdaQueryWrapper<RefundOrder> gw() {return new LambdaQueryWrapper<>(); }
 
+    public static final byte STATE_INIT = 0; //订单生成
+    public static final byte STATE_ING = 1; //退款中
+    public static final byte STATE_SUCCESS = 2; //退款成功
+    public static final byte STATE_FAIL = 3; //退款失败
+    public static final byte STATE_CLOSED = 4; //退款任务关闭
 
     @Schema(description = "退款订单号（支付系统生成订单号）")
     private String refundOrderId;
@@ -105,16 +111,16 @@ public class RefundOrder extends BaseModel {
     private String extParam;
 
     @Schema(description = "订单退款成功时间")
-    private LocalDateTime successTime;
+    private Date successTime;
 
     @Schema(description = "退款失效时间（失效后系统更改为退款任务关闭状态）")
-    private LocalDateTime expiredTime;
+    private Date expiredTime;
 
     @Schema(description = "创建时间")
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
     @Schema(description = "更新时间")
     @TableField(fill = FieldFill.UPDATE)
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 }

@@ -33,15 +33,23 @@ public interface PayOrderService extends IService<PayOrder> {
     public boolean updateIng2SuccessOrFail(String payOrderId, Byte updateState, String channelOrderNo, String channelUserId, String channelErrCode, String channelErrMsg);
     /** 查询商户订单 **/
     public PayOrder queryMchOrder(String mchNo, String payOrderId, String mchOrderNo);
+    /** 支付统计 **/
     public Map<String,Object> payCount(String mchNo, Byte state, Byte refundState, String dayStart, String dayEnd);
-    public List<Map> payTypeCount(String mchNo, Byte state, Byte refundState, String dayStart, String dayEnd);
+    public List<Map<String,Object>> payTypeCount(String mchNo, Byte state, Byte refundState, String dayStart, String dayEnd);
+    /** 更新订单为 超时状态 **/
     public Integer updateOrderExpired();
+    /** 更新订单 通知状态 --> 已发送 **/
     public int updateNotifySent(String payOrderId);
     public JSONObject mainPageWeekCount(String mchNo);
+    /** 首页统计总数量 **/
     public JSONObject mainPageNumCount(String mchNo);
-    public List<Map> mainPagePayCount(String mchNo, String createdStart, String createdEnd);
-    public ArrayList mainPagePayTypeCount(String mchNo, String createdStart, String createdEnd);
-    public List<Map> getReturnList(int daySpace, String createdStart, List<Map> payOrderList, List<Map> refundOrderList);
+    /** 首页支付统计 **/
+    public List<Map<Object,Object>> mainPagePayCount(String mchNo, String createdStart, String createdEnd);
+    /** 首页支付类型统计 **/
+    public ArrayList<Map<String,Object>> mainPagePayTypeCount(String mchNo, String createdStart, String createdEnd);
+    /** 生成首页交易统计数据类型 **/
+    public List<Map<Object,Object>> getReturnList(int daySpace, String createdStart, List<Map<Object,Object>> payOrderList, List<Map<Object,Object>> refundOrderList);
+    /**  计算支付订单商家入账金额 商家订单入账金额 （支付金额 - 手续费 - 退款金额 - 总分账金额）**/
     public Long calMchIncomeAmount(PayOrder dbPayOrder);
     public IPage<PayOrder> listByPage(IPage iPage, PayOrder payOrder, JSONObject paramJSON, LambdaQueryWrapper<PayOrder> wrapper);
 

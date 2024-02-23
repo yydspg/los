@@ -29,7 +29,15 @@ import java.time.LocalDateTime;
 public class MchNotifyRecord extends BaseModel {
     @Serial
     private static final long serialVersionUID = 1L;
+    //订单类型:1-支付,2-退款, 3-转账
+    public static final byte TYPE_PAY_ORDER = 1;
+    public static final byte TYPE_REFUND_ORDER = 2;
+    public static final byte TYPE_TRANSFER_ORDER = 3;
 
+    //通知状态
+    public static final byte STATE_ING = 1;
+    public static final byte STATE_SUCCESS = 2;
+    public static final byte STATE_FAIL = 3;
     public static  LambdaQueryWrapper<MchNotifyRecord> gw() {return new LambdaQueryWrapper<>(); }
 
 

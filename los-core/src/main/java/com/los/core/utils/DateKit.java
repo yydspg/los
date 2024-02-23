@@ -17,7 +17,7 @@ import java.util.*;
  * @author paul 2024/2/4
  */
 
-public class DateKit {
+public class DateKit extends DateUtil{
     public static final String STANDARD_DATE_FORMAT = "yyyy-MM-dd";
     /** 获取参数时间当天的开始时间  **/
     public static Date getBegin(Date date){
@@ -134,6 +134,12 @@ public class DateKit {
             ex.printStackTrace();
         }
         return newDate;
+    }
+    public static int getIntervalDate(String startTime,String endTime) {
+        startTime = startTime + "00.00.00";
+        endTime = endTime + "23:59:59";
+        long res = DateUtil.betweenDay(DateUtil.parseDate(startTime), DateUtil.parseDate(endTime), true);
+        return (int)res;
     }
     /** 公共函数，获取当前时间。  **/
     public static Long currentTimeMillis(){

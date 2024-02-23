@@ -21,9 +21,25 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        notify_id, order_id, order_type, mch_order_no, mch_no, isv_no, app_id, notify_url, res_result, notify_count, notify_count_limit, state, last_notify_time, created_at, updated_at
-    </sql>
+    <!-- 更新商户回调的结果即状态 -->
+    <update id="updateNotifyResult">
+
+        update t_mch_notify_record set res_result = #{resResult},
+                                       notify_count = notify_count + 1,
+                                       state = #{state},
+                                       last_notify_time = now()
+        where notify_id = #{notifyId}
+
+    </update>
+
+
+
+    <!-- 更改为通知中 & 增加允许重发通知次数  -->
+    <update id="updateIngAndAddNotifyCountLimit">
+        update t_mch_notify_record
+        set notify_count_limit = notify_count_limit + 1, state = 1
+        where notify_id = #{notifyId}
+    </update>
+
 
 </mapper>

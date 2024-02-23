@@ -2,6 +2,7 @@ package com.los.service.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.los.core.entity.SysUserAuth;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * <p>
@@ -11,6 +12,8 @@ import com.los.core.entity.SysUserAuth;
 * @author paul
 * @since 2024-02-21
 */
-    public interface SysUserAuthMapper extends BaseMapper<SysUserAuth> {
+public interface SysUserAuthMapper extends BaseMapper<SysUserAuth> {
+    SysUserAuth selectByLogin(@Param("identifier")String identifier,
+                              @Param("identityType")Byte identityType, @Param("sysType")String sysType);
 
-    }
+}
