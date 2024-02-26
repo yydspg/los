@@ -12,5 +12,5 @@ import com.los.core.entity.IsvInfo;
  * @since 2024-02-05
  */
 public interface IsvInfoService extends IService<IsvInfo> {
-
+    public void removeByIsvNo(String isvNo);
 }
