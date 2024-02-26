@@ -16,9 +16,51 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        id, mch_no, app_id, if_code, way_code, rate, risk_config, state, created_at, updated_at
-    </sql>
+    <!-- 根据支付方式查询可用的支付接口列表  -->
+    <!--
+    这段代码是一个MyBatis的SQL查询语句，定义在一个XML映射文件中，用于根据支付方式（wayCode）和其他条件查询可用的支付接口列表。结果集将以`com.alibaba.fastjson.JSONObject`类型返回。
+
+    查询的目标是从`t_pay_interface_define`表（简称pid表）和`t_pay_interface_config`表（简称pic表）中选择符合条件的数据列。
+
+    **查询条件**：
+    1. `pid.way_codes` 字段包含指定的支付方式（`#{wayCode}`），使用了MySQL的JSON函数`JSON_CONTAINS`进行查询。
+    2. `pid.state` 必须为1，表示支付接口定义处于启用状态。
+    3. `pic.state` 必须为1，表示支付接口配置处于启用状态。
+    4. `pic.info_type` 必须等于方法参数`#{infoType}`。
+    5. `pic.info_id` 必须等于方法参数`#{appId}`。
+    6. `pic.if_params` 不为null且去除前后空白后不为空字符串。
+
+    **额外条件**：
+    - 如果传入的参数`mchType`等于1，则要求`pid.is_mch_mode`为1，这可能表示该支付接口支持商户模式。
+    - 如果传入的参数`mchType`等于2，则要求`pid.is_isv_mode`为1，这可能表示该支付接口支持ISV服务商模式。
+
+    **查询结果**：
+    查询结果中包含了以下字段：
+    - `pid.if_code`：支付接口代码
+    - `pid.if_name`：支付接口名称
+    - `pid.config_page_type`：配置页面类型
+    - `pid.bg_color`：背景颜色
+    - `pid.icon`：图标
+    - `pic.if_params`：支付接口参数
+    - `pic.if_rate`：支付费率
+
+    最后，通过`inner join`连接`pid`表和`pic`表，连接条件为`pid.if_code = pic.if_code`，确保查询结果是基于同一个支付接口定义及其配置信息的。
+    -->
+    <select id="selectAvailablePayInterfaceList" resultType="com.alibaba.fastjson.JSONObject" parameterType="java.util.Map">
+        select pid.if_code ifCode, pid.if_name ifName, pid.config_page_type configPageType, pid.bg_color bgColor, pid.icon icon, pic.if_params ifParams, pic.if_rate ifRate from t_pay_interface_define pid
+        inner join t_pay_interface_config pic on pid.if_code = pic.if_code
+        where JSON_CONTAINS(pid.way_codes, JSON_OBJECT('wayCode', #{wayCode}))
+        and pid.state = 1
+        and pic.state = 1
+        and pic.info_type = #{infoType}
+        and pic.info_id = #{appId}
+        and (pic.if_params is not null and trim(pic.if_params) != '')
+        <if test="mchType == 1">
+            and pid.is_mch_mode = 1
+        </if>
+        <if test="mchType == 2">
+            and pid.is_isv_mode = 1
+        </if>;
+    </select>
 
 </mapper>

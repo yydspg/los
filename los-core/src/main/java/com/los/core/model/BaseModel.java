@@ -20,7 +20,7 @@ public class BaseModel implements Serializable {
     public JSONObject getExt() {
         return ext;}
     /* 设置扩展字段 **/
-    public BaseModel setExt (String k,Object v){
+    public BaseModel addExt (String k,Object v){
         if (ext == null) {
             ext = new JSONObject();
         }

@@ -3,8 +3,8 @@ package com.los.payment.ctrl.division;
 import com.los.components.mq.vender.IMQSender;
 import com.los.payment.service.ConfigContextQueryService;
 import com.los.service.impl.SysConfigService;
-import com.los.service.service.MchPayPassageService;
-import com.los.service.service.PayOrderService;
+import com.los.service.MchPayPassageService;
+import com.los.service.PayOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

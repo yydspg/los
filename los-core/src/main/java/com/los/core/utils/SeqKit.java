@@ -80,14 +80,6 @@ public class SeqKit {
                 (int) DIVISION_BATCH_ID_SEQ.getAndIncrement() % 10000);
     }
 
-    public static void main(String[] args) throws Exception {
-        System.out.println(genTransferId());
-        System.out.println(genRefundOrderId());
-        Thread.sleep(1000);
-        System.out.println(genMhoOrderId());
-        System.out.println(genTransferId());
-        Thread.sleep(1000);
-        System.out.println(genDivisionBatchId());
-    }
+
 
 }

@@ -12,6 +12,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -28,7 +29,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @TableName("t_pay_interface_define")
 @Schema(name = "PayInterfaceDefine", description = "$!{table.comment}")
-public class PayInterfaceDefine extends BaseModel {
+public class PayInterfaceDefine extends BaseModel implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 

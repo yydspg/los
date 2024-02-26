@@ -3,7 +3,7 @@ package com.los.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.los.core.entity.MchNotifyRecord;
 import com.los.service.mapper.MchNotifyRecordMapper;
-import com.los.service.service.MchNotifyRecordService;
+import com.los.service.MchNotifyRecordService;
 import org.springframework.stereotype.Service;
 
 /**

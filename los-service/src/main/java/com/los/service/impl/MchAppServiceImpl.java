@@ -3,7 +3,7 @@ package com.los.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.los.core.entity.MchApp;
 import com.los.service.mapper.MchAppMapper;
-import com.los.service.service.MchAppService;
+import com.los.service.MchAppService;
 import org.springframework.stereotype.Service;
 
 /**

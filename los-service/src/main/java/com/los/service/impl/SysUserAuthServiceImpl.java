@@ -1,10 +1,17 @@
 package com.los.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.los.core.constants.CS;
 import com.los.core.entity.SysUserAuth;
+import com.los.core.model.security.LosUserDetails;
+import com.los.core.utils.StringKit;
 import com.los.service.mapper.SysUserAuthMapper;
-import com.los.service.service.SysUserAuthService;
+import com.los.service.SysUserAuthService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Objects;
 
 /**
 * <p>
@@ -42,16 +49,54 @@ public class SysUserAuthServiceImpl extends ServiceImpl<SysUserAuthMapper, SysUs
      */
     @Override
     public void addUserAuthDefault(Long userId, String loginUserName, String telPhone, String pwdRaw, String sysType) {
-
+        String salt = StringKit.getUUID(6);
+        String userPwd = new BCryptPasswordEncoder().encode(pwdRaw);
+        /* 用户名登录 */
+        SysUserAuth record = new SysUserAuth();
+        record.setUserId(userId); record.setCredential(userPwd); record.setSalt(salt);record.setSysType(sysType);
+        record.setIdentityType(CS.AUTH_TYPE.LOGIN_USER_NAME);
+        record.setIdentifier(loginUserName);
+        this.save(record);
+        /* 手机号登录 */
+        record = new SysUserAuth();
+        record.setUserId(userId); record.setCredential(userPwd); record.setSalt(salt);record.setSysType(sysType);
+        record.setIdentityType(CS.AUTH_TYPE.TELPHONE);
+        record.setIdentifier(telPhone);
+        this.save(record);
     }
 
     @Override
-    public void resetAuthInfo(Long resetUserId, String authLoginUserName, String telPhone, String newPwd, String sysType) {
-
+    public void resetPwd(Long resetUserId, String newPwd, String sysType) {
+        if(StringKit.isNotEmpty(newPwd)) {
+            /* 根据 resetUserId 查询当前用户所有的认证记录 */
+            List<SysUserAuth> authWays = this.list(SysUserAuth.gw()
+                    .eq(SysUserAuth::getUserId, resetUserId)
+                    .eq(SysUserAuth::getSysType, sysType));
+            for (SysUserAuth authWay : authWays) {
+                /* 若为不存在 salt 的登录方式 */
+                if (StringKit.isEmpty(authWay.getSalt())) {
+                    continue;
+                }
+                SysUserAuth updateRecord = new SysUserAuth();
+                updateRecord.setAuthId(authWay.getAuthId());
+                updateRecord.setCredential(new BCryptPasswordEncoder().encode(newPwd));
+                this.updateById(updateRecord);
+            }
+        }
     }
 
     @Override
     public boolean validateCurrentUserPwd(String pwdRaw) {
+        //根据当前用户ID + 认证方式为 登录用户名的方式 查询一条记录
+        SysUserAuth auth = getOne(SysUserAuth.gw()
+        //使用非明文传输,防止水平越权
+                .eq(SysUserAuth::getUserId, Objects.requireNonNull(LosUserDetails.getCurrentUserDetails()).getSysUser().getSysUserId())
+                .eq(SysUserAuth::getIdentityType, CS.AUTH_TYPE.LOGIN_USER_NAME)
+        );
+        if(auth != null && new BCryptPasswordEncoder().matches(pwdRaw, auth.getCredential())){
+            return true;
+        }
+
         return false;
     }
 }

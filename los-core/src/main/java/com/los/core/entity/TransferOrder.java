@@ -13,6 +13,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serial;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
 * <p>
@@ -32,6 +33,17 @@ public class TransferOrder extends BaseModel {
     @Serial
     private static final long serialVersionUID = 1L;
 
+
+    /** 入账方式 **/
+    public static final String ENTRY_WX_CASH = "WX_CASH";
+    public static final String ENTRY_ALIPAY_CASH = "ALIPAY_CASH";
+    public static final String ENTRY_BANK_CARD = "BANK_CARD";
+
+    public static final byte STATE_INIT = 0; //订单生成
+    public static final byte STATE_ING = 1; //转账中
+    public static final byte STATE_SUCCESS = 2; //转账成功
+    public static final byte STATE_FAIL = 3; //转账失败
+    public static final byte STATE_CLOSED = 4; //转账关闭
     public static  LambdaQueryWrapper<TransferOrder> gw() {return new LambdaQueryWrapper<>(); }
 
 
@@ -105,13 +117,13 @@ public class TransferOrder extends BaseModel {
     private String notifyUrl;
 
     @Schema(description = "转账成功时间")
-    private LocalDateTime successTime;
+    private Date successTime;
 
     @Schema(description = "创建时间")
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createdAt;
+    private Date createdAt;
 
     @Schema(description = "更新时间")
     @TableField(fill = FieldFill.UPDATE)
-    private LocalDateTime updatedAt;
+    private Date updatedAt;
 }

@@ -5,8 +5,8 @@ import com.los.core.constants.CS;
 import com.los.core.entity.SysEntitlement;
 import com.los.core.entity.SysRoleEntRela;
 import com.los.service.mapper.SysRoleEntRelaMapper;
-import com.los.service.service.SysEntitlementService;
-import com.los.service.service.SysRoleEntRelaService;
+import com.los.service.SysEntitlementService;
+import com.los.service.SysRoleEntRelaService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

@@ -3,8 +3,8 @@ package com.los.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.los.core.entity.MchDivisionReceiverGroup;
 import com.los.service.mapper.MchDivisionReceiverGroupMapper;
-import com.los.service.service.MchDivisionReceiverGroupService;
-import com.los.service.service.MchDivisionReceiverService;
+import com.los.service.MchDivisionReceiverGroupService;
+import com.los.service.MchDivisionReceiverService;
 
 /**
  * @author paul 2024/2/22

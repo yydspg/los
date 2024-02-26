@@ -1,8 +1,7 @@
-package com.los.service.service;
+package com.los.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.los.core.entity.SysUserAuth;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -18,8 +17,8 @@ public interface SysUserAuthService extends IService<SysUserAuth> {
 
     /**添加用户认证表**/
     public void addUserAuthDefault(Long userId, String loginUserName, String telPhone, String pwdRaw, String sysType);
-    /** 重置密码 */
-    public void resetAuthInfo(Long resetUserId, String authLoginUserName, String telphone, String newPwd, String sysType);
+    /** 重置密码 TODO 修改方法名称 */
+    public void resetPwd(Long resetUserId,  String newPwd, String sysType);
     /** 查询当前用户密码是否正确 */
     public boolean validateCurrentUserPwd(String pwdRaw);
 }

@@ -1,8 +1,7 @@
-package com.los.service.service;
+package com.los.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.los.core.entity.SysRoleEntRela;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

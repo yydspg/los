@@ -3,7 +3,7 @@ package com.los.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.los.core.model.dos.Setting;
 import com.los.service.mapper.SettingMapper;
-import com.los.service.service.SettingService;
+import com.los.service.SettingService;
 import org.springframework.stereotype.Service;
 
 /**
