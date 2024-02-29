@@ -12,10 +12,10 @@ import lombok.Data;
 @Data
 public class WxpayIsvsubMchParams extends IsvsubMchParams {
 
-    /** 子商户ID **/
+    /* 子商户ID **/
     private String subMchId;
 
-    /** 子账户appID **/
+    /* 子账户appID **/
     private String subMchAppId;
 
 

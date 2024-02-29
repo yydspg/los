@@ -5,7 +5,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.los.core.model.params.NormalMchParams;
 import com.los.core.utils.StringKit;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
+
 
 /*
  * 支付宝 普通商户参数定义
@@ -14,41 +14,41 @@ import org.apache.commons.lang3.StringUtils;
 @Data
 public class AlipayNormalMchParams extends NormalMchParams {
 
-    /** 是否沙箱环境 */
+    /* 是否沙箱环境 */
     private Byte sandbox;
 
-    /** appId */
+    /* appId */
     private String appId;
 
-    /** privateKey */
+    /* privateKey */
     private String privateKey;
 
-    /** alipayPublicKey */
+    /* alipayPublicKey */
     private String alipayPublicKey;
 
-    /** 签名方式 **/
+    /* 签名方式 **/
     private String signType;
 
-    /** 是否使用证书方式 **/
+    /* 是否使用证书方式 **/
     private Byte useCert;
 
-    /** app 证书 **/
+    /* app 证书 **/
     private String appPublicCert;
 
-    /** 支付宝公钥证书（.crt格式） **/
+    /* 支付宝公钥证书（.crt格式） **/
     private String alipayPublicCert;
 
-    /** 支付宝根证书 **/
+    /* 支付宝根证书 **/
     private String alipayRootCert;
 
     @Override
     public String deSenData() {
 
         AlipayNormalMchParams mchParams = this;
-        if (StringUtils.isNotBlank(this.privateKey)) {
+        if (StringKit.isNotBlank(this.privateKey)) {
             mchParams.setPrivateKey(StringKit.str2Star(this.privateKey, 4, 4, 6));
         }
-        if (StringUtils.isNotBlank(this.alipayPublicKey)) {
+        if (StringKit.isNotBlank(this.alipayPublicKey)) {
             mchParams.setAlipayPublicKey(StringKit.str2Star(this.alipayPublicKey, 6, 6, 6));
         }
         return ((JSONObject) JSON.toJSON(mchParams)).toJSONString();

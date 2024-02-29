@@ -15,7 +15,7 @@ import java.io.Serial;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-/**
+/*
 * <p>
     * 转账订单表
     * </p>
@@ -34,7 +34,7 @@ public class TransferOrder extends BaseModel {
     private static final long serialVersionUID = 1L;
 
 
-    /** 入账方式 **/
+    /* 入账方式 **/
     public static final String ENTRY_WX_CASH = "WX_CASH";
     public static final String ENTRY_ALIPAY_CASH = "ALIPAY_CASH";
     public static final String ENTRY_BANK_CARD = "BANK_CARD";

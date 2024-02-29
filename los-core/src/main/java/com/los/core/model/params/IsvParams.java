@@ -6,7 +6,7 @@ import com.alibaba.fastjson2.JSONObject;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
+/*
  * 抽象类 isv参数定义
  *TODO 理解类含义
  */
@@ -42,7 +42,7 @@ public abstract class IsvParams {
         return null;
     }
 
-    /**
+    /*
      *  敏感数据脱敏
     */
     public abstract String deSenData();

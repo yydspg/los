@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.Set;
 
-/**
+/*
 * <p>
  * 系统配置表 服务实现类
  * </p>
@@ -28,10 +28,11 @@ import java.util.Set;
 @Service
 public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> implements ISysConfigService {
 
-    /** 是否启用缓存
-     * true: 表示将使用内存缓存， 将部分系统配置项 或 商户应用/服务商信息进行缓存并读取
-     * false: 直接查询DB
-     * **/
+    /* 是否启用缓存
+      true: 表示将使用内存缓存， 将部分系统配置项 或 商户应用/服务商信息进行缓存并读取
+      false: 直接查询DB
+     */
+    //TODO 是否可以将所有配置项可以在线修改
     public static boolean IS_USE_CACHE = false;
 
     @Autowired

@@ -3,7 +3,7 @@ package com.los.payment.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-/**
+/*
  * @author paul 2024/1/31
  */
 @Configuration

@@ -6,7 +6,7 @@ import com.los.service.mapper.MchNotifyRecordMapper;
 import com.los.service.MchNotifyRecordService;
 import org.springframework.stereotype.Service;
 
-/**
+/*
 * <p>
     * 商户通知记录表 服务实现类
     * </p>

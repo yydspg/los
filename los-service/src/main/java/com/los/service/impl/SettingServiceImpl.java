@@ -6,7 +6,7 @@ import com.los.service.mapper.SettingMapper;
 import com.los.service.SettingService;
 import org.springframework.stereotype.Service;
 
-/**
+/*
  * @author paul 2024/2/4
  */
 

@@ -13,7 +13,7 @@ import java.io.Serial;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
+/*
 * <p>
     * 支付接口配置参数表
     * </p>

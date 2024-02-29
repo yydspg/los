@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
+/*
  * <p>
  * 商户信息表 服务类
  * </p>

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/**
+/*
  * 接口返回对象,并提供对应操作接口
  * @author paul 2024/1/30
  */

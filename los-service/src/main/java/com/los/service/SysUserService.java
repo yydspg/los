@@ -5,7 +5,7 @@ import com.los.core.entity.SysUser;
 
 import java.util.List;
 
-/**
+/*
  * <p>
  * 系统用户表 服务类
  * </p>

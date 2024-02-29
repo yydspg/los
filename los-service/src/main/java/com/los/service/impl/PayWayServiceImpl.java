@@ -6,7 +6,7 @@ import com.los.service.mapper.PayWayMapper;
 import com.los.service.PayWayService;
 import org.springframework.stereotype.Service;
 
-/**
+/*
 * <p>
     * 支付方式表 服务实现类
     * </p>

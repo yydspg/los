@@ -6,7 +6,7 @@ import cn.hutool.core.bean.BeanUtil;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-/**
+/*
  * @author paul 2024/2/4
  */
 
@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 
 public class BeanKit{
 
-    /**
+    /*
      * 复制属性
      *
      * @param objectFrom 源自对象
@@ -25,7 +25,7 @@ public class BeanKit{
     }
 
 
-    /**
+    /*
      * 获取属性名数组
      *
      * @param o 获取字段的对象
@@ -50,7 +50,7 @@ public class BeanKit{
         return fieldNames;
     }
 
-    /**
+    /*
      * 根据属性名获取属性值
      *
      * @param fieldName 属性名
@@ -70,7 +70,7 @@ public class BeanKit{
     }
 
 
-    /**
+    /*
      * 将对象转换为key value
      * A=a&B=b&C=c 格式
      *
@@ -98,7 +98,7 @@ public class BeanKit{
         return stringBuffer.toString();
     }
 
-    /**
+    /*
      * key value键值对 转换为 对象
      * A=a&B=b&C=c 格式 转换为对象
      *

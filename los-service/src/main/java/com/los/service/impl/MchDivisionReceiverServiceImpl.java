@@ -6,7 +6,7 @@ import com.los.service.mapper.MchDivisionReceiverMapper;
 import com.los.service.MchDivisionReceiverService;
 import org.springframework.stereotype.Service;
 
-/**
+/*
 * <p>
     * 商户分账接收者账号绑定关系表 服务实现类
     * </p>

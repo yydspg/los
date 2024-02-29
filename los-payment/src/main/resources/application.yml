@@ -7,7 +7,7 @@ springdoc:
     path: /v3/api-docs
   group-configs:
     - group: 'default'
-      paths-to-match: '/**'
+      paths-to-match: '/*'
       packages-to-scan: com.github.xiaoymin.boot3
   default-flat-param-object: true
 

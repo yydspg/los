@@ -8,7 +8,7 @@ import io.micrometer.common.util.StringUtils;
 import java.util.Map;
 import java.util.UUID;
 
-/**
+/*
  * @author paul 2024/1/31
  */
 
@@ -47,7 +47,7 @@ public class StringKit  extends StrUtil {
         }
         return sb.toString();
     }
-    /** 是否 http 或 https连接 **/
+    /* 是否 http 或 https连接 **/
     public static boolean isAvailableUrl(String url){
 
         if(org.apache.commons.lang3.StringUtils.isEmpty(url)){
@@ -57,7 +57,7 @@ public class StringKit  extends StrUtil {
         return url.startsWith("http://") ||url.startsWith("https://");
     }
 
-    /**
+    /*
      * TODO 未测试
      * 对字符加星号处理：除前面几位和后面几位外，其他的字符以星号代替
      * @param content 传入的字符串
@@ -84,7 +84,7 @@ public class StringKit  extends StrUtil {
         return  sb.toString();
     }
 
-    /**
+    /*
      *合并两个json字符串
      * key相同，则后者覆盖前者的值
      * key不同，则合并至前者

@@ -3,7 +3,7 @@ package com.los.core.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
+/*
  * @author paul 2024/2/4
  */
 
@@ -22,7 +22,7 @@ public class SqlFilter {
     static final Pattern keywordPattern = Pattern.compile(SQL_KEYWORDS_PATTERN, Pattern.CASE_INSENSITIVE);
 
 
-    /**
+    /*
      * 关键字命中
      *
      * @param sql

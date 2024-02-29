@@ -5,12 +5,12 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-/**
+/*
  * @author paul 2024/1/30
  */
 
 public class JwtUtils {
-    /** 生成token **/
+    /* 生成token **/
     public static String generateToken(JwtPayload jwtPayload, String jwtSecret) {
         return Jwts.builder()
                 .setClaims(jwtPayload.toMap())
@@ -20,7 +20,7 @@ public class JwtUtils {
                 .compact();
     }
 
-    /** 根据token与秘钥 解析token并转换为 JwtPayload **/
+    /* 根据token与秘钥 解析token并转换为 JwtPayload **/
     public static JwtPayload parseToken(String token, String secret){
         try {
             Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();

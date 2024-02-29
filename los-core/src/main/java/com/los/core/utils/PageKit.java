@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
+/*
  * @author paul 2024/2/4
  */
 
@@ -25,7 +25,7 @@ public class PageKit {
     //有order by 注入风险，限制长度
     static final Integer orderByLengthLimit = 20;
 
-    /**
+    /*
      * Mybatis-Plus分页封装
      *
      * @param page 分页VO
@@ -81,7 +81,7 @@ public class PageKit {
 
     }
 
-    /**
+    /*
      * 生成条件搜索 全对象对比 equals
      * 如果需要like 需要另行处理
      *
@@ -92,7 +92,7 @@ public class PageKit {
         return initWrapper(object, null);
     }
 
-    /**
+    /*
      * 生成条件搜索 全对象对比
      *
      * @param object   对象
@@ -126,7 +126,7 @@ public class PageKit {
     }
 
 
-    /**
+    /*
      * List 手动分页
      *
      * @param page 分页对象
@@ -160,7 +160,7 @@ public class PageKit {
         }
     }
 
-    /**
+    /*
      * 转换分页类型
      *
      * @param originPage 原分页

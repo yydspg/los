@@ -6,14 +6,14 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
-/**
+/*
  * @author paul 2024/2/4
  */
 
 @CacheConfig(cacheNames = "{setting}")
 public interface SettingService extends IService<Setting> {
 
-    /**
+    /*
      * 通过key获取
      *
      * @param key
@@ -22,7 +22,7 @@ public interface SettingService extends IService<Setting> {
     @Cacheable(key = "#key")
     Setting get(String key);
 
-    /**
+    /*
      * 修改
      *
      * @param setting

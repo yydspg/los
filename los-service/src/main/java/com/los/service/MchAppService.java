@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.los.core.entity.MchApp;
 
-/**
+/*
  * <p>
  * 商户应用表 服务类
  * </p>

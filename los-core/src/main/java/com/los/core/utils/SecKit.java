@@ -13,7 +13,7 @@ import java.security.MessageDigest;
 import java.util.*;
 import java.util.regex.Pattern;
 
-/**
+/*
  * TODO 实现密钥管理和轮换机制
  * 签名工具类
  * @author paul 2024/1/30
@@ -36,11 +36,11 @@ public class SecKit {
     private static String encodingCharset = "UTF-8";
 
 
-    /** 加密 **/
+    /* 加密 **/
     public static String aesEncode(String str){
         return SecureUtil.aes(SecKit.AES_KEY).encryptHex(str);
     }
-    /** 解密 **/
+    /* 解密 **/
     public static String aesDecode(String str) {
         return SecureUtil.aes(SecKit.AES_KEY).decryptStr(str);
     }

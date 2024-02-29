@@ -6,7 +6,7 @@ import lombok.Getter;
 
 import java.io.Serial;
 
-/**
+/*
  * 自定义业务异常
  * @author paul 2024/1/30
  */
@@ -23,7 +23,7 @@ public class BizException extends RuntimeException{
     private static final long serialVersionUID = 1L;
     private  ApiRes apiRes;
 
-    /** 业务自定义异常 **/
+    /* 业务自定义异常 **/
     public BizException(String msg) {
         super(msg);
         this.apiRes = ApiRes.customFail(msg);

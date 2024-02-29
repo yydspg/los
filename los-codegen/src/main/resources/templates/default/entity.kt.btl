@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 <% } %>
 
-/**
+/*
  * <p>
  * ${table.comment!}
  * </p>
@@ -36,7 +36,7 @@ class ${entity} : Serializable {
 class ${entity} {
 <% } %>
 
-<% /** -----------BEGIN 字段循环遍历----------- **/ %>
+<% /* -----------BEGIN 字段循环遍历----------- **/ %>
 <% for(field in table.fields){ %>
     <%
     if(field.keyFlag){
@@ -49,7 +49,7 @@ class ${entity} {
         <% }else if(swagger){ %>
     @ApiModelProperty(value = "${field.comment}")
         <% }else{ %>
-    /**
+    /*
      * ${field.comment}
      */
         <% } %>
@@ -96,7 +96,7 @@ class ${entity} {
     <% } %>
 
 <% } %>
-<% /** -----------END 字段循环遍历----------- **/ %>
+<% /* -----------END 字段循环遍历----------- **/ %>
 <% if(entityColumnConstant){ %>
     companion object {
    <% for(field in table.fields){ %>

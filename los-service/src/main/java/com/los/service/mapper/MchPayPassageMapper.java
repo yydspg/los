@@ -7,7 +7,7 @@ import com.los.core.entity.MchPayPassage;
 import java.util.HashMap;
 import java.util.List;
 
-/**
+/*
 * <p>
     * 商户支付通道表 Mapper 接口
     * </p>

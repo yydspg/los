@@ -6,7 +6,7 @@ import com.los.service.mapper.PayInterfaceDefineMapper;
 import com.los.service.PayInterfaceDefineService;
 import org.springframework.stereotype.Service;
 
-/**
+/*
 * <p>
     * 支付接口定义表 服务实现类
     * </p>

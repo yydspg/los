@@ -24,7 +24,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/*
  * @author paul 2024/2/20
  */
 
@@ -49,12 +49,12 @@ public abstract class AbstractCtrl {
     @Autowired
     protected RequestKitBean requestKitBean;
 
-    /** 获取json格式的请求参数 **/
+    /* 获取json格式的请求参数 **/
     protected JSONObject getReqParamJSON(){
         return requestKitBean.getReqParamJson();
     }
 
-    /** 获取页码 **/
+    /* 获取页码 **/
     protected int getPageIndex() {
         Integer pageIndex = getReqParamJSON().getInteger(PAGE_INDEX_PARAM_NAME);
         if(pageIndex == null) {
@@ -62,11 +62,11 @@ public abstract class AbstractCtrl {
         }
         return pageIndex;
     }
-    /** 获取条数， 默认不允许查询全部数据 **/
+    /* 获取条数， 默认不允许查询全部数据 **/
     protected int getPageSize() {
         return getPageSize(false);
     }
-    /** 获取条数,  加入条件：是否允许获取全部数据 **/
+    /* 获取条数,  加入条件：是否允许获取全部数据 **/
     protected int getPageSize(boolean allowQueryAll) {
         Integer pageSize = getReqParamJSON().getInteger(PAGE_SIZE_PARAM_NAME);
 
@@ -78,20 +78,20 @@ public abstract class AbstractCtrl {
         }
         return pageSize;
     }
-    /** 获取Ipage分页信息, 默认不允许获取全部数据 **/
+    /* 获取Ipage分页信息, 默认不允许获取全部数据 **/
     protected IPage getIPage(){
         return new Page(getPageIndex(), getPageSize());
     }
 
-    /** 获取Ipage分页信息, 加入条件：是否允许获取全部数据 **/
+    /* 获取Ipage分页信息, 加入条件：是否允许获取全部数据 **/
     protected IPage getIPage(boolean allowQueryAll){
         return new Page(getPageIndex(), getPageSize(allowQueryAll));
     }
-    /** 获取请求参数值 [ T 类型 ], [ 非必填 ] **/
+    /* 获取请求参数值 [ T 类型 ], [ 非必填 ] **/
     protected <T> T getVal(String key, Class<T> cls) {
         return getReqParamJSON().getObject(key, cls);
     }
-    /** 获取请求参数值 [ T 类型 ], [ 必填 ] **/
+    /* 获取请求参数值 [ T 类型 ], [ 必填 ] **/
     protected <T> T getValRequired(String key, Class<T> cls) {
         T value = getVal(key, cls);
         if(ObjectUtils.isEmpty(value)) {
@@ -99,7 +99,7 @@ public abstract class AbstractCtrl {
         }
         return value;
     }
-    /** 获取请求参数值 [ T 类型 ], [ 如为null返回默认值 ] **/
+    /* 获取请求参数值 [ T 类型 ], [ 如为null返回默认值 ] **/
     protected  <T> T getValDefault(String key, T defaultValue, Class<T> cls) {
         T value = getVal(key, cls);
         if(value == null) {
@@ -107,7 +107,7 @@ public abstract class AbstractCtrl {
         }
         return value;
     }
-    /** 获取请求参数值 String 类型相关函数 **/
+    /* 获取请求参数值 String 类型相关函数 **/
     protected String getValString(String key) {
         return getVal(key, String.class);
     }
@@ -117,7 +117,7 @@ public abstract class AbstractCtrl {
     protected String getValStringDefault(String key, String defaultValue) {
         return getValDefault(key, defaultValue, String.class);
     }
-    /** 获取请求参数值 Byte 类型相关函数 **/
+    /* 获取请求参数值 Byte 类型相关函数 **/
     protected Byte getValByte(String key) {
         return getVal(key, Byte.class);
     }
@@ -127,7 +127,7 @@ public abstract class AbstractCtrl {
     protected Byte getValByteDefault(String key, Byte defaultValue) {
         return getValDefault(key, defaultValue, Byte.class);
     }
-    /** 获取请求参数值 Integer 类型相关函数 **/
+    /* 获取请求参数值 Integer 类型相关函数 **/
     protected Integer getValInteger(String key) {
         return getVal(key, Integer.class);
     }
@@ -137,7 +137,7 @@ public abstract class AbstractCtrl {
     protected Integer getValIntegerDefault(String key, Integer defaultValue) {
         return getValDefault(key, defaultValue, Integer.class);
     }
-    /** 获取请求参数值 Long 类型相关函数 **/
+    /* 获取请求参数值 Long 类型相关函数 **/
     protected Long getValLong(String key) {
         return getVal(key, Long.class);
     }
@@ -148,7 +148,7 @@ public abstract class AbstractCtrl {
         return getValDefault(key, defaultValue, Long.class);
     }
 
-    /** 获取请求参数值 BigDecimal 类型相关函数 **/
+    /* 获取请求参数值 BigDecimal 类型相关函数 **/
     protected BigDecimal getValBigDecimal(String key) {
         return getVal(key, BigDecimal.class);
     }
@@ -158,7 +158,7 @@ public abstract class AbstractCtrl {
     protected BigDecimal getValBigDecimalDefault(String key, BigDecimal defaultValue) {
         return getValDefault(key, defaultValue, BigDecimal.class);
     }
-    /** 获取对象类型 **/
+    /* 获取对象类型 **/
     protected <T> T getObject(Class<T> clazz) {
 
         JSONObject params = getReqParamJSON();
@@ -175,11 +175,11 @@ public abstract class AbstractCtrl {
 
         return result;
     }
-    /** 生成参数必填错误信息 **/
+    /* 生成参数必填错误信息 **/
     private String genParamRequiredMsg(String key) {
         return "参数" + key + "必填";
     }
-    /** 校验参数值不能为空 */
+    /* 校验参数值不能为空 */
     protected void checkRequired(String... keys) {
 
         for(String key : keys) {
@@ -189,13 +189,13 @@ public abstract class AbstractCtrl {
             }
         }
     }
-    /** 得到前端传入的金额元,转换成长整型分 **/
+    /* 得到前端传入的金额元,转换成长整型分 **/
     public Long getRequiredAmountL(String name) {
         String amountStr = getValStringRequired(name);  // 前端填写的为元,可以为小数点2位
         Long amountL = new BigDecimal(amountStr.trim()).multiply(new BigDecimal(100)).longValue(); // // 转成分
         return amountL;
     }
-    /** 得到前端传入的金额元,转换成长整型分 (非必填) **/
+    /* 得到前端传入的金额元,转换成长整型分 (非必填) **/
     public Long getAmountL(String name) {
         String amountStr = getValString(name);  // 前端填写的为元,可以为小数点2位
         if(StringUtils.isEmpty(amountStr)) {
@@ -204,7 +204,7 @@ public abstract class AbstractCtrl {
         Long amountL = new BigDecimal(amountStr.trim()).multiply(new BigDecimal(100)).longValue(); // // 转成分
         return amountL;
     }
-    /**
+    /*
      * 处理参数中的金额(将前端传入金额元转成分)
      * modify: 20181206 添加JSON对象中的对象属性转换为分 格式[xxx.xxx]
      * @param names
@@ -223,7 +223,7 @@ public abstract class AbstractCtrl {
             }
         }
     }
-    /**
+    /*
          * 获取查询的时间范围
          * @return
          */
@@ -231,7 +231,7 @@ public abstract class AbstractCtrl {
         return DateKit.getQueryDateRange(getReqParamJSON().getString("queryDateRange")); //默认参数为 queryDateRange
     }
 
-    /** 请求参数转换为map格式 **/
+    /* 请求参数转换为map格式 **/
     public Map<String, Object> request2payResponseMap(HttpServletRequest request, String[] paramArray) {
         Map<String, Object> responseMap = new HashMap<>();
         for (int i = 0;i < paramArray.length; i++) {
@@ -243,7 +243,7 @@ public abstract class AbstractCtrl {
         }
         return responseMap;
     }
-    /** 将上传的文件进行保存 - 公共函数 **/
+    /* 将上传的文件进行保存 - 公共函数 **/
     protected void saveFile(MultipartFile file, String savePath) throws Exception {
 
         File saveFile = new File(savePath);
@@ -255,7 +255,7 @@ public abstract class AbstractCtrl {
         }
         file.transferTo(saveFile);
     }
-    /** 获取客户端ip地址 **/
+    /* 获取客户端ip地址 **/
     public String getClientIp() {
         return requestKitBean.getClientIp();
     }

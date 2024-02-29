@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
+/*
  * <p>
  * 商户支付通道表 服务类
  * </p>
@@ -21,7 +21,7 @@ public interface MchPayPassageService extends IService<MchPayPassage> {
 
     /* 系列mchPayPassage 添加 mchNo 字段 */
     public void saveOrUpdateBatchSelf(List<MchPayPassage> mchPayPassageList, String mchNo);
-    /** 根据应用ID 和 支付方式， 查询出商户可用的支付接口 **/
+    /* 根据应用ID 和 支付方式， 查询出商户可用的支付接口 **/
     public MchPayPassage findMchPayPassage(String mchNo, String appId, String wayCode);
 
 }

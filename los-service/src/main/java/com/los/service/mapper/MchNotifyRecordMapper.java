@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.los.core.entity.MchNotifyRecord;
 import org.apache.ibatis.annotations.Param;
 
-/**
+/*
 * <p>
     * 商户通知记录表 Mapper 接口
     * </p>

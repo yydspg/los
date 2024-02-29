@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
     </#if>
 </#if>
 
-/**
+/*
  * <p>
  * ${table.comment!}
  * </p>
@@ -65,7 +65,7 @@ public class ${entity} {
         <#elseif swagger>
     @ApiModelProperty("${field.comment}")
         <#else>
-    /**
+    /*
      * ${field.comment}
      */
         </#if>

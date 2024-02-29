@@ -13,7 +13,7 @@ import java.io.Serial;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
+/*
 * <p>
     * 商户分账接收者账号绑定关系表
     * </p>

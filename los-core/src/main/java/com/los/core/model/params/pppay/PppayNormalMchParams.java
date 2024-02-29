@@ -8,7 +8,7 @@ import com.los.core.model.params.NormalMchParams;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
-/**
+/*
  * none.
  *
  * @author 陈泉
@@ -17,29 +17,29 @@ import org.apache.commons.lang3.StringUtils;
  */
 @Data
 public class PppayNormalMchParams extends NormalMchParams {
-    /**
+    /*
      * 是否沙箱环境
      */
     private Byte sandbox;
 
-    /**
+    /*
      * clientId
      * 客户端 ID
      */
     private String clientId;
 
-    /**
+    /*
      * secret
      * 密钥
      */
     private String secret;
 
-    /**
+    /*
      * 支付 Webhook 通知 ID
      */
     private String notifyWebhook;
 
-    /**
+    /*
      * 退款 Webhook 通知 ID
      */
     private String refundWebhook;

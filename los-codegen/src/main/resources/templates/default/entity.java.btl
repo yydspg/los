@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
 <% } %>
 <% } %>
 
-/**
+/*
  * <p>
  * ${table.comment!}
  * </p>
@@ -54,7 +54,7 @@ public class ${entity} {
     private static final long serialVersionUID = 1L;
 <% } %>
 <% var keyPropertyName; %>
-<% /** -----------BEGIN 字段循环遍历----------- **/ %>
+<% /* -----------BEGIN 字段循环遍历----------- **/ %>
 <% for(field in table.fields){ %>
     <%
     if(field.keyFlag){
@@ -68,7 +68,7 @@ public class ${entity} {
         <% }else if(swagger){ %>
     @ApiModelProperty(value = "${field.comment}")
         <% }else{ %>
-    /**
+    /*
      * ${field.comment}
      */
         <% } %>
@@ -110,7 +110,7 @@ public class ${entity} {
     <% } %>
     private ${field.propertyType} ${field.propertyName};
 <% } %>
-<% /** -----------END 字段循环遍历----------- **/ %>
+<% /* -----------END 字段循环遍历----------- **/ %>
 <% if(!entityLombokModel){ %>
     <% for(field in table.fields){ %>
         <%

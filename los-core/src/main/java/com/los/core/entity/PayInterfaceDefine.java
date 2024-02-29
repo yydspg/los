@@ -15,7 +15,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
+/*
 * <p>
     * 支付接口定义表
     * </p>

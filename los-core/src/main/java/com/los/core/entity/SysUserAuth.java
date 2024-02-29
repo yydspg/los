@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 import java.io.Serial;
 
-/**
+/*
 * <p>
     * 系统用户认证表
     * </p>

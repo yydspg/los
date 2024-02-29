@@ -15,22 +15,22 @@ import org.apache.commons.lang3.StringUtils;
 @Data
 public class YsfpayIsvParams extends IsvParams {
 
-    /** 是否沙箱环境 */
+    /* 是否沙箱环境 */
     private Byte sandbox;
 
-    /** serProvId **/
+    /* serProvId **/
     private String serProvId;
 
-    /** isvPrivateCertFile 证书 **/
+    /* isvPrivateCertFile 证书 **/
     private String isvPrivateCertFile;
 
-    /** isvPrivateCertPwd **/
+    /* isvPrivateCertPwd **/
     private String isvPrivateCertPwd;
 
-    /** ysfpayPublicKey **/
+    /* ysfpayPublicKey **/
     private String ysfpayPublicKey;
 
-    /** acqOrgCodeList 支付机构号 **/
+    /* acqOrgCodeList 支付机构号 **/
     private String acqOrgCode;
 
     @Override

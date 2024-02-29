@@ -11,19 +11,19 @@ import lombok.Data;
 @Data
 public class PlspayConfig {
 
-    /** 签名类型 */
+    /* 签名类型 */
     public static final String DEFAULT_SIGN_TYPE = "MD5";
     public static final String SIGN_TYPE_RSA2 = "RSA2";
 
-    /** 支付订单状态 */
+    /* 支付订单状态 */
     public static String PAY_STATE_SUCCESS = "2";    // 2-支付成功
     public static String PAY_STATE_FAIL = "3";       // 3-支付失败
 
-    /** 退款订单状态 */
+    /* 退款订单状态 */
     public static String REFUND_STATE_SUCCESS = "2";    // 2-退款成功
     public static String REFUND_STATE_FAIL = "3";       // 3-退款失败
 
-    /** 支付方式 */
+    /* 支付方式 */
     public static String ALI_BAR = "ALI_BAR";               // 支付宝条码
     public static String ALI_JSAPI = "ALI_JSAPI";           // 支付宝生活号
     public static String ALI_LITE = "ALI_LITE";             // 支付宝小程序

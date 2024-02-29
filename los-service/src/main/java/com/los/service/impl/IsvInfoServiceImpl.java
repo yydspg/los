@@ -13,7 +13,7 @@ import com.los.service.IsvInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
+/*
 * <p>
     * 服务商信息表 服务实现类
     * </p>

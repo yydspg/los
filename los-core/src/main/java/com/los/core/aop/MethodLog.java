@@ -2,7 +2,7 @@ package com.los.core.aop;
 
 import java.lang.annotation.*;
 
-/**
+/*
  * 方法级日志切面注解
  * @author paul 2024/1/30
  */

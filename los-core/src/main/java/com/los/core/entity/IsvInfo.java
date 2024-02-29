@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 import java.io.Serial;
 import java.time.LocalDateTime;
 
-/**
+/*
 * <p>
     * 服务商信息表
     * </p>

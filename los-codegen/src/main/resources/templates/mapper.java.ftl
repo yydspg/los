@@ -6,7 +6,7 @@ import ${superMapperClassPackage};
     import ${mapperAnnotationClass.name};
 </#if>
 
-/**
+/*
 * <p>
     * ${table.comment!} Mapper 接口
     * </p>

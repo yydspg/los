@@ -3,7 +3,7 @@ package com.los.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.los.core.entity.PayInterfaceDefine;
 
-/**
+/*
  * <p>
  * 支付接口定义表 服务类
  * </p>

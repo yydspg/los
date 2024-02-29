@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
-/**
+/*
  * common validator
  * 简单的数据验证功能，基于Java Bean Validation（JSR-303/JSR-349/JSR-380）规范
  * @author paul 2024/2/21

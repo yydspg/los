@@ -14,7 +14,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
+/*
  * <p>
  * 分账记录表
  * </p>
@@ -39,164 +39,164 @@ public class PayOrderDivisionRecord implements Serializable {
         return new LambdaQueryWrapper<>();
     }
 
-    /**
+    /*
      * 分账记录ID
      */
     @Schema(description = "分账记录ID")
     @TableId(value = "record_id", type = IdType.AUTO)
     private Long recordId;
 
-    /**
+    /*
      * 商户号
      */
     @Schema(description = "商户号")
     private String mchNo;
 
-    /**
+    /*
      * 服务商号
      */
     @Schema(description = "服务商号")
     private String isvNo;
 
-    /**
+    /*
      * 应用ID
      */
     @Schema(description = "应用ID")
     private String appId;
 
-    /**
+    /*
      * 商户名称
      */
     @Schema(description = "商户名称")
     private String mchName;
 
-    /**
+    /*
      * 类型: 1-普通商户, 2-特约商户(服务商模式)
      */
     @Schema(description = "类型: 1-普通商户, 2-特约商户(服务商模式)")
     private Byte mchType;
 
-    /**
+    /*
      * 支付接口代码
      */
     @Schema(description = "支付接口代码")
     private String ifCode;
 
-    /**
+    /*
      * 系统支付订单号
      */
     @Schema(description = "系统支付订单号")
     private String payOrderId;
 
-    /**
+    /*
      * 支付订单渠道支付订单号
      */
     @Schema(description = "支付订单渠道支付订单号")
     private String payOrderChannelOrderNo;
 
-    /**
+    /*
      * 订单金额,单位分
      */
     @Schema(description = "订单金额,单位分")
     private Long payOrderAmount;
 
-    /**
+    /*
      * 订单实际分账金额, 单位：分（订单金额 - 商户手续费 - 已退款金额）
      */
     @Schema(description = "订单实际分账金额, 单位：分（订单金额 - 商户手续费 - 已退款金额）")
     private Long payOrderDivisionAmount;
 
-    /**
+    /*
      * 系统分账批次号
      */
     @Schema(description = "系统分账批次号")
     private String batchOrderId;
 
-    /**
+    /*
      * 上游分账批次号
      */
     @Schema(description = "上游分账批次号")
     private String channelBatchOrderId;
 
-    /**
+    /*
      * 状态: 0-待分账 1-分账成功, 2-分账失败
      */
     @Schema(description = "状态: 0-待分账 1-分账成功, 2-分账失败")
     private Byte state;
 
-    /**
+    /*
      * 上游返回数据包
      */
     @Schema(description = "上游返回数据包")
     private String channelRespResult;
 
-    /**
+    /*
      * 账号快照》 分账接收者ID
      */
     @Schema(description = "账号快照》 分账接收者ID")
     private Long receiverId;
 
-    /**
+    /*
      * 账号快照》 组ID（便于商户接口使用）
      */
     @Schema(description = "账号快照》 组ID（便于商户接口使用）")
     private Long receiverGroupId;
 
-    /**
+    /*
      * 账号快照》 分账接收者别名
      */
     @Schema(description = "账号快照》 分账接收者别名")
     private String receiverAlias;
 
-    /**
+    /*
      * 账号快照》 分账接收账号类型: 0-个人 1-商户
      */
     @Schema(description = "账号快照》 分账接收账号类型: 0-个人 1-商户")
     private Byte accType;
 
-    /**
+    /*
      * 账号快照》 分账接收账号
      */
     @Schema(description = "账号快照》 分账接收账号")
     private String accNo;
 
-    /**
+    /*
      * 账号快照》 分账接收账号名称
      */
     @Schema(description = "账号快照》 分账接收账号名称")
     private String accName;
 
-    /**
+    /*
      * 账号快照》 分账关系类型（参考微信）， 如： SERVICE_PROVIDER 服务商等
      */
     @Schema(description = "账号快照》 分账关系类型（参考微信）， 如： SERVICE_PROVIDER 服务商等")
     private String relationType;
 
-    /**
+    /*
      * 账号快照》 当选择自定义时，需要录入该字段。 否则为对应的名称
      */
     @Schema(description = "账号快照》 当选择自定义时，需要录入该字段。 否则为对应的名称")
     private String relationTypeName;
 
-    /**
+    /*
      * 账号快照》 配置的实际分账比例
      */
     @Schema(description = "账号快照》 配置的实际分账比例")
     private BigDecimal divisionProfit;
 
-    /**
+    /*
      * 计算该接收方的分账金额,单位分
      */
     @Schema(description = "计算该接收方的分账金额,单位分")
     private Long calDivisionAmount;
 
-    /**
+    /*
      * 创建时间
      */
     @Schema(description = "创建时间")
     private Date createdAt;
 
-    /**
+    /*
      * 更新时间
      */
     @Schema(description = "更新时间")

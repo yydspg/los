@@ -1,6 +1,6 @@
 package com.los.components.mq.constant;
 
-/**
+/*
  * @author paul 2024/2/1
  */
 

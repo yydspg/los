@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
+/*
 * <p>
     * 商户信息表 服务实现类
     * </p>
@@ -66,20 +66,27 @@ public class MchInfoServiceImpl extends ServiceImpl<MchInfoMapper, MchInfo> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void addMch(MchInfo mchInfo, String loginUserName) {
+
         /* 校验特约商户 */
+
         if (mchInfo.getType() == CS.MCH_TYPE_ISVSUB && StringKit.isNotEmpty(mchInfo.getIsvNo())) {
+
             /* 参数无误后,检查服务商状态 */
+
             IsvInfo isvInfo = isvInfoService.getById(mchInfo.getIsvNo());
             if(isvInfo == null || isvInfo.getState() == CS.NO) {
                 throw new BizException("当前服务商不可用");
             }
         }
+
         /* 插入商户基本信息 */
+
         boolean saveRes = this.save(mchInfo);
 
         if (!saveRes) {
             throw new BizException(ApiCodeEnum.SYS_OPERATION_FAIL_CREATE);
         }
+
         /* 插入用户信息 */
         SysUser sysUser = new SysUser();
         sysUser.setLoginUsername(loginUserName);
@@ -87,14 +94,19 @@ public class MchInfoServiceImpl extends ServiceImpl<MchInfoMapper, MchInfo> impl
         sysUser.setTelphone(mchInfo.getContactTel());
         sysUser.setUserNo(mchInfo.getMchNo());
         sysUser.setBelongInfoId(mchInfo.getMchNo());
+
         /* 默认性别  man */
+
         sysUser.setSex(CS.SEX_MALE);
+
         /* 超管权限 */
+
         sysUser.setIsAdmin(CS.YES);
         sysUser.setState(mchInfo.getState());
         sysUserService.addSysUser(sysUser, CS.SYS_TYPE.MCH);
 
         /* 赋予商户默认应用 */
+
         MchApp mchApp = new MchApp();
         mchApp.setAppId(IdUtil.objectId());
         mchApp.setMchNo(mchInfo.getMchNo());
@@ -108,7 +120,9 @@ public class MchInfoServiceImpl extends ServiceImpl<MchInfoMapper, MchInfo> impl
         if (!saveRes) {
             throw new BizException(ApiCodeEnum.SYS_OPERATION_FAIL_CREATE);
         }
+
         /* 存入初始化用户 id*/
+
         MchInfo updateRecord = new MchInfo();
         updateRecord.setMchNo(mchInfo.getMchNo());
         updateRecord.setInitUserId(sysUser.getSysUserId());
@@ -136,20 +150,26 @@ public class MchInfoServiceImpl extends ServiceImpl<MchInfoMapper, MchInfo> impl
     @Override
     public List<Long> removeByMchNo(String mchNo) {
         try {
+
             /* 检查商户是否存在 */
             MchInfo mchInfo = this.getById(mchNo);
             if (mchInfo == null) {
                 throw new BizException("商户不存在");
             }
+
             /* 检查当前商户是否存在交易数据 */
             long count = payOrderService.count(PayOrder.gw().eq(PayOrder::getMchNo, mchNo));
             if(count > 0) {
                 throw new BizException("商户存在交易数据");
             }
+
             /* 删除当前商户配置的支付通道 */
+
             mchPayPassageService.remove(MchPayPassage.gw().eq(MchPayPassage::getMchNo,mchNo));
 
+
             /* 删除当前商户支付接口的配置参数 */
+
             ArrayList<String> appIdList = new ArrayList<>();
             mchAppService.list(MchApp.gw().eq(MchApp::getMchNo,mchNo)).forEach(t->{appIdList.add(t.getAppId());});
             if (CollectionUtils.isNotEmpty(appIdList)) {
@@ -157,15 +177,21 @@ public class MchInfoServiceImpl extends ServiceImpl<MchInfoMapper, MchInfo> impl
                         .in(PayInterfaceConfig::getInfoId,appIdList)
                         .eq(PayInterfaceConfig::getInfoType,CS.INFO_TYPE_MCH_APP));
             }
+
             /* 获取商户的用户列表 */
+
             List<SysUser> userList = sysUserService.list(SysUser.gw()
                     .eq(SysUser::getBelongInfoId, mchNo)
                     .eq(SysUser::getSysType, CS.SYS_TYPE.MCH));
+
             /* 删除当前商户的应用信息 */
+
             if (CollectionUtils.isNotEmpty(appIdList)) {
                 mchAppService.removeByIds(appIdList);
             }
+
             /* 根据获取的用户列表删除登录信息 */
+
             ArrayList<Long> userIdList = new ArrayList<>();
             if (CollectionUtils.isNotEmpty(userIdList)) {
                 for (SysUser sysUser : userList) {
@@ -173,15 +199,20 @@ public class MchInfoServiceImpl extends ServiceImpl<MchInfoMapper, MchInfo> impl
                 }
                 sysUserAuthService.remove(SysUserAuth.gw().in(SysUserAuth::getUserId,userIdList));
             }
+
             /* 删除应用登录用户 */
+
             sysUserService.remove(SysUser.gw()
                     .eq(SysUser::getBelongInfoId,mchNo)
                     //TODO 理解此SYS_TYPE_MCH的设计
                     .eq(SysUser::getSysType,CS.SYS_TYPE.MCH));
+
             /* 删除当前商户 */
+
             if (!mchAppService.removeById(mchNo)) {
                 throw new BizException("删除商户失败");
             }
+
             return userIdList;
         } catch (Exception e) {
             throw new BizException(e.getMessage());

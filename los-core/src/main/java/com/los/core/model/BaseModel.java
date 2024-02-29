@@ -4,7 +4,7 @@ import com.alibaba.fastjson2.JSONObject;
 
 import java.io.Serializable;
 
-/**
+/*
  * 封装公共处理函数
  * @author paul 2024/1/30
  */
@@ -27,7 +27,7 @@ public class BaseModel implements Serializable {
         ext.put(k,v);
         return this;
     }
-    /** get ext value  可直接使用JSONObject对象的函数 **/
+    /* get ext value  可直接使用JSONObject对象的函数 **/
     public JSONObject extV() {
         return ext == null ? new JSONObject(): ext ;}
 }

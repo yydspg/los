@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static com.alibaba.fastjson2.JSONWriter.Feature.*;
 
-/**
+/*
  * @author paul 2024/1/30
  */
 
@@ -20,7 +20,7 @@ public class JSONKit {
         jo.put(k,v);
         return jo;
     }
-    /**
+    /*
      * fastjson2 property url: <a href="https://alibaba.github.io/fastjson2/features_cn">...</a>
      * SerializeFeature 在fastjson2 中被移除 代替的是 JSONWriter JSONReader
      */
@@ -36,7 +36,7 @@ public class JSONKit {
             //数组类型length == 0 时,不输出
             NotWriteEmptyArray
     };
-    /**
+    /*
      * @param o: object
      * @return JSONString
      * @author paul
@@ -49,7 +49,7 @@ public class JSONKit {
     public static String toFeatureString(Object o){
         return JSONObject.toJSONString(o,WRITER_FEATURES);
     }
-    /**
+    /*
      * @param json:
      * @param t: Class
      * @return T
@@ -63,7 +63,7 @@ public class JSONKit {
     public static Object toObject(String json){
         return JSONObject.parse(json);
     }
-    /**
+    /*
      * @param s:
      * @return Map<K,V>
      * @author paul
@@ -74,7 +74,7 @@ public class JSONKit {
     public static <K, V> Map<K, V> toCollect(String s) {
         return (Map<K, V>) JSONObject.parseObject(s);
     }
-    /**
+    /*
      * @param m:
      * @return String
      * @author paul
@@ -84,7 +84,7 @@ public class JSONKit {
     public static <K, V> String collectToString(Map<K, V> m) {
         return JSONObject.toJSONString(m);
     }
-    /**
+    /*
      * @param json:
      * @param clazz:
      * @return Object
@@ -95,7 +95,7 @@ public class JSONKit {
     public static <T> List<T> toList(String json, Class<T> clazz) {
         return JSON.parseArray(json, clazz);
     }
-    /**
+    /*
      * @param json:
      * @return JSONArray
      * @author paul
@@ -105,7 +105,7 @@ public class JSONKit {
     public static JSONArray listToArray(String json){
         return JSON.parseArray(json);
     }
-    /**
+    /*
      * @param json:
      * @param clazz:
      * @return T
@@ -115,5 +115,8 @@ public class JSONKit {
      */
     public static <T> T toBean(String json, Class<T> clazz) {
         return JSON.parseObject(json, clazz);
+    }
+    public static JSONObject parseObj(String str) {
+        return JSONObject.parseObject(str);
     }
 }

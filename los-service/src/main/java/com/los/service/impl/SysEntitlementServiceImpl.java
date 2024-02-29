@@ -6,7 +6,7 @@ import com.los.service.mapper.SysEntitlementMapper;
 import com.los.service.SysEntitlementService;
 import org.springframework.stereotype.Service;
 
-/**
+/*
 * <p>
     * 系统权限表 服务实现类
     * </p>

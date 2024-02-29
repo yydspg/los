@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 import java.io.Serial;
 import java.time.LocalDateTime;
 
-/**
+/*
 * <p>
     * 商户通知记录表
     * </p>

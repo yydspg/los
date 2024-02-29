@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-/**
+/*
 * <p>
     * 支付订单表
     * </p>

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 
-/**
+/*
  * Spring Security 框架自定义异常类
  * @author paul 2024/1/31
  */

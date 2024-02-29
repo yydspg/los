@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import java.util.Map;
 
-/**
+/*
  * JWT payload 载体
  * 格式：
  *     {
@@ -32,7 +32,7 @@ public class JwtPayload {
     }
 
 
-    /** toMap **/
+    /* toMap **/
     public Map<String, Object> toMap(){
         return JSONObject.from(this);
     }

@@ -1,6 +1,6 @@
 package com.los.core.constants;
 
-/**
+/*
  * 接口返回码
  * @author paul 2024/1/30
  */

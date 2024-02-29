@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import ${superControllerClassPackage};
 </#if>
 
-/**
+/*
  * <p>
  * ${table.comment!} 前端控制器
  * </p>

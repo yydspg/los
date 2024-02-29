@@ -1,6 +1,6 @@
 package com.los.core.constants;
 
-/**
+/*
  * 系统设置常量
  * @author paul 2024/2/4
  */

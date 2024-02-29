@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.los.core.entity.SysUserAuth;
 import org.apache.ibatis.annotations.Param;
 
-/**
+/*
 * <p>
     * 系统用户认证表 Mapper 接口
     * </p>

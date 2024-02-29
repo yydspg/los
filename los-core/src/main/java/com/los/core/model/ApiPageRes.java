@@ -6,7 +6,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
+/*
  * 分页接口返回对象
  * @author paul 2024/1/30
  */

@@ -3,7 +3,7 @@ package ${package.Service};
 import com.los.core.entity.${entity};
 import ${superServiceClassPackage};
 
-/**
+/*
  * <p>
  * ${table.comment!} 服务类
  * </p>

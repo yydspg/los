@@ -18,55 +18,55 @@ import org.apache.commons.lang3.StringUtils;
 @Data
 public class WxpayNormalMchParams extends NormalMchParams {
 
-    /**
+    /*
      * 应用App ID
      */
     private String appId;
 
-    /**
+    /*
      * 应用AppSecret
      */
     private String appSecret;
 
-    /**
+    /*
      * 微信支付商户号
      */
     private String mchId;
 
-    /**
+    /*
      * oauth2地址
      */
     private String oauth2Url;
 
-    /**
+    /*
      * API密钥
      */
     private String key;
 
-    /**
+    /*
      * 微信支付API版本
      **/
     private String apiVersion;
 
-    /**
+    /*
      * API V3秘钥
      **/
     private String apiV3Key;
 
-    /**
+    /*
      * 序列号
      **/
     private String serialNo;
 
-    /**
+    /*
      * API证书(.p12格式)
      **/
     private String cert;
 
-    /** 证书文件(.pem格式) **/
+    /* 证书文件(.pem格式) **/
     private String apiClientCert;
 
-    /**
+    /*
      * 私钥文件(.pem格式)
      **/
     private String apiClientKey;

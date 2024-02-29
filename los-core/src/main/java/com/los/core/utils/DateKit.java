@@ -13,13 +13,13 @@ import java.util.*;
 
 
 
-/**
+/*
  * @author paul 2024/2/4
  */
 
 public class DateKit extends DateUtil{
     public static final String STANDARD_DATE_FORMAT = "yyyy-MM-dd";
-    /** 获取参数时间当天的开始时间  **/
+    /* 获取参数时间当天的开始时间  **/
     public static Date getBegin(Date date){
 
         if(date == null) {
@@ -28,14 +28,14 @@ public class DateKit extends DateUtil{
         return DateUtil.beginOfDay(date).toJdkDate();
     }
 
-    /** 获取参数时间当天的结束时间 **/
+    /* 获取参数时间当天的结束时间 **/
     public static Date getEnd(Date date){
         if(date == null) {
             return null;
         }
         return DateUtil.endOfDay(date).toJdkDate();
     }
-    /**
+    /*
      * 获取自定义查询时间
      * today|0  -- 今天
      * yesterday|0  -- 昨天
@@ -111,7 +111,7 @@ public class DateKit extends DateUtil{
             throw new BizException("查询时间参数有误");
         }
     }
-    /**
+    /*
      * 将一个字符串转换成日期格式
      *
      * @param date    字符串日期
@@ -141,7 +141,7 @@ public class DateKit extends DateUtil{
         long res = DateUtil.betweenDay(DateUtil.parseDate(startTime), DateUtil.parseDate(endTime), true);
         return (int)res;
     }
-    /** 公共函数，获取当前时间。  **/
+    /* 公共函数，获取当前时间。  **/
     public static Long currentTimeMillis(){
 //		System.currentTimeMillis(); // fortify 检测属于安全漏洞
         return SystemClock.now();

@@ -6,7 +6,7 @@ import com.los.service.mapper.OrderSnapshotMapper;
 import com.los.service.OrderSnapshotService;
 import org.springframework.stereotype.Service;
 
-/**
+/*
 * <p>
     * 订单接口数据快照 服务实现类
     * </p>

@@ -3,7 +3,7 @@ package com.los.service.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.los.core.entity.PayInterfaceDefine;
 
-/**
+/*
 * <p>
     * 支付接口定义表 Mapper 接口
     * </p>

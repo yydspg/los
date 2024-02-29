@@ -4,7 +4,7 @@ import com.los.core.ctrls.AbstractCtrl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
+/*
  * @author paul 2024/2/8
  */
 @Slf4j

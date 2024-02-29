@@ -1,6 +1,6 @@
 package com.los.core.constants;
 
-/**
+/*
  * @author paul 2024/1/30
  */
 
@@ -14,7 +14,7 @@ public class CS {
     //登录图形验证码缓存时间，单位：s
     public static final int VERCODE_CACHE_TIME = 60;
 
-    /** 系统类型定义 **/
+    /* 系统类型定义 **/
     public interface SYS_TYPE{
         String MCH = "MCH";
         String MGR = "MGR";
@@ -25,11 +25,11 @@ public class CS {
         SYS_TYPE.SYS_TYPE_MAP.put(SYS_TYPE.MGR, "运营平台");
     }
 
-    /** yes or no **/
+    /* yes or no **/
     public static final byte NO = 0;
     public static final byte YES = 1;
 
-    /** 通用 可用 / 禁用 **/
+    /* 通用 可用 / 禁用 **/
     public static final int PUB_USABLE = 1;
     public static final int PUB_DISABLE = 0;
 
@@ -39,7 +39,7 @@ public class CS {
         PUB_USABLE_MAP.put(PUB_DISABLE, "停用");
     }
 
-    /**
+    /*
      * 账号类型:1-服务商 2-商户 3-商户应用
      */
     public static final byte INFO_TYPE_ISV = 1;
@@ -47,24 +47,24 @@ public class CS {
     public static final byte INFO_TYPE_MCH_APP = 3;
 
 
-    /**
+    /*
      * 商户类型:1-普通商户 2-特约商户
      */
     public static final byte MCH_TYPE_NORMAL = 1;
     public static final byte MCH_TYPE_ISVSUB = 2;
 
-    /**
+    /*
      * 性别 1- 男， 2-女
      */
     public static final byte SEX_UNKNOWN = 0;
     public static final byte SEX_MALE = 1;
     public static final byte SEX_FEMALE = 2;
 
-    /** 默认密码 */
+    /* 默认密码 */
     public static final String DEFAULT_PWD = "los666";
 
 
-    /**
+    /*
      * 允许上传的的图片文件格式，需要与 WebSecurityConfig对应
      */
     public static final Set<String> ALLOW_UPLOAD_IMG_SUFFIX = new HashSet<>();
@@ -83,23 +83,23 @@ public class CS {
     //access_token 名称
     public static final String ACCESS_TOKEN_NAME = "iToken";
 
-    /** ！！不同系统请放置不同的redis库 ！！ **/
-    /** 缓存key: 当前用户所有用户的token集合  example: TOKEN_1001_HcNheNDqHzhTIrT0lUXikm7xU5XY4Q */
+    /* ！！不同系统请放置不同的redis库 ！！ **/
+    /* 缓存key: 当前用户所有用户的token集合  example: TOKEN_1001_HcNheNDqHzhTIrT0lUXikm7xU5XY4Q */
     public static final String CACHE_KEY_TOKEN = "TOKEN_%s_%s";
     public static String getCacheKeyToken(Long sysUserId, String uuid){
         return String.format(CACHE_KEY_TOKEN, sysUserId, uuid);
     }
 
-    /** 图片验证码 缓存key **/
+    /* 图片验证码 缓存key **/
     public static final String CACHE_KEY_IMG_CODE = "img_code_%s";
     public static String getCacheKeyImgCode(String imgToken){
         return String.format(CACHE_KEY_IMG_CODE, imgToken);
     }
 
-    /** 回调URL的格前缀  */
+    /* 回调URL的格前缀  */
     public static final String PAY_RETURNURL_FIX_ONLY_JUMP_PREFIX = "ONLYJUMP_";
 
-    /** 登录认证类型 **/
+    /* 登录认证类型 **/
     public interface AUTH_TYPE{
 
         byte LOGIN_USER_NAME = 1; //登录用户名

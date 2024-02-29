@@ -6,7 +6,7 @@ import com.los.service.mapper.MchDivisionReceiverGroupMapper;
 import com.los.service.MchDivisionReceiverGroupService;
 import com.los.service.MchDivisionReceiverService;
 
-/**
+/*
  * @author paul 2024/2/22
  */
 

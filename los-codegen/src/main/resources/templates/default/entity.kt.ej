@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 #end
 
-/**
+/*
  * <p>
  * #(table.comment)
  * </p>
@@ -47,7 +47,7 @@ class #(entity) {
     #elseif(swagger)
     @ApiModelProperty("#(field.comment)")
     #else
-    /**
+    /*
      * #(field.comment)
      */
     #end

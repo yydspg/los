@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/**
+/*
  * 基于 spring request 工具类
  * @author paul 2024/1/30
  */
@@ -151,7 +151,7 @@ public class RequestKitBean {
         }
         return false;
     }
-    /** 获取客户端ip地址 **/
+    /* 获取客户端ip地址 **/
     /*
     这段Java代码是一个方法，用于获取客户端（用户）的真实IP地址。在Web应用中，由于可能存在反向代理、负载均衡器等中间设备，直接通过`request.getRemoteAddr()`可能无法获取到客户端的真实IP，所以需要从请求头中查找一些特定字段。
 

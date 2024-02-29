@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.los.core.entity.MchDivisionReceiver;
 
 
-/**
+/*
  * <p>
  * 商户分账接收者账号绑定关系表 服务类
  * </p>
