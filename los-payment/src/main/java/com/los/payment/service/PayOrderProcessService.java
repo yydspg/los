@@ -63,7 +63,7 @@ public class PayOrderProcessService {
                 mqSender.send(PayOrderDivisionMQ.build(payOrder.getPayOrderId(), CS.YES,null),80);
             }
         } catch (Exception e) {
-            log.error("订单[{}]自动分账异常:{}",payOrder.getPayOrderId(),e);
+            log.error("[{}]PayOrderAutoDivisionError[{}]",payOrder.getPayOrderId(),e.getMessage());
         }
     }
 }

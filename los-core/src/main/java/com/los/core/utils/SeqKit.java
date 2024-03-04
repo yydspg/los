@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.concurrent.atomic.AtomicLong;
 
 /*
- * TODO 分布式序列号如何考虑
  * @author paul 2024/1/31
  */
 
@@ -27,6 +26,7 @@ public class SeqKit {
     private static final String DIVISION_BATCH_ID_SEQ_PREFIX = "D";
 
     /* 是否使用MybatisPlus生成分布式ID **/
+    // TODO: 2024/3/4 目前使用mp生成序列号,是否未来升级存在问题,或者生成器过于简单缺乏管理
     private static final boolean IS_USE_MP_ID = true;
 
     /* 生成支付订单号 **/

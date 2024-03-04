@@ -7,7 +7,7 @@ import com.github.binarywang.wxpay.service.impl.WxPayServiceImpl;
 import com.los.core.constants.CS;
 import com.los.core.model.params.wxpay.WxpayIsvParams;
 import com.los.core.model.params.wxpay.WxpayNormalMchParams;
-import com.los.core.utils.SpringBeansUtil;
+import com.los.core.utils.SpringBeansKit;
 import com.los.payment.utils.ChannelCertConfigKitBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,7 +43,7 @@ public class WxServiceWrapper {
             wxPayConfig.setSignType(WxPayConstants.SignType.MD5);
         }
 
-        ChannelCertConfigKitBean channelCertConfigKitBean = SpringBeansUtil.getBean(ChannelCertConfigKitBean.class);
+        ChannelCertConfigKitBean channelCertConfigKitBean = SpringBeansKit.getBean(ChannelCertConfigKitBean.class);
 
         if(StringUtils.isNotBlank(apiV3Key)) {
             wxPayConfig.setApiV3Key(apiV3Key);

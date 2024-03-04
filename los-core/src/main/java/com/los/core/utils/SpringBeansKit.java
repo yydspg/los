@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class SpringBeansUtil implements ApplicationContextAware {
+public class SpringBeansKit implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext = null;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if(SpringBeansUtil.applicationContext == null){
-            SpringBeansUtil.applicationContext  = applicationContext;
+        if(SpringBeansKit.applicationContext == null){
+            SpringBeansKit.applicationContext  = applicationContext;
         }
     }
 

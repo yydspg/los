@@ -9,6 +9,7 @@ import com.los.service.PayOrderDivisionRecordService;
 import com.los.service.mapper.PayOrderDivisionRecordMapper;
 import com.los.service.mapper.PayOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 /*
  * @author paul 2024/2/25
  */
-
+@Service
 public class PayOrderDivisionRecordServiceImpl extends ServiceImpl<PayOrderDivisionRecordMapper,PayOrderDivisionRecord> implements PayOrderDivisionRecordService {
 
     @Autowired private PayOrderMapper payOrderMapper;
@@ -31,8 +32,15 @@ public class PayOrderDivisionRecordServiceImpl extends ServiceImpl<PayOrderDivis
 
     }
 
+    /**
+     *
+     * @param records 更新分账列表
+     * @param channelRetState 渠道测返回状态
+     * @param channelBatchOrderId 渠道测分帐id ,区别与本系统batchId
+     * @param channelRespResult 渠道测返回信息
+     */
     @Override
-    public void updateRecordSuccessOrFail(List<PayOrderDivisionRecord> records, Byte state, String channelBatchOrderId, String channelRespResult) {
+    public void updateRecordSuccessOrFail(List<PayOrderDivisionRecord> records, Byte channelRetState, String channelBatchOrderId, String channelRespResult) {
         if(records == null || records.isEmpty()){
             return ;
         }
@@ -41,7 +49,7 @@ public class PayOrderDivisionRecordServiceImpl extends ServiceImpl<PayOrderDivis
         records.forEach(r -> recordIds.add(r.getRecordId()));
 
         PayOrderDivisionRecord updateRecord = new PayOrderDivisionRecord();
-        updateRecord.setState(state);
+        updateRecord.setState(channelRetState);
         updateRecord.setChannelBatchOrderId(channelBatchOrderId);
         updateRecord.setChannelRespResult(channelRespResult);
         //更新代处理状态-->state

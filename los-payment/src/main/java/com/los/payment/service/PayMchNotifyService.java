@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /*
+    支付通知服务
  * @author paul 2024/2/28
  */
 @Slf4j
@@ -89,7 +90,6 @@ public class PayMchNotifyService {
             /* 查重操作 */
 
             if (mchNotifyRecord != null) {
-                log.info("已发送");
                 return;
             }
 

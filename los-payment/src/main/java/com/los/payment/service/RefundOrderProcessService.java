@@ -23,13 +23,17 @@ public class RefundOrderProcessService {
     /* 根据channel的ChannelRetMsg,同步本系统的退款数据,返回是否synchronized成功 */
 
     public boolean handleRefundOrder4Channel(ChannelRetMsg channelRetMsg, RefundOrder refundOrder) {
-        /* 默认同步数据成功 */
+
         String currentRefundOrderId = refundOrder.getRefundOrderId();
+
+        /* 是否同步成功 */
+
         boolean isSynchronizeRefundSuccess = switch (channelRetMsg.getChannelState()) {
             case CONFIRM_FAIL -> refundOrderService.updateIng2Fail(currentRefundOrderId,refundOrder.getChannelOrderNo(),refundOrder.getErrCode(),refundOrder.getErrMsg());
             case CONFIRM_SUCCESS -> refundOrderService.updateIng2Success(currentRefundOrderId,refundOrder.getChannelOrderNo());
             default -> throw new BizException("Unexpected value: " + channelRetMsg.getChannelState());
         };
+
         /* 异步通知商户 */
         if (isSynchronizeRefundSuccess) {
             payMchNotifyService.refundOrderNotify(refundOrderService.getById(currentRefundOrderId));

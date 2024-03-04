@@ -1,7 +1,7 @@
 package com.los.payment.service;
 
 import com.los.core.entity.TransferOrder;
-import com.los.core.utils.SpringBeansUtil;
+import com.los.core.utils.SpringBeansKit;
 import com.los.payment.channel.ITransferService;
 import com.los.payment.model.MchAppConfigContext;
 import com.los.payment.rqrs.msg.ChannelRetMsg;
@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class TransferOrderReissueService {
-
+    // TODO: 2024/3/4 为什么要将ChannelOrderReissueService中对PayOrder,RefundOrder的补单操作与TransferOrder的补单操作分离?
     @Autowired
     private ConfigContextQueryService configContextQueryService;
     @Autowired
@@ -44,8 +44,8 @@ public class TransferOrderReissueService {
             String transferId = transferOrder.getTransferId();
 
             /* 查询转账接口是否存在 [抽象] */
-
-            ITransferService transferService = SpringBeansUtil.getBean(transferOrder.getIfCode() + "TransferService", ITransferService.class);
+            /* 设计模式为 抽象工厂方法 */
+            ITransferService transferService = SpringBeansKit.getBean(transferOrder.getIfCode() + "TransferService", ITransferService.class);
 
             /* 转账接口不存在 */
             if (transferService == null) {
@@ -54,7 +54,8 @@ public class TransferOrderReissueService {
             }
 
             /* 查询此商户下application的配置信息 */
-
+            // TODO: 2024/3/4 考虑是否存在并发问题
+            // TODO: 2024/3/4 个人理解是对于某个Service对外提供的方法,应当自身处理并发问题,上游的调用是无感的
             MchAppConfigContext mchAppConfigContext = configContextQueryService.queryMchInfoAndAppInfo(transferOrder.getMchNo(), transferOrder.getAppId());
 
             /* 查询渠道接口返回信息 */
@@ -67,8 +68,8 @@ public class TransferOrderReissueService {
                 log.error("[{}]channelRetMsgNotExists",transferId);
                 return null;
             }
-
-            log.info("补单[{}]查询结果:[{}]",transferId,channelRetMsg);
+            // TODO: 2024/3/5 为何要在此打印日志?
+            log.info("[{}]查询结果:[{}]",transferId,channelRetMsg);
 
             /* 同步数据 */
             this.synchronizedTransferOrder(channelRetMsg,transferId);

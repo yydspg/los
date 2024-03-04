@@ -300,7 +300,7 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
         payListMap.addAll(refundListMap);
         return payListMap;
     }
-
+    /* 计算商家实际收入 */
     @Override
     public Long calMchIncomeAmount(PayOrder dbPayOrder) {
         /*

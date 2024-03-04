@@ -16,10 +16,6 @@ import java.util.List;
 *
 * 定义MQ消息格式
 * 业务场景： [ 支付订单的订单分账消息 ]
-*
-* @author terrfly
-* @site https://www.jeequan.com
-* @date 2021/8/22 11:25
 */
 @Data
 @NoArgsConstructor

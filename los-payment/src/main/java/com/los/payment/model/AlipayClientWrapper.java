@@ -1,12 +1,11 @@
 package com.los.payment.model;
 
 import com.alipay.api.*;
-import com.alipay.api.request.AlipayAcquireCancelRequest;
 import com.los.core.constants.CS;
 import com.los.core.model.params.alipay.AlipayConfig;
 import com.los.core.model.params.alipay.AlipayIsvParams;
 import com.los.core.model.params.alipay.AlipayNormalMchParams;
-import com.los.core.utils.SpringBeansUtil;
+import com.los.core.utils.SpringBeansKit;
 import com.los.payment.exception.ChannelException;
 import com.los.payment.utils.ChannelCertConfigKitBean;
 import lombok.AllArgsConstructor;
@@ -65,7 +64,7 @@ public class AlipayClientWrapper {
 
         /* 证书加密 */
         if (useCert != null && useCert == CS.YES) {
-            ChannelCertConfigKitBean channelCertConfigKitBean = SpringBeansUtil.getBean(ChannelCertConfigKitBean.class);
+            ChannelCertConfigKitBean channelCertConfigKitBean = SpringBeansKit.getBean(ChannelCertConfigKitBean.class);
             CertAlipayRequest certAlipayRequest = new CertAlipayRequest();
             certAlipayRequest.setServerUrl(sandbox == CS.YES ? AlipayConfig.SANDBOX_SERVER_URL : AlipayConfig.PROD_SERVER_URL);
             certAlipayRequest.setAppId(appId);
