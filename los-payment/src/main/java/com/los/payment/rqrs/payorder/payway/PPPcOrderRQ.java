@@ -4,7 +4,7 @@ import com.los.core.constants.CS;
 import com.los.payment.rqrs.payorder.CommonPayDataRQ;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /*
  * none.

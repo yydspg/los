@@ -7,4 +7,5 @@ import com.los.core.ctrls.AbstractCtrl;
  */
 
 public class ApiController extends AbstractCtrl {
+
 }

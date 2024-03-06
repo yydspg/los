@@ -3,7 +3,7 @@ package com.los.payment.rqrs.division;
 import com.los.payment.rqrs.AbstractMchAppRQ;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /*
  * 发起订单分账 请求参数

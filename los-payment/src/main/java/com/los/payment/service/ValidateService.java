@@ -18,7 +18,7 @@ public class ValidateService {
     @Autowired private Validator validator;
 
     /*
-  `validator` 是一个实现了 `javax.validation.Validator` 接口的对象，负责执行对象的验证工作。
+  `validator` 是一个实现了 `jakarta.validation.Validator` 接口的对象，负责执行对象的验证工作。
 
   `validate(Object obj)` 方法接收一个待验证的对象 `obj`。
 

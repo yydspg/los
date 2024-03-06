@@ -9,7 +9,7 @@ import com.los.payment.rqrs.msg.ChannelRetMsg;
  * @author paul 2024/2/28
  */
 
-public interface IPayQueryOrderService {
+public interface IPayOrderQueryService {
     /** 获取到接口code **/
     String getIfCode();
 

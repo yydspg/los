@@ -1,6 +1,6 @@
 package com.los.payment.service;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.los.components.mq.model.PayOrderMchNotifyMQ;
 import com.los.components.mq.vender.IMQSender;
 import com.los.core.entity.MchNotifyRecord;

@@ -168,7 +168,7 @@ public abstract class AbstractCtrl {
             JSONObject resultTemp = (JSONObject) JSON.toJSON(result);
             for (Map.Entry<String, Object> entry : params.entrySet()) {  //遍历原始参数
                 if(!resultTemp.containsKey(entry.getKey())){
-                    ((BaseModel) result).setExt(entry.getKey(), entry.getValue());
+                    ((BaseModel) result).addExt(entry.getKey(), entry.getValue());
                 }
             }
         }

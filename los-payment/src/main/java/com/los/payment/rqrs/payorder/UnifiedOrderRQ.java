@@ -1,8 +1,10 @@
 package com.los.payment.rqrs.payorder;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson2.JSONObject;
+import com.alibaba.fastjson2.annotation.JSONField;
+import com.los.core.constants.ApiCodeEnum;
 import com.los.core.constants.CS;
+import com.los.core.exception.BizException;
 import com.los.core.utils.BeanKit;
 import com.los.core.utils.StringKit;
 import com.los.payment.rqrs.AbstractMchAppRQ;
@@ -77,7 +79,7 @@ public class UnifiedOrderRQ extends AbstractMchAppRQ {
      */
     public UnifiedOrderRQ buildBizRQ(){
 
-        Class requireClz = switch (wayCode) {
+        Class<?> requireClz = switch (wayCode) {
             case CS.PAY_WAY_CODE.ALI_BAR -> AliBarOrderRQ.class;
             case CS.PAY_WAY_CODE.ALI_JSAPI -> AliJsapiOrderRQ.class;
             case CS.PAY_WAY_CODE.ALI_LITE ->AliLiteOrderRQ.class;
@@ -95,6 +97,7 @@ public class UnifiedOrderRQ extends AbstractMchAppRQ {
             case CS.PAY_WAY_CODE.ALI_PC ->  AliPcOrderRQ.class;
             case CS.PAY_WAY_CODE.ALI_QR -> AliQrOrderRQ.class;
             case CS.PAY_WAY_CODE.PP_PC -> PPPcOrderRQ.class;
+            default -> throw new BizException(ApiCodeEnum.PARAMS_ERROR);
         };
         Object bizRQ = JSONObject.parseObject(StringUtils.defaultIfEmpty(this.channelExtra, "{}"), requireClz);
         BeanKit.copyProperties(this,bizRQ);

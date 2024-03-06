@@ -5,7 +5,7 @@ import com.los.core.constants.CS;
 import com.los.payment.rqrs.payorder.UnifiedOrderRQ;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /*
  * 支付方式： WX_LITE

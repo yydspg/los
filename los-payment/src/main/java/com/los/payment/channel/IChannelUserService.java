@@ -1,6 +1,6 @@
 package com.los.payment.channel;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.los.payment.model.MchAppConfigContext;
 
 /**
