@@ -118,9 +118,9 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
 
     @Override
     public PayOrder queryMchOrder(String mchNo, String payOrderId, String mchOrderNo) {
-        if(StringUtils.isNotEmpty(payOrderId)){
+        if(StringKit.isNotEmpty(payOrderId)){
             return getOne(PayOrder.gw().eq(PayOrder::getMchNo, mchNo).eq(PayOrder::getPayOrderId, payOrderId));
-        }else if(StringUtils.isNotEmpty(mchOrderNo)){
+        }else if(StringKit.isNotEmpty(mchOrderNo)){
             return getOne(PayOrder.gw().eq(PayOrder::getMchNo, mchNo).eq(PayOrder::getMchOrderNo, mchOrderNo));
         }else{
             return null;

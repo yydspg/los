@@ -5,6 +5,7 @@ import cn.hutool.core.util.URLUtil;
 import com.alibaba.fastjson2.JSONObject;
 import io.micrometer.common.util.StringUtils;
 
+import java.lang.reflect.Array;
 import java.util.Map;
 import java.util.UUID;
 
@@ -126,5 +127,17 @@ public class StringKit  extends StrUtil {
         }
         return (str.charAt(0) + sb.toString()).toLowerCase();
     }
+    public static boolean isAnyBlank(CharSequence... css) {
+        if(css == null || Array.getLength(css) == 0) {
+            return true;
+        } else {
+            for (CharSequence t : css) {
+                if (t == null || t.isEmpty()) {
+                    return true;
+                }
+            }
+        }
+        return false;
 
+    }
 }

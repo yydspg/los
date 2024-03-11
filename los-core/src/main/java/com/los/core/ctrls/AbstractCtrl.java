@@ -35,7 +35,7 @@ public abstract class AbstractCtrl {
     private static final String PAGE_INDEX_PARAM_NAME = "pageNumber";  //分页页码 参数名
     private static final String PAGE_SIZE_PARAM_NAME = "pageSize";  //分页条数 参数名
     private static final int DEFAULT_PAGE_INDEX = 1;  // 默认页码： 第一页
-    private static final int DEFAULT_PAGE_SIZE = 20;  // 默认条数： 20
+    private static final int DEFAULT_PAGE_SIZE = 10;  // 默认条数： 10
 
     private static final String SORT_FIELD_PARAM_NAME = "sortField";  //排序字段
     private static final String SORT_ORDER_FLAG_PARAM_NAME = "sortOrder";  // 排序正序， 倒序标志
@@ -79,12 +79,12 @@ public abstract class AbstractCtrl {
         return pageSize;
     }
     /* 获取Ipage分页信息, 默认不允许获取全部数据 **/
-    protected IPage getIPage(){
+    protected IPage<?> getIPage(){
         return new Page(getPageIndex(), getPageSize());
     }
 
     /* 获取Ipage分页信息, 加入条件：是否允许获取全部数据 **/
-    protected IPage getIPage(boolean allowQueryAll){
+    protected IPage<?> getIPage(boolean allowQueryAll){
         return new Page(getPageIndex(), getPageSize(allowQueryAll));
     }
     /* 获取请求参数值 [ T 类型 ], [ 非必填 ] **/

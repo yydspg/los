@@ -33,7 +33,7 @@ public class SecKit {
     public static byte[] AES_KEY = "4ChT08phkz59hquD795X7w==".getBytes();
 
 
-    private static String encodingCharset = "UTF-8";
+    private static final String encodingCharset = "UTF-8";
 
 
     /* 加密 **/
@@ -55,7 +55,6 @@ public class SecKit {
             byte[] digestData = md.digest(data);
             return toHex(digestData);
         }catch (Exception e){
-            e.printStackTrace();
             return null;
         }
     }
@@ -69,11 +68,11 @@ public class SecKit {
         /*
         创建一个StringBuffer对象，其初始容量设置为输入数组长度的两倍。这是因为每个字节（8位）在转换为16进制表示时通常会变成两个字符（如0x3F），所以提前预设容量可以避免频繁扩容操作
          */
-        StringBuffer sb = new StringBuffer(input.length * 2);
+        StringBuilder sb = new StringBuilder(input.length * 2);
         for (byte b : input) {
             int unsignedByte = b & 0xff;
             /*
-            判断当前无符号整数值（即current）是否小于16。如果小于16，则向StringBuffer中追加一个前导零，以保持输出格式的一致性，比如单个字节值为10，在16进制中会显示为“0A”
+            判断当前无符号整数值（即current）是否小于16。如果小于16，则向StringBuilder中追加一个前导零，以保持输出格式的一致性，比如单个字节值为10，在16进制中会显示为“0A”
              */
             if(unsignedByte < 16){
                 sb.append("0");
@@ -89,7 +88,7 @@ public class SecKit {
         if (paramMap == null || paramMap.isEmpty()) {
             return "";
         }
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         Set<String> keys = paramMap.keySet();
         for (String k : keys) {
             sb.append(k).append("=").append(paramMap.get(k) == null ? "" : doEncode(paramMap.get(k).toString())).append("&");
@@ -137,9 +136,10 @@ public class SecKit {
     /*
     获取签名
      */
+    // TODO 2024/3/11 : 此处代码功能不清楚
     public static String getSign(Map<String,Object> map,String k){
         ArrayList<String> list = new ArrayList<String>();
-        StringBuffer tem = new StringBuffer();
+        StringBuilder tem = new StringBuilder();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (null != entry.getValue() && !"".equals(entry.getValue())) {
                 list.add(tem.append(entry.getKey()).append("=").append(entry.getValue()).append("&").toString());
@@ -158,9 +158,7 @@ public class SecKit {
         }
         sb.append("key=").append(k);
         String s = sb.toString();
-        log.info("signStr:{}",s);
-        s = md5(s,encodingCharset).toUpperCase();
-        log.info("sign:{}",s);
+        s = Objects.requireNonNull(md5(s, encodingCharset)).toUpperCase();
         return s;
     }
 }

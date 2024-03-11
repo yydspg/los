@@ -16,6 +16,7 @@ import java.io.Serializable;
  * 接口返回对象,并提供对应操作接口
  * @author paul 2024/1/30
  */
+// TODO 2024/3/11 : 调整ApiRes类无泛型
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
