@@ -21,5 +21,5 @@ public class ChannelNoticeController extends AbstractCtrl {
     @Autowired private PayMchNotifyService payMchNotifyService;
     @Autowired private PayOrderProcessService payOrderProcessService;
 
-
+    //TEST
 }
