@@ -22,4 +22,5 @@ public class ChannelNoticeController extends AbstractCtrl {
     @Autowired private PayOrderProcessService payOrderProcessService;
 
     //TEST
+
 }
