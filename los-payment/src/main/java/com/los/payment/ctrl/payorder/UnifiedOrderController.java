@@ -7,8 +7,6 @@ import com.los.core.exception.BizException;
 import com.los.core.model.ApiRes;
 import com.los.core.utils.BeanKit;
 import com.los.core.utils.SecKit;
-import com.los.core.utils.SeqKit;
-import com.los.payment.ctrl.ApiController;
 import com.los.payment.rqrs.payorder.UnifiedOrderRQ;
 import com.los.payment.rqrs.payorder.UnifiedOrderRS;
 import com.los.payment.rqrs.payorder.payway.AutoBarOrderRQ;
@@ -36,6 +34,7 @@ public class UnifiedOrderController extends AbstractPayOrderController {
         UnifiedOrderRQ rq = super.getRQByMchSign(UnifiedOrderRQ.class);
         UnifiedOrderRQ bizRQ = this.buildBizRQ(rq);
 
+        // 调用父类 聚合支付
         ApiRes apiRes = super.unifiedOrder(bizRQ.getWayCode(), bizRQ);
         if(apiRes.getData() == null) {
             return apiRes;

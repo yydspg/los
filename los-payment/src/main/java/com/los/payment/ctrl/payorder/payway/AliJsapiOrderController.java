@@ -26,8 +26,8 @@ public class AliJsapiOrderController extends AbstractPayOrderController {
         //获取参数 & 验证
         AliJsapiOrderRQ bizRQ = super.getRQByMchSign(AliJsapiOrderRQ.class);
 
-        // 统一下单接口
-        return unifiedOrder(CS.PAY_WAY_CODE.ALI_JSAPI, bizRQ);
+        //   调起聚合支付接口
+        return super.unifiedOrder(CS.PAY_WAY_CODE.ALI_JSAPI, bizRQ);
 
     }
 
