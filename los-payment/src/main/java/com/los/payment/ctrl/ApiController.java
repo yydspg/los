@@ -20,13 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 
 public class ApiController extends AbstractCtrl {
-        // 测试
+
     @Autowired private ValidateService validateService;
     @Autowired private ConfigContextQueryService configContextQueryService;
     /*
     获取请求参数,并转化为对象,通用验证
      */
     protected <T extends AbstractRQ> T getRQ(Class<T> cls) {
+        // TODO 2024/3/13 : 跟代码一处比较关键的地方
         T rq = super.getObject(cls);
         // TODO 2024/3/11 : 此处是否会为空
         validateService.validate(rq);

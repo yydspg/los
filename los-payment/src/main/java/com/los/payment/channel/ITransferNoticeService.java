@@ -26,6 +26,6 @@ public interface ITransferNoticeService {
                            Object params, TransferOrder transferOrder, MchAppConfigContext mchAppConfigContext);
 
     /** 数据库订单数据不存在  (仅异步通知使用) **/
-    ResponseEntity doNotifyOrderNotExists(HttpServletRequest request);
+    ResponseEntity<?> doNotifyOrderNotExists(HttpServletRequest request);
 
 }

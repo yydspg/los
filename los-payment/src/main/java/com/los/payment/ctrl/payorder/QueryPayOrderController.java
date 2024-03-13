@@ -11,6 +11,7 @@ import com.los.payment.service.ConfigContextQueryService;
 import com.los.service.PayOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -19,12 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-public class QueryOrderController extends ApiController {
+public class QueryPayOrderController extends ApiController {
 
     @Autowired private PayOrderService payOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
 
     // 查单接口
+    @RequestMapping("/api/pay/query")
     public ApiRes queryOrder() {
         QueryPayOrderRQ rq = super.getRQByMchSign(QueryPayOrderRQ.class);
         if(StringKit.isAllEmpty(rq.getMchOrderNo(),rq.getPayOrderId())) {

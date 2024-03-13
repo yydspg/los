@@ -3,6 +3,7 @@ package com.los.core.beans;
 import com.alibaba.fastjson2.JSONObject;
 import com.los.core.constants.ApiCodeEnum;
 import com.los.core.exception.BizException;
+import com.los.core.utils.StringKit;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -53,9 +54,9 @@ public class RequestKitBean {
         }
     }
     /*
-    TODO 未测试
     获取参数,并转化为Json形式
      */
+    // TODO 2024/3/13 : 注意此代码作用
     public JSONObject reqParam2Json() {
         JSONObject returnObject = new JSONObject();
         //json形式
@@ -63,13 +64,13 @@ public class RequestKitBean {
             String body = "";
             try {
                 body = request.getReader().lines().collect(Collectors.joining(""));
-                if(StringUtils.isEmpty(body)) {
+                if(StringKit.isEmpty(body)) {
                     return returnObject;
                 }
                 return JSONObject.parseObject(body);
             } catch (Exception e) {
                 log.error("请求参数转换异常！ params=[{}]", body);
-                throw new BizException(ApiCodeEnum.PARAMS_ERROR, "转换异常");
+                throw new BizException(ApiCodeEnum.PARAMS_ERROR, "ConvertError");
             }
         }
         //非json形式
@@ -119,6 +120,7 @@ public class RequestKitBean {
     /*
     获取请求参数,功能是从请求上下文中获取请求参数的JSON对象,这个方法的作用是确保每次调用都能获取到请求参数的JSON表示，并且尽可能地避免重复解析请求参数的过程，提高程序性能
      */
+    // TODO 2024/3/13 : 比较关键的存储rea信息代码
     public JSONObject getReqParamJson() {
         /*
         Spring框架提供的一种机制，用于在运行时获取当前HTTP请求的相关属性。
@@ -132,7 +134,7 @@ public class RequestKitBean {
          */
         Object o = Objects.requireNonNull(RequestContextHolder.getRequestAttributes()).getAttribute(REQ_CONTEXT_KEY_PARAM_JSON, RequestAttributes.SCOPE_REQUEST);
         if (null == o) {
-            JSONObject reqParam = reqParam2Json();
+            JSONObject reqParam = this.reqParam2Json();
             RequestContextHolder.getRequestAttributes().setAttribute(REQ_CONTEXT_KEY_PARAM_JSON,reqParam,RequestAttributes.SCOPE_REQUEST);
             return reqParam;
         }

@@ -160,8 +160,8 @@ public abstract class AbstractCtrl {
     }
     /* 获取对象类型 **/
     protected <T> T getObject(Class<T> clazz) {
-
-        JSONObject params = getReqParamJSON();
+        // TODO 2024/3/13 : 关注次方法
+        JSONObject params = this.getReqParamJSON();
         T result = params.toJavaObject(clazz);
 
         if(result instanceof BaseModel){  //如果属于BaseModel, 处理apiExtVal
