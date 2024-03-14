@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author paul
  * @since 2024-02-05
  */
-public interface TransferOrderService extends IService<TransferOrder> {
+public interface  TransferOrderService extends IService<TransferOrder> {
     /* 更新转账订单状态  【转账订单生成】 --》 【转账中】 **/
     public boolean updateInit2Ing(String transferId);
     /* 更新转账订单状态  【转账中】 --》 【转账成功】 **/

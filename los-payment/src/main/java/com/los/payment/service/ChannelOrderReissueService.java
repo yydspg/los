@@ -27,12 +27,10 @@ public class ChannelOrderReissueService {
     @Autowired private ConfigContextQueryService configContextQueryService;
     @Autowired private PayOrderService payOrderService;
     @Autowired private PayOrderProcessService payOrderProcessService;
-    @Autowired private RefundOrderProcessService refundOrderProcessService;
-    @Autowired
-    private TransferOrderService transferOrderService;
-    @Autowired
-    private PayMchNotifyService payMchNotifyService;
+    @Autowired private TransferOrderService transferOrderService;
+    @Autowired private PayMchNotifyService payMchNotifyService;
     // TODO 2024/3/6 : 此部分未开发完成
+    // TODO 2024/3/14 : 考虑能否使用设计模式优化此处代码
     public ChannelRetMsg processPayOrder(PayOrder payOrder) {
         try {
             String payId = payOrder.getPayOrderId();

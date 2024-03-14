@@ -72,7 +72,7 @@ public class RefundOrderServiceImpl extends ServiceImpl<RefundOrderMapper, Refun
         RefundOrder refundOrder = getOne(RefundOrder.gw().select(RefundOrder::getPayOrderId, RefundOrder::getRefundAmount).eq(RefundOrder::getRefundOrderId, refundOrderId));
         int updateCount = payOrderMapper.updateRefundAmountAndCount(refundOrder.getPayOrderId(), refundOrder.getRefundAmount());
         if(updateCount <= 0){
-            throw new BizException("更新订单数据异常");
+            throw new BizException("updateRefundOrderStateException");
         }
 
         return true;

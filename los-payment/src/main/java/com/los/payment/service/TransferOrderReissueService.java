@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TransferOrderReissueService {
     // TODO: 2024/3/4 为什么要将ChannelOrderReissueService中对PayOrder,RefundOrder的补单操作与TransferOrder的补单操作分离?
+    // TODO 2024/3/14 : 此类能否合并
     @Autowired
     private ConfigContextQueryService configContextQueryService;
     @Autowired

@@ -135,7 +135,6 @@ public class PayMchNotifyService {
             /* 查重操作 */
 
             if (mchNotifyRecord != null) {
-                log.info("已发送");
                 return;
             }
 
@@ -173,7 +172,7 @@ public class PayMchNotifyService {
     public String createNotifyUrl(PayOrder payOrder, String appSecret) {
 
         QueryPayOrderRS queryPayOrderRS = QueryPayOrderRS.buildByPayOrder(payOrder);
-        JSONObject jsonObject = (JSONObject)JSONObject.toJSON(queryPayOrderRS);
+        JSONObject jsonObject = JSONObject.from(queryPayOrderRS);
         jsonObject.put("reqTime", System.currentTimeMillis()); //添加请求时间
 
         // 报文签名
@@ -190,7 +189,7 @@ public class PayMchNotifyService {
     public String createNotifyUrl(RefundOrder refundOrder, String appSecret) {
 
         QueryRefundOrderRS queryRefundOrderRS = QueryRefundOrderRS.buildByRefundOrder(refundOrder);
-        JSONObject jsonObject = (JSONObject)JSONObject.toJSON(queryRefundOrderRS);
+        JSONObject jsonObject = JSONObject.from(queryRefundOrderRS);
         jsonObject.put("reqTime", System.currentTimeMillis()); //添加请求时间
 
         // 报文签名
@@ -207,7 +206,7 @@ public class PayMchNotifyService {
     public String createNotifyUrl(TransferOrder transferOrder, String appSecret) {
 
         QueryTransferOrderRS rs = QueryTransferOrderRS.buildByRecord(transferOrder);
-        JSONObject jsonObject = (JSONObject)JSONObject.toJSON(rs);
+        JSONObject jsonObject = JSONObject.from(rs);
         jsonObject.put("reqTime", System.currentTimeMillis()); //添加请求时间
 
         // 报文签名
@@ -228,7 +227,7 @@ public class PayMchNotifyService {
         }
 
         QueryPayOrderRS queryPayOrderRS = QueryPayOrderRS.buildByPayOrder(payOrder);
-        JSONObject jsonObject = (JSONObject)JSONObject.toJSON(queryPayOrderRS);
+        JSONObject jsonObject = JSONObject.from(queryPayOrderRS);
         jsonObject.put("reqTime", System.currentTimeMillis()); //添加请求时间
 
         // 报文签名

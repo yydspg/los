@@ -24,6 +24,7 @@ public interface IChannelRefundNoticeService {
     /** 解析参数： 订单号 和 请求参数
      *  异常需要自行捕捉，并返回null , 表示已响应数据。
      * **/
+    // TODO 2024/3/14 : 理解这两个接口的参数
     MutablePair<String, Object> parseParams(HttpServletRequest request, String urlOrderId, NoticeTypeEnum noticeTypeEnum);
 
     /** 返回需要更新的订单状态 和响应数据 **/
@@ -31,9 +32,9 @@ public interface IChannelRefundNoticeService {
                            Object params, RefundOrder refundOrder, MchAppConfigContext mchAppConfigContext, NoticeTypeEnum noticeTypeEnum);
 
     /** 数据库订单 状态更新异常 (仅异步通知使用) **/
-    ResponseEntity doNotifyOrderStateUpdateFail(HttpServletRequest request);
+    ResponseEntity<?> doNotifyOrderStateUpdateFail(HttpServletRequest request);
 
     /** 数据库订单数据不存在  (仅异步通知使用) **/
-    ResponseEntity doNotifyOrderNotExists(HttpServletRequest request);
+    ResponseEntity<?> doNotifyOrderNotExists(HttpServletRequest request);
 
 }
