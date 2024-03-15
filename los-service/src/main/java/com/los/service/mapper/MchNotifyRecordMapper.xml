@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.MchNotifyRecordMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.MchNotifyRecord">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.MchNotifyRecord">
         <id column="notify_id" property="notifyId" />
         <result column="order_id" property="orderId" />
         <result column="order_type" property="orderType" />

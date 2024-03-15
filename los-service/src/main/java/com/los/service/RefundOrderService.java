@@ -28,4 +28,6 @@ public interface RefundOrderService extends IService<RefundOrder> {
     /* 更新退款单为 关闭状态 **/
     public Integer updateOrderExpired();
     public IPage<RefundOrder> pageList(IPage iPage, LambdaQueryWrapper<RefundOrder> wrapper, RefundOrder refundOrder, JSONObject paramJSON);
+
+    public long sumSuccessRefundAmount(String payOrderId);
 }

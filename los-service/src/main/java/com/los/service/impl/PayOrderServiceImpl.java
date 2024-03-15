@@ -61,6 +61,7 @@ public class PayOrderServiceImpl extends ServiceImpl<PayOrderMapper, PayOrder> i
         updateRecord.setMchFeeAmount(payOrder.getMchFeeAmount());
         updateRecord.setChannelUser(payOrder.getChannelUser());
         updateRecord.setChannelOrderNo(payOrder.getChannelOrderNo());
+
         return this.update(updateRecord,new LambdaUpdateWrapper<PayOrder>()
                 .eq(PayOrder::getPayOrderId,payOrderId)
                 .eq(PayOrder::getState,PayOrder.STATE_ING));

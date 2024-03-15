@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.PayOrderMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.PayOrder">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.PayOrder">
         <id column="pay_order_id" property="payOrderId" />
         <result column="mch_no" property="mchNo" />
         <result column="isv_no" property="isvNo" />
@@ -51,7 +51,6 @@
         <if test="mchNo != null"> AND mch_no = #{mchNo} </if>
         <if test="createTimeStart != null"> AND created_at &gt;= #{createTimeStart} </if>
         <if test="createTimeEnd != null"> AND created_at &lt;= #{createTimeEnd} </if>
-        ;
     </select>
 
     <!--支付方式统计-->

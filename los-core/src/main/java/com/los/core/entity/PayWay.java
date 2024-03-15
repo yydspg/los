@@ -2,6 +2,7 @@ package com.los.core.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
@@ -36,6 +37,7 @@ public class PayWay extends BaseModel {
 
 
     @Schema(description = "支付方式代码  例如： wxpay_jsapi")
+    @TableId
     private String wayCode;
 
     @Schema(description = "支付方式名称")

@@ -11,6 +11,6 @@ import com.los.core.entity.RefundOrder;
 * @author paul
 * @since 2024-02-21
 */
-    public interface RefundOrderMapper extends BaseMapper<RefundOrder> {
-
-    }
+public interface RefundOrderMapper extends BaseMapper<RefundOrder> {
+    long sumFinishRefundAmount(String payOrderId);
+}

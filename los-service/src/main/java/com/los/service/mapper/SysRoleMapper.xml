@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.SysRoleMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.SysRole">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.SysRole">
         <id column="role_id" property="roleId" />
         <result column="role_name" property="roleName" />
         <result column="sys_type" property="sysType" />
@@ -11,9 +11,6 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        role_id, role_name, sys_type, belong_info_id, updated_at
-    </sql>
+
 
 </mapper>

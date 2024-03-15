@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.IsvInfoMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.IsvInfo">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.IsvInfo">
         <id column="isv_no" property="isvNo" />
         <result column="isv_name" property="isvName" />
         <result column="isv_short_name" property="isvShortName" />
@@ -18,9 +18,6 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        isv_no, isv_name, isv_short_name, contact_name, contact_tel, contact_email, state, remark, created_uid, created_by, created_at, updated_at
-    </sql>
+
 
 </mapper>

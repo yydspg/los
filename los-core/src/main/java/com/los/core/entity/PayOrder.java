@@ -2,6 +2,7 @@ package com.los.core.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
@@ -59,6 +60,7 @@ public class PayOrder extends BaseModel {
     public static final byte DIVISION_STATE_FINISH = 3; //分账任务已结束(不体现状态)
 
     @Schema(description = "支付订单号")
+    @TableId
     private String payOrderId;
 
     @Schema(description = "商户号")

@@ -33,11 +33,11 @@
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jjwt.version>0.9.1</jjwt.version>
-        <mybatis.plus.starter.version>3.5.4.1</mybatis.plus.starter.version>
+        <mybatis.plus.starter.version>3.5.5</mybatis.plus.starter.version>
         <fastjson2.version>2.0.42</fastjson2.version>
         <knife4j.version>4.3.0</knife4j.version>
         <jeepay.sdk.java.version>1.6.0</jeepay.sdk.java.version>
-        <rocketmq.spring.boot.starter.version>2.2.3</rocketmq.spring.boot.starter.version>
+        <rocketmq.spring.boot.starter.version>2.2.0</rocketmq.spring.boot.starter.version>
         <spring.security.version>5.4.8</spring.security.version> <!-- 用于core的scope依赖 -->
     </properties>
     <dependencyManagement>

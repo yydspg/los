@@ -2,6 +2,7 @@ package com.los.core.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
@@ -36,6 +37,7 @@ public class SysEntitlement extends BaseModel {
 
 
     @Schema(description = "权限ID[ENT_功能模块_子模块_操作], eg: ENT_ROLE_LIST_ADD")
+    @TableId
     private String entId;
 
     @Schema(description = "权限名称")

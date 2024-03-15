@@ -286,8 +286,7 @@ public abstract class AbstractPayOrderController extends ApiController {
 
         payOrder.setState(orderState);
         payOrder.setChannelOrderNo(channelRetMsg.getChannelOrderId());
-        payOrder.setErrCode(channelRetMsg.getChannelErrCode());
-        payOrder.setErrMsg(channelRetMsg.getChannelErrMsg());
+        // TODO 2024/3/14 : 是否需要属性赋值
 
         // 聚合码场景 订单对象存在会员信息， 不可全部以上游为准。
         if(StringKit.isNotEmpty(channelRetMsg.getChannelUserId())){

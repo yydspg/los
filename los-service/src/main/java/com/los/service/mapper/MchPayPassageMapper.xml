@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.MchPayPassageMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.MchPayPassage">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.MchPayPassage">
         <id column="id" property="id" />
         <result column="mch_no" property="mchNo" />
         <result column="app_id" property="appId" />

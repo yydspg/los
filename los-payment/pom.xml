@@ -64,6 +64,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <!-- freemarker -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -8,6 +8,7 @@ import com.los.core.constants.ApiCodeEnum;
 import com.los.core.constants.CS;
 import com.los.core.entity.*;
 import com.los.core.exception.BizException;
+import com.los.core.utils.SpringBeansKit;
 import com.los.core.utils.StringKit;
 import com.los.service.*;
 import com.los.service.mapper.MchInfoMapper;
@@ -58,7 +59,7 @@ public class MchInfoServiceImpl extends ServiceImpl<MchInfoMapper, MchInfo> impl
 
     @Autowired private SysUserAuthService sysUserAuthService;
 
-    @Autowired private IsvInfoService isvInfoService;
+//    @Autowired private IsvInfoService isvInfoService;
 
     @Autowired private MchAppService mchAppService;
 
@@ -72,7 +73,7 @@ public class MchInfoServiceImpl extends ServiceImpl<MchInfoMapper, MchInfo> impl
         if (mchInfo.getType() == CS.MCH_TYPE_ISVSUB && StringKit.isNotEmpty(mchInfo.getIsvNo())) {
 
             /* 参数无误后,检查服务商状态 */
-
+            IsvInfoService isvInfoService = SpringBeansKit.getBean(IsvInfoService.class);
             IsvInfo isvInfo = isvInfoService.getById(mchInfo.getIsvNo());
             if(isvInfo == null || isvInfo.getState() == CS.NO) {
                 throw new BizException("当前服务商不可用");

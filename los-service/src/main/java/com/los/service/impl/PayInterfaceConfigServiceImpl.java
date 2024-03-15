@@ -9,6 +9,7 @@ import com.los.core.entity.MchInfo;
 import com.los.core.entity.PayInterfaceConfig;
 import com.los.core.entity.PayInterfaceDefine;
 import com.los.core.exception.BizException;
+import com.los.core.utils.SpringBeansKit;
 import com.los.service.MchAppService;
 import com.los.service.MchInfoService;
 import com.los.service.PayInterfaceDefineService;
@@ -32,12 +33,23 @@ import java.util.List;
 public class PayInterfaceConfigServiceImpl extends ServiceImpl<PayInterfaceConfigMapper, PayInterfaceConfig> implements PayInterfaceConfigService {
     @Autowired
     private PayInterfaceDefineService payInterfaceDefineService;
-
-    @Autowired
-    private MchInfoService mchInfoService;
-
-    @Autowired
-    private MchAppService mchAppService;
+    /*
+    循环依赖问题
+   channelNoticeController (field private com.los.payment.service.ConfigContextQueryService com.los.payment.ctrl.payorder.ChannelNoticeController.configContextQueryService)
+      ↓
+   configContextQueryService (field private com.los.payment.service.ConfigContextService com.los.payment.service.ConfigContextQueryService.configContextService)
+      ↓
+   configContextService (field private com.los.service.MchInfoService com.los.payment.service.ConfigContextService.mchInfoService)
+┌─────┐
+|  mchInfoServiceImpl (field private com.los.service.PayInterfaceConfigService com.los.service.impl.MchInfoServiceImpl.payInterfaceConfigService)
+↑     ↓
+|  payInterfaceConfigServiceImpl (field private com.los.service.MchInfoService com.los.service.impl.PayInterfaceConfigServiceImpl.mchInfoService)
+     */
+//    @Autowired
+//    private MchInfoService mchInfoService;
+//
+//    @Autowired
+//    private MchAppService mchAppService;
     @Override
     public PayInterfaceConfig getByInfoIdAndIfCode(Byte infoType, String infoId, String ifCode) {
         return this.getOne(PayInterfaceConfig.gw()
@@ -72,7 +84,7 @@ public class PayInterfaceConfigServiceImpl extends ServiceImpl<PayInterfaceConfi
         }
         return defineList;
     }
-
+// TODO 2024/3/14 : 看一下此接口的处理
     @Override
     public boolean mchAppHasAvailableIfCode(String appId, String ifCode) {
         /* 查询商户是否正确设置 支付配置 */
@@ -109,11 +121,17 @@ public class PayInterfaceConfigServiceImpl extends ServiceImpl<PayInterfaceConfi
     /* TODO 理解此接口的实际用途 */
     @Override
     public List<PayInterfaceDefine> selectAllPayIfConfigListByAppId(String appId) {
+        // TODO 2024/3/15 : 循环依赖
+        MchAppService mchAppService = SpringBeansKit.getBean(MchAppService.class);
         /* appId --> MchApp --> mchNo --> MchInfo */
+
         MchApp mchApp = mchAppService.getById(appId);
         if (mchApp == null || mchApp.getState() != CS.YES) {
             throw new BizException(ApiCodeEnum.SYS_OPERATION_FAIL_SELECT);
         }
+        // TODO 2024/3/15 : 解决循环依赖问题
+        MchInfoService mchInfoService = SpringBeansKit.getBean(MchInfoService.class);
+
         MchInfo mchInfo = mchInfoService.getById(mchApp.getMchNo());
         if (mchInfo == null || mchInfo.getState() != CS.YES) {
             throw new BizException(ApiCodeEnum.SYS_OPERATION_FAIL_SELECT);

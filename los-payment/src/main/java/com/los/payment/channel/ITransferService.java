@@ -21,7 +21,7 @@ public interface ITransferService {
     String preCheck(TransferOrderRQ bizRQ, TransferOrder transferOrder);
 
     /** 调起转账接口，并响应数据；  内部处理普通商户和服务商模式  **/
-    ChannelRetMsg transfer(TransferOrderRQ bizRQ, TransferOrder refundOrder, MchAppConfigContext mchAppConfigContext) throws Exception;
+    ChannelRetMsg transfer(TransferOrderRQ bizRQ, TransferOrder transferOrder, MchAppConfigContext mchAppConfigContext) throws Exception;
 
     /** 调起转账查询接口  **/
     ChannelRetMsg query(TransferOrder transferOrder, MchAppConfigContext mchAppConfigContext);

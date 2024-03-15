@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.SysUserAuthMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.SysUserAuth">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.SysUserAuth">
         <id column="auth_id" property="authId" />
         <result column="user_id" property="userId" />
         <result column="identity_type" property="identityType" />

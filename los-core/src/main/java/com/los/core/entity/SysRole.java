@@ -2,6 +2,7 @@ package com.los.core.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
@@ -36,6 +37,7 @@ public class SysRole extends BaseModel {
 
 
     @Schema(description = "角色ID, ROLE_开头")
+    @TableId
     private String roleId;
 
     @Schema(description = "角色名称")

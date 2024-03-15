@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.OrderSnapshotMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.OrderSnapshot">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.OrderSnapshot">
         <id column="order_id" property="orderId" />
         <id column="order_type" property="orderType" />
         <result column="mch_req_data" property="mchReqData" />

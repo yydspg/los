@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.PayInterfaceDefineMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.PayInterfaceDefine">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.PayInterfaceDefine">
         <id column="if_code" property="ifCode" />
         <result column="if_name" property="ifName" />
         <result column="is_mch_mode" property="isMchMode" />
@@ -21,9 +21,6 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        if_code, if_name, is_mch_mode, is_isv_mode, config_page_type, isv_params, isvsub_mch_params, normal_mch_params, way_codes, icon, bg_color, state, remark, created_at, updated_at
-    </sql>
+
 
 </mapper>

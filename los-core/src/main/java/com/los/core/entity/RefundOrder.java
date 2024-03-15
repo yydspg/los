@@ -2,6 +2,7 @@ package com.los.core.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
@@ -42,6 +43,7 @@ public class RefundOrder extends BaseModel {
     public static final byte STATE_CLOSED = 4; //退款任务关闭
 
     @Schema(description = "退款订单号（支付系统生成订单号）")
+    @TableId
     private String refundOrderId;
 
     @Schema(description = "支付订单号（与t_pay_order对应）")

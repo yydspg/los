@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.MchAppMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.MchApp">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.MchApp">
         <id column="app_id" property="appId" />
         <result column="app_name" property="appName" />
         <result column="mch_no" property="mchNo" />
@@ -16,9 +16,6 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        app_id, app_name, mch_no, state, app_secret, remark, created_uid, created_by, created_at, updated_at
-    </sql>
+
 
 </mapper>

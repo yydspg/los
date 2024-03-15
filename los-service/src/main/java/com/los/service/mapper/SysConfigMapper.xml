@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.SysConfigMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.SysConfig">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.SysConfig">
         <id column="config_key" property="configKey" />
         <result column="config_name" property="configName" />
         <result column="config_desc" property="configDesc" />
@@ -15,9 +15,6 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        config_key, config_name, config_desc, group_key, group_name, config_val, type, sort_num, updated_at
-    </sql>
+
 
 </mapper>

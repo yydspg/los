@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.MchDivisionReceiverMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.MchDivisionReceiver">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.MchDivisionReceiver">
         <id column="receiver_id" property="receiverId" />
         <result column="receiver_alias" property="receiverAlias" />
         <result column="receiver_group_id" property="receiverGroupId" />

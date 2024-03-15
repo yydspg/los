@@ -102,7 +102,7 @@ public class TransferNoticeController extends AbstractCtrl {
             }
 
             // 判断转账状态,执行通知
-            if(transferOrder.getState() == TransferOrder.STATE_ING && orderProcessService.syncTransferChannel(notifyRes,transferOrder)) {
+            if(transferOrder.getState() == TransferOrder.STATE_ING && orderProcessService.syncTransferChannel(notifyRes,transferOrder,false)) {
                 log.info("SuccessEnding"+logPrefix);
             }
             return notifyRes.getResponseEntity();

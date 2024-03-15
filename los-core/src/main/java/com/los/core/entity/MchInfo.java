@@ -1,8 +1,6 @@
 package com.los.core.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -37,6 +35,7 @@ public class MchInfo extends BaseModel {
     public static final byte TYPE_ISVSUB = 2; //商户类型： 2-特约商户
 
     @Schema(description = "商户号")
+    @TableId(value = "mch_no", type = IdType.INPUT)
     private String mchNo;
 
     @Schema(description = "商户名称")

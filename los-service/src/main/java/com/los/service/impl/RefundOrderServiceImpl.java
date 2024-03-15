@@ -123,4 +123,9 @@ public class RefundOrderServiceImpl extends ServiceImpl<RefundOrderMapper, Refun
         return null;
         //TODO 未实现
     }
+
+    @Override
+    public long sumSuccessRefundAmount(String payOrderId) {
+        return 0;
+    }
 }

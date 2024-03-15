@@ -34,7 +34,7 @@ import java.util.Date;
 public class MchDivisionReceiverGroup implements Serializable {
 
     //gw
-    public static final LambdaQueryWrapper<MchDivisionReceiverGroup> gw(){
+    public static  LambdaQueryWrapper<MchDivisionReceiverGroup> gw(){
         return new LambdaQueryWrapper<>();
     }
     @Serial

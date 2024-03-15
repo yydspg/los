@@ -25,7 +25,6 @@ import org.springframework.stereotype.Service;
 public class IsvInfoServiceImpl extends ServiceImpl<IsvInfoMapper, IsvInfo> implements IsvInfoService {
     @Autowired private MchInfoService mchInfoService;
 
-    @Autowired private IsvInfoService isvInfoService;
 
     @Autowired private PayInterfaceConfigService payInterfaceConfigService;
 
@@ -49,6 +48,6 @@ public class IsvInfoServiceImpl extends ServiceImpl<IsvInfoMapper, IsvInfo> impl
                 .eq(PayInterfaceConfig::getInfoId,isvNo)
                 .eq(PayInterfaceConfig::getInfoType,CS.INFO_TYPE_ISV));
         /* 删除服务商 */
-        boolean res = isvInfoService.removeById(isvNo);
+        boolean res = removeById(isvNo);
     }
 }

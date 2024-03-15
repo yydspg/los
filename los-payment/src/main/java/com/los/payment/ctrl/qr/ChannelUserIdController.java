@@ -18,4 +18,5 @@ public class ChannelUserIdController extends AbstractPayOrderController {
 
     @Autowired private ConfigContextQueryService configContextQueryService;
     @Autowired private SysConfigService sysConfigService;
+
 }

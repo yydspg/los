@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.SysEntitlementMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.SysEntitlement">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.SysEntitlement">
         <id column="ent_id" property="entId" />
         <id column="sys_type" property="sysType" />
         <result column="ent_name" property="entName" />
@@ -19,9 +19,6 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        ent_id, ent_name, menu_icon, menu_uri, component_name, ent_type, quick_jump, state, pid, ent_sort, sys_type, created_at, updated_at
-    </sql>
+
 
 </mapper>

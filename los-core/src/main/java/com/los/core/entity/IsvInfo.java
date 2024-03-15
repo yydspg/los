@@ -1,8 +1,6 @@
 package com.los.core.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,6 +43,7 @@ public class IsvInfo extends BaseModel {
 
 
     @Schema(description = "服务商号")
+    @TableId(value = "isv_no", type = IdType.INPUT)
     private String isvNo;
 
     @Schema(description = "服务商名称")

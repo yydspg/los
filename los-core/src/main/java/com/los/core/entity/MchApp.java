@@ -1,8 +1,6 @@
 package com.los.core.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -36,6 +34,7 @@ public class MchApp extends BaseModel {
 
 
     @Schema(description = "应用ID")
+    @TableId(value = "app_id", type = IdType.INPUT)
     private String appId;
 
     @Schema(description = "应用名称")

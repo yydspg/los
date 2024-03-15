@@ -98,7 +98,7 @@ public class RefundNoticeController extends AbstractCtrl {
 
             // 判断转账状态,执行通知
 
-            if(refundOrder.getState() == RefundOrder.STATE_ING && orderProcessService.syncRefundChannel(notifyRes,refundOrder)) {
+            if(refundOrder.getState() == RefundOrder.STATE_ING && orderProcessService.syncRefundChannel(notifyRes,refundOrder,false)) {
                     log.info("SuccessEnding"+logPrefix);
             }
 

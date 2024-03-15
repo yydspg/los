@@ -30,35 +30,24 @@
         <!-- ↓↓↓↓↓↓ MQ依赖包 ↓↓↓↓↓↓ -->
         <!-- 使用的厂商 scope=compile,  否则需要scope=provided(仅编译，不依赖) -->
 
-        <!-- ActiveMQ  和 连接池  -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-activemq</artifactId>
-            <!--      <scope>provided</scope>-->
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-pool</artifactId>
-            <!--      <scope>provided</scope>-->
-        </dependency>
+<!--        &lt;!&ndash; ActiveMQ  和 连接池  &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-activemq</artifactId>-->
+<!--            &lt;!&ndash;      <scope>provided</scope>&ndash;&gt;-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>org.messaginghub</groupId>
             <artifactId>pooled-jms</artifactId>
             <!--      <scope>provided</scope>-->
         </dependency>
 
-        <!-- RabbitMQ  -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
         <!-- RocketMQ -->
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-spring-boot-starter</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <!-- ↑↑↑↑↑↑ MQ依赖包 ↑↑↑↑↑↑ -->

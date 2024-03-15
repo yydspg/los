@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.TransferOrderMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.TransferOrder">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.TransferOrder">
         <id column="transfer_id" property="transferId" />
         <result column="mch_no" property="mchNo" />
         <result column="isv_no" property="isvNo" />
@@ -32,9 +32,6 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        transfer_id, mch_no, isv_no, app_id, mch_name, mch_type, mch_order_no, if_code, entry_type, amount, currency, account_no, account_name, bank_name, transfer_desc, client_ip, state, channel_extra, channel_order_no, err_code, err_msg, ext_param, notify_url, success_time, created_at, updated_at
-    </sql>
+
 
 </mapper>

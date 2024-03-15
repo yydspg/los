@@ -2,6 +2,7 @@ package com.los.core.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
@@ -37,6 +38,7 @@ public class PayInterfaceDefine extends BaseModel implements Serializable {
 
 
     @Schema(description = "接口代码 全小写  wxpay alipay ")
+    @TableId
     private String ifCode;
 
     @Schema(description = "接口名称")

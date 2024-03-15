@@ -3,14 +3,9 @@
 <mapper namespace="com.los.service.mapper.SysUserRoleRelaMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.SysUserRoleRela">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.SysUserRoleRela">
         <id column="user_id" property="userId" />
         <id column="role_id" property="roleId" />
     </resultMap>
-
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        user_id, role_id
-    </sql>
 
 </mapper>

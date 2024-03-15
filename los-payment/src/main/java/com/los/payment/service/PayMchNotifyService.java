@@ -13,6 +13,7 @@ import com.los.payment.rqrs.payorder.QueryPayOrderRS;
 import com.los.payment.rqrs.refund.QueryRefundOrderRS;
 import com.los.payment.rqrs.transfer.QueryTransferOrderRS;
 import com.los.service.MchNotifyRecordService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

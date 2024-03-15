@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.RefundOrderMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.RefundOrder">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.RefundOrder">
         <id column="refund_order_id" property="refundOrderId" />
         <result column="pay_order_id" property="payOrderId" />
         <result column="channel_pay_order_no" property="channelPayOrderNo" />
@@ -33,9 +33,10 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        refund_order_id, pay_order_id, channel_pay_order_no, mch_no, isv_no, app_id, mch_name, mch_type, mch_refund_no, way_code, if_code, pay_amount, refund_amount, currency, state, client_ip, refund_reason, channel_order_no, err_code, err_msg, channel_extra, notify_url, ext_param, success_time, expired_time, created_at, updated_at
-    </sql>
+    <select id="sumSuccessRefundAmount" resultType="Long">
+        select ifnull(sum(refund_amount), 0) from t_refund_order
+        where pay_order_id = #{payOrderId} and state = 2
+    </select>
+
 
 </mapper>

@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.SysUserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.SysUser">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.SysUser">
         <id column="sys_user_id" property="sysUserId" />
         <result column="login_username" property="loginUsername" />
         <result column="realname" property="realname" />
@@ -19,9 +19,6 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        sys_user_id, login_username, realname, telphone, sex, avatar_url, user_no, is_admin, state, sys_type, belong_info_id, created_at, updated_at
-    </sql>
+
 
 </mapper>

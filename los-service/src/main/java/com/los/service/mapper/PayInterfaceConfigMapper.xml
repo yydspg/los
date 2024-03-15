@@ -3,7 +3,7 @@
 <mapper namespace="com.los.service.mapper.PayInterfaceConfigMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.los.service.entity.PayInterfaceConfig">
+    <resultMap id="BaseResultMap" type="com.los.core.entity.PayInterfaceConfig">
         <id column="id" property="id" />
         <result column="info_type" property="infoType" />
         <result column="info_id" property="infoId" />
@@ -20,9 +20,5 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        id, info_type, info_id, if_code, if_params, if_rate, state, remark, created_uid, created_by, created_at, updated_uid, updated_by, updated_at
-    </sql>
 
 </mapper>

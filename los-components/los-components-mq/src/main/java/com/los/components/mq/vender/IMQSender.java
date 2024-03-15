@@ -1,6 +1,8 @@
 package com.los.components.mq.vender;
 
+
 import com.los.components.mq.model.AbstractMQ;
+
 
 /*
  * MQ 消息发送器 接口定义
