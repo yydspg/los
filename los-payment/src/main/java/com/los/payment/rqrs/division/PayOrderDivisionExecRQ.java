@@ -1,9 +1,9 @@
 package com.los.payment.rqrs.division;
 
 import com.los.payment.rqrs.AbstractMchAppRQ;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-import jakarta.validation.constraints.NotNull;
 
 /*
  * 发起订单分账 请求参数
@@ -22,7 +22,8 @@ public class PayOrderDivisionExecRQ extends AbstractMchAppRQ {
     /*
      * 是否使用系统配置的自动分账组： 0-否 1-是
      **/
-    @NotNull(message = "是否使用系统配置的自动分账组不能为空")
+    // TODO 2024/3/15 : jakarta.validation 中的接口也 Validator使用
+    @NotBlank(message = "是否使用系统配置的自动分账组不能为空")
     private Byte useSysAutoDivisionReceivers;
 
     /* 接收者账号列表（JSONArray 转换为字符串类型）

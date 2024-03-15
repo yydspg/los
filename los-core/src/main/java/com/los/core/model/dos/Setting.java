@@ -1,5 +1,6 @@
 package com.los.core.model.dos;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -12,9 +13,11 @@ import lombok.NoArgsConstructor;
 @Data
 @TableName("t_oss_setting")
 @Schema(description = "配置")
+// TODO 2024/3/15 : 此类实际为我单独加的,目前无实际作用,以后会变化
 @NoArgsConstructor
 public class Setting {
     public static final long serialVersionUID = 1L;
     @Schema(description = "配置Value")
+    @TableId
     private String settingValue;
 }

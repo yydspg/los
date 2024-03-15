@@ -5,11 +5,13 @@ package com.los.payment.ctrl.division;
  */
 
 import com.los.core.ctrls.AbstractCtrl;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 
 @Slf4j
 @Controller
+@Tag(name = "分账")
 public class DivisionRecordChannelNotifyController extends AbstractCtrl {
 
 }

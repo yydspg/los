@@ -21,6 +21,8 @@ import com.los.payment.service.PayMchNotifyService;
 import com.los.service.PayInterfaceConfigService;
 import com.los.service.TransferOrderService;
 import io.netty.handler.codec.compression.Bzip2Decoder;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,7 @@ import java.util.Date;
 // TODO 2024/3/14 : 为何 TransferOrderController 和 QueryTransferOrderController要分开写?
 @Slf4j
 @RestController
+@Tag(name = "转账")
 public class TransferOrderController extends ApiController {
 
     @Autowired private ConfigContextQueryService configContextQueryService;
@@ -43,6 +46,7 @@ public class TransferOrderController extends ApiController {
     @Autowired private OrderProcessService orderProcessService;
 
     // 转账接口
+    @Operation(summary = "执行转账")
     @PostMapping("/api/transferOrder")
     public ApiRes transferOrder(){
 

@@ -12,6 +12,8 @@ import com.los.payment.rqrs.payorder.UnifiedOrderRS;
 import com.los.payment.rqrs.payorder.payway.AutoBarOrderRQ;
 import com.los.payment.service.ConfigContextQueryService;
 import com.los.service.PayWayService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,11 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
+@Tag(name = "支付")
 public class UnifiedOrderController extends AbstractPayOrderController {
 
     @Autowired private PayWayService payWayService;
     @Autowired private ConfigContextQueryService configContextQueryService;
-
+    @Operation(summary = "聚合支付")
     @PostMapping("/api/pay/unifiedOrder")
     public ApiRes unifiedOrder() {
         UnifiedOrderRQ rq = super.getRQByMchSign(UnifiedOrderRQ.class);

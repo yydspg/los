@@ -14,8 +14,11 @@ import com.los.payment.rqrs.payorder.ClosePayOrderRQ;
 import com.los.payment.rqrs.payorder.ClosePayOrderRS;
 import com.los.payment.service.ConfigContextQueryService;
 import com.los.service.PayOrderService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,12 +27,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
+@Tag(name = "支付")
 public class CloseOrderController extends ApiController {
     @Autowired private PayOrderService payOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
 
     // 关闭订单
-    @RequestMapping("/api/pay/close")
+    @Operation(summary = "结束支付")
+    @PostMapping("/api/pay/close")
     public ApiRes closeOrder(){
 
         // 获取请求 && 验签

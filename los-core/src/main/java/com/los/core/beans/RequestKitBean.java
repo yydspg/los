@@ -37,7 +37,7 @@ public class RequestKitBean {
     从 request 中获取 请求主体
      */
     public String getReqParamFromBody() {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         if(isConvertJson()) {
             try {
                 String str;
@@ -77,16 +77,14 @@ public class RequestKitBean {
         Map<String, String[]> properties = request.getParameterMap();
         Iterator<Map.Entry<String, String[]>> entries = properties.entrySet().iterator();
         Map.Entry<String,String[]> entry;
-        StringBuilder value = new StringBuilder("");
+        StringBuilder value = new StringBuilder();
         String name;
         while(entries.hasNext()) {
             entry = entries.next();
             name = entry.getKey();
             String[] valueObj = entry.getValue();
             //TODO 修改判断和处理逻辑
-            if (null == valueObj) {
-                value.append("");
-            } else {
+            if (null != valueObj) {
                 for (String s : valueObj) {
                     value.append(s).append(",");
                 }
@@ -121,6 +119,7 @@ public class RequestKitBean {
     获取请求参数,功能是从请求上下文中获取请求参数的JSON对象,这个方法的作用是确保每次调用都能获取到请求参数的JSON表示，并且尽可能地避免重复解析请求参数的过程，提高程序性能
      */
     // TODO 2024/3/13 : 比较关键的存储rea信息代码
+    // TODO 2024/3/15 : 实先开关降级问题
     public JSONObject getReqParamJson() {
         /*
         Spring框架提供的一种机制，用于在运行时获取当前HTTP请求的相关属性。
@@ -172,13 +171,13 @@ public class RequestKitBean {
     public String getClientIp() {
         String ipAddress = null;
         ipAddress = request.getHeader("x-forwarded-for");
-        if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+        if (ipAddress == null || ipAddress.isEmpty() || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader("Proxy-Client-IP");
         }
-        if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+        if (ipAddress == null || ipAddress.isEmpty() || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getHeader("WL-Proxy-Client-IP");
         }
-        if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
+        if (ipAddress == null || ipAddress.isEmpty() || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getRemoteAddr();
         }
 

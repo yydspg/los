@@ -9,8 +9,11 @@ import com.los.payment.rqrs.payorder.QueryPayOrderRQ;
 import com.los.payment.rqrs.payorder.QueryPayOrderRS;
 import com.los.payment.service.ConfigContextQueryService;
 import com.los.service.PayOrderService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,13 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
+@Tag(name = "支付")
 public class QueryPayOrderController extends ApiController {
 
     @Autowired private PayOrderService payOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
 
-    // 查单接口
-    @RequestMapping("/api/pay/query")
+    @Operation(summary = "查询支付")
+    @PostMapping("/api/pay/query")
     public ApiRes queryOrder() {
         QueryPayOrderRQ rq = super.getRQByMchSign(QueryPayOrderRQ.class);
         if(StringKit.isAllEmpty(rq.getMchOrderNo(),rq.getPayOrderId())) {

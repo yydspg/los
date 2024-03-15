@@ -282,6 +282,7 @@ public abstract class AbstractPayOrderController extends ApiController {
     }
 
     /** 更新订单状态 --> 订单生成--> 其他状态  (向外抛出异常) **/
+    // TODO 2024/3/15 : 同下
     private void updateInitOrderStateThrowException(byte orderState, PayOrder payOrder, ChannelRetMsg channelRetMsg){
 
         payOrder.setState(orderState);
@@ -323,6 +324,7 @@ public abstract class AbstractPayOrderController extends ApiController {
     /** 处理上游返回的渠道信息，并更新订单状态
      *  payOrder将对部分信息进行 赋值操作。
      */
+    // TODO 2024/3/15 : 聚合至 OrderProcessService
     private void processChannelMsg(ChannelRetMsg channelRetMsg, PayOrder payOrder){
 
         //对象为空 || 上游返回状态为空， 则无需操作

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,8 +32,8 @@ public class SysRoleEntRela extends BaseModel {
     private static final long serialVersionUID = 1L;
 
     public static  LambdaQueryWrapper<SysRoleEntRela> gw() {return new LambdaQueryWrapper<>(); }
-
-
+    // TODO 2024/3/15 : MP 不支持 联合主键,之后测试一下执行计划
+    @TableId
     @Schema(description = "角色ID")
     private String roleId;
 

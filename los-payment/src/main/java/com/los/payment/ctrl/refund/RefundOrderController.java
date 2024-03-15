@@ -1,6 +1,7 @@
 package com.los.payment.ctrl.refund;
 
 import cn.hutool.core.date.DateUtil;
+import com.alipay.api.domain.SummaryBillOpenApiDTO;
 import com.los.core.entity.MchApp;
 import com.los.core.entity.MchInfo;
 import com.los.core.entity.PayOrder;
@@ -22,6 +23,8 @@ import com.los.payment.service.OrderProcessService;
 import com.los.payment.service.PayMchNotifyService;
 import com.los.service.PayOrderService;
 import com.los.service.RefundOrderService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,12 +38,14 @@ import java.util.Date;
  */
 @Slf4j
 @RestController
+@Tag(name = "退款")
 public class RefundOrderController extends ApiController {
     @Autowired private PayOrderService payOrderService;
     @Autowired private RefundOrderService refundOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
     @Autowired private OrderProcessService orderProcessService;
 
+    @Operation(summary = "执行退款")
     @PostMapping("/api/refund/refundOrder")
     public ApiRes refundOrder(){
         RefundOrder refundOrder = null;

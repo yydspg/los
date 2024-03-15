@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     # yml填写url连接串， 无需将&符号进行转义
-    url: jdbc:mysql:/192.168.152.139:3306/los?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://192.168.152.139:3306/los?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
     username: paul
     password: 1234
     druid:
@@ -34,30 +34,16 @@ springdoc:
     path: /swagger-ui.html
     tags-sorter: alpha
     #operations-sorter: order
+    enabled: true
   api-docs:
     path: /v3/api-docs
+    enabled: true
   group-configs:
-    - group: 'default'
-      paths-to-match: '/*'
-      packages-to-scan: com.github.xiaoymin.boot3
+    - group: 'com.pg'
+      paths-to-match: '/**'
   default-flat-param-object: true
+  packages-to-scan: com.los.payment.ctrl
 
-knife4j:
-  enable: true
-  setting:
-    language: zh_cn
-    swagger-model-name: 实体类列表
-  documents:
-    - name: 标题1
-      locations: classpath:markdown/*
-      group: default
-    - name: 标题2
-      locations: classpath:markdown1/*
-      group: 用户模块
-  basic:
-    enable: false
-    username: abc
-    password: 123
 #系统业务参数
 isys:
 

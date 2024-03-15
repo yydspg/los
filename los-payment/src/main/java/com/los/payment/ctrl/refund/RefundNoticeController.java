@@ -14,12 +14,15 @@ import com.los.payment.service.ConfigContextQueryService;
 import com.los.payment.service.OrderProcessService;
 
 import com.los.service.RefundOrderService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Slf4j
 @Controller
+@Tag(name = "退款")
 public class RefundNoticeController extends AbstractCtrl {
     @Autowired private RefundOrderService refundOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
@@ -38,8 +42,9 @@ public class RefundNoticeController extends AbstractCtrl {
 
     // 异步回调
     // TODO 2024/3/14 :  未检查
+    @Operation(summary = "退款回调")
     @ResponseBody
-    @RequestMapping(value = {"/api/refund/notify/{ifCode}","/api/refund/notify/{ifCode}/{refundId}"})
+    @GetMapping(value = {"/api/refund/notify/{ifCode}","/api/refund/notify/{ifCode}/{refundId}"})
     public ResponseEntity<?> doNotify(HttpServletRequest request, @PathVariable("ifCode") String ifCode, @PathVariable(value = "refundId",required = false)String urlOrderId ){
         String refundId = null;
 

@@ -5,6 +5,7 @@ import com.los.payment.service.ConfigContextQueryService;
 import com.los.payment.service.PayMchNotifyService;
 import com.los.service.PayOrderService;
 import com.los.service.impl.SysConfigService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/cashier")
+@Tag(name = "二维码")
 public class QrCashierController extends AbstractPayOrderController {
 
     @Autowired private PayOrderService payOrderService;

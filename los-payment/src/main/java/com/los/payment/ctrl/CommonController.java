@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/common")
 public class CommonController extends AbstractCtrl {
+
+
     //网关支付form 表单输出
     @RequestMapping(value = "/payForm/{payData}")
     private String toPayForm( @PathVariable("payData") String payData) {
         super.request.setAttribute("payHtml", Base64.decodeStr(payData));
         return "common/toPay";
     }
+
+
     // 微信H5跳转与referer一致,重定向
     @RequestMapping(value = "/payUrl/{payData}")
     private String toPayUrl(@PathVariable("payData") String payData) {

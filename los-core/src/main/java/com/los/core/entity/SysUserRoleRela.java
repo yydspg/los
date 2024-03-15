@@ -1,5 +1,6 @@
 package com.los.core.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.los.core.model.BaseModel;
@@ -31,7 +32,7 @@ public class SysUserRoleRela extends BaseModel {
 
     public static  LambdaQueryWrapper<SysUserRoleRela> gw() {return new LambdaQueryWrapper<>(); }
 
-
+    @TableId
     @Schema(description = "用户ID")
     private Long userId;
 

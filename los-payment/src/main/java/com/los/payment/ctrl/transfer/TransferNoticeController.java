@@ -13,12 +13,15 @@ import com.los.payment.service.ConfigContextQueryService;
 import com.los.payment.service.OrderProcessService;
 import com.los.payment.service.PayMchNotifyService;
 import com.los.service.TransferOrderService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,15 +37,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Slf4j
 @Controller
+@Tag(name = "转账")
 public class TransferNoticeController extends AbstractCtrl {
     @Autowired private TransferOrderService transferOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
-    @Autowired private PayMchNotifyService payMchNotifyService;
     @Autowired private OrderProcessService orderProcessService;
 
     // 异步回调
+    @Operation(summary = "转账回调")
     @ResponseBody
-    @RequestMapping(value = {"/api/transfer/notify/{ifCode}","/api/transfer/notify/{ifCode}/{transferId}"})
+    @GetMapping(value = {"/api/transfer/notify/{ifCode}","/api/transfer/notify/{ifCode}/{transferId}"})
     public ResponseEntity<?> doNotify(HttpServletRequest request, @PathVariable("ifCode") String ifCode,@PathVariable(value = "transferId",required = false)String urlOrderId ){
         String transferId = null;
 

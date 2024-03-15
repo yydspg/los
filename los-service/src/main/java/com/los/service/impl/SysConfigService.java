@@ -35,8 +35,6 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> im
     //TODO 是否可以将所有配置项可以在线修改
     public static boolean IS_USE_CACHE = false;
 
-    @Autowired
-    private SysConfigService sysConfigService;
 
     /*
     DB 配置参数
@@ -80,7 +78,7 @@ public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> im
                 SysConfig sysConfig = new SysConfig();
                 sysConfig.setConfigKey(k);
                 sysConfig.setConfigVal(updateMap.get(k));
-                boolean update = sysConfigService.saveOrUpdate(sysConfig);
+                boolean update = this.saveOrUpdate(sysConfig);
                 if(update){ count++;}
             }
         }

@@ -15,7 +15,7 @@ public class SwaggerConfiguration {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("los系统")
+                        .title("los pay system")
                         .version("1.0")
                         .description( "paymentSystemApi")
                         .termsOfService("http://doc.xiaominfo.com")
