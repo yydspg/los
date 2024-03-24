@@ -9,7 +9,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
  * @author paul 2024/1/30
  */
 
-public class JwtUtils {
+public class JwtKit {
     /* 生成token **/
     public static String generateToken(JwtPayload jwtPayload, String jwtSecret) {
         return Jwts.builder()

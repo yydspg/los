@@ -42,7 +42,6 @@ public class LosUserDetails implements UserDetails {
         this.setSysUser(sysUser);
         this.setCredential(credential);
 
-        //做一些初始化操作
     }
 
     /* spring-security 需要验证的密码 **/

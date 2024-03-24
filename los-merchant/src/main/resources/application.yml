@@ -30,9 +30,9 @@ spring:
       number_format: '#' #数字格式进行原样显示，不加格式化字符例如  100,00
   datasource:
     # yml填写url连接串， 无需将&符号进行转义
-    url: jdbc:mysql://172.20.0.10:3306/jeepaydb?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: jeepay
-    password: jeepay
+    url: jdbc:mysql://192.168.152.139/los?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: paul
+    password: 1234
     druid:
       # 连接池配置项
       initial-size: 5 #初始化时建立物理连接的个数
@@ -55,7 +55,7 @@ spring:
   cache:
     type: redis
   redis:
-    host: 172.20.0.12
+    host: 192.1681.152.139
     port: 6379
     database: 2    #1库：运营平台  #2库：商户系统 #3库：支付网关
     timeout: 1000

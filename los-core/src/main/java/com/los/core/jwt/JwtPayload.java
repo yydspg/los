@@ -3,6 +3,7 @@ package com.los.core.jwt;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.los.core.model.security.LosUserDetails;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Map;
@@ -18,6 +19,7 @@ import java.util.Map;
  * @author paul 2024/1/30
  */
 @Setter
+@Getter
 public class JwtPayload {
     private Long sysUserId;       //登录用户ID
     private Long created;         //创建时间, 格式：13位时间戳

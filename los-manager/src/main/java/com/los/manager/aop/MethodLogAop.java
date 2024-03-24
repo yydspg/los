@@ -5,4 +5,5 @@ package com.los.manager.aop;
  */
 
 public class MethodLogAop {
+
 }

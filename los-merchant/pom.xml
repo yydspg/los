@@ -11,7 +11,7 @@
     <artifactId>los-merchant</artifactId>
     <version>{isys.Version}</version>
     <description>los-merchant</description>
-
+    <packaging>jar</packaging>
 
 
     <dependencies>
