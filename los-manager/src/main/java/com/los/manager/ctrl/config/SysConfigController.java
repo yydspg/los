@@ -5,4 +5,5 @@ package com.los.manager.ctrl.config;
  */
 
 public class SysConfigController {
+
 }

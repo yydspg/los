@@ -7,9 +7,10 @@ import org.springframework.stereotype.Component;
 /**
  * @author paul 2024/3/24
  */
-@Component
+
 @ConfigurationProperties(prefix="isys")
 @Data
+@Component
 public class SystemYmlConfig {
     /** 是否允许跨域请求 [生产环境建议关闭， 若api与前端项目没有在同一个域名下时，应开启此配置或在nginx统一配置允许跨域]  **/
     private Boolean allowCors;

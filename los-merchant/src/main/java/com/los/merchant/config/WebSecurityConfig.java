@@ -1,9 +1,10 @@
 package com.los.merchant.config;
 
 
-import com.los.manager.security.LosAuthenticationEntryPoint;
-import com.los.manager.security.LosAuthenticationTokenFilter;
-import com.los.manager.security.LosUserDetailsServiceImpl;
+
+import com.los.merchant.security.LosAuthenticationEntryPoint;
+import com.los.merchant.security.LosAuthenticationTokenFilter;
+import com.los.merchant.security.LosUserDetailsServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

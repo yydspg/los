@@ -32,7 +32,7 @@ public class JwtKit {
             return result;
 
         } catch (Exception e) {
-            return null; //resolve error
+            return null; //resolve error,release
         }
     }
 }

@@ -7,7 +7,7 @@ import com.los.core.jwt.JwtPayload;
 import com.los.core.model.security.LosUserDetails;
 import com.los.core.utils.SpringBeansKit;
 import com.los.core.utils.StringKit;
-import com.los.manager.config.SystemYmlConfig;
+import com.los.merchant.config.SystemYmlConfig;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
