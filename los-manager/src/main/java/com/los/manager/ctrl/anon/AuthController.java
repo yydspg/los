@@ -16,7 +16,6 @@ import com.los.manager.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @author paul 2024/3/25
  */
 @Tag(name = "认证模块")
-@Data
 @RestController
 @RequestMapping("/api/anon/auth")
 public class AuthController extends CommonCtrl {

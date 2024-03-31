@@ -79,12 +79,12 @@ public abstract class AbstractCtrl {
         return pageSize;
     }
     /* 获取Ipage分页信息, 默认不允许获取全部数据 **/
-    protected IPage<?> getIPage(){
+    protected IPage getIPage(){
         return new Page(getPageIndex(), getPageSize());
     }
 
     /* 获取Ipage分页信息, 加入条件：是否允许获取全部数据 **/
-    protected IPage<?> getIPage(boolean allowQueryAll){
+    protected IPage getIPage(boolean allowQueryAll){
         return new Page(getPageIndex(), getPageSize(allowQueryAll));
     }
     /* 获取请求参数值 [ T 类型 ], [ 非必填 ] **/

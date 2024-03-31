@@ -97,14 +97,4 @@ public class ApiRes implements Serializable {
     public static ApiRes fail(ApiCodeEnum ace,String... params) {
         return new ApiRes(ace.getCode(),(params == null || params.length == 0) ? ace.getMsg():String.format(ace.getMsg(),params),null,null);
     }
-    /*
-    业务处理成功， 封装分页数据， 仅返回必要参数
-     */
-    public static <M> ApiRes page(IPage<M> iPage) {
-        if (iPage == null) {
-            return null;
-        }
-        ApiPageRes.PageBean<M> res = ApiPageRes.pages(iPage);
-        return success(res);
-    }
 }
