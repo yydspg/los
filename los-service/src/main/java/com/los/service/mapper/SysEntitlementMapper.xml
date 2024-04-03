@@ -19,6 +19,13 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-
+    <!-- 查询当前用户是否存在左侧菜单 (仅普通操作员) -->
+    <select id="userHasLeftMenu" resultType="Integer">
+        select count(1) from t_sys_entitlement where ent_id in (
+            select DISTINCT ent_id from t_sys_role_ent_rela where role_id in (
+                select role_id from  t_sys_user_role_rela where user_id = #{userId}
+            )
+        ) and state = 1 and ent_type = 'ML' and sys_type  = #{sysType}
+    </select>
 
 </mapper>

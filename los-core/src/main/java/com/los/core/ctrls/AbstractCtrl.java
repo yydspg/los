@@ -1,8 +1,11 @@
 package com.los.core.ctrls;
 
+import cn.hutool.core.annotation.AnnotationAttributeValueProvider;
+import cn.hutool.core.text.CharSequenceUtil;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.los.core.beans.RequestKitBean;
 import com.los.core.constants.ApiCodeEnum;
@@ -11,7 +14,9 @@ import com.los.core.model.BaseModel;
 import com.los.core.utils.DateKit;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.commons.lang3.CharSequenceUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.MutablePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +24,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -99,6 +105,19 @@ public abstract class AbstractCtrl {
         }
         return value;
     }
+    // TODO 2024/4/3 : 获取方法引用 如何实现 Sys::getName
+    /** 获取排序字段 MutablePair<是否正序， 排序字段> **/
+    protected MutablePair<Boolean, String> getSortInfo() {
+
+        String sortField = getReqParamJSON().getString(SORT_FIELD_PARAM_NAME);
+        String sortOrderFlag = getReqParamJSON().getString(SORT_ORDER_FLAG_PARAM_NAME);
+        if(StringUtils.isAllEmpty(sortField, sortField)){
+            return null;
+        }
+
+        return MutablePair.of("ascend".equalsIgnoreCase(sortOrderFlag), CharSequenceUtil.toUnderlineCase(sortField).toLowerCase());
+    }
+
     /* 获取请求参数值 [ T 类型 ], [ 如为null返回默认值 ] **/
     protected  <T> T getValDefault(String key, T defaultValue, Class<T> cls) {
         T value = getVal(key, cls);
@@ -243,18 +262,7 @@ public abstract class AbstractCtrl {
         }
         return responseMap;
     }
-    /* 将上传的文件进行保存 - 公共函数 **/
-    protected void saveFile(MultipartFile file, String savePath) throws Exception {
 
-        File saveFile = new File(savePath);
-
-        //如果文件夹不存在则创建文件夹
-        File dir = saveFile.getParentFile();
-        if(!dir.exists()) {
-            dir.mkdirs();
-        }
-        file.transferTo(saveFile);
-    }
     /* 获取客户端ip地址 **/
     public String getClientIp() {
         return requestKitBean.getClientIp();

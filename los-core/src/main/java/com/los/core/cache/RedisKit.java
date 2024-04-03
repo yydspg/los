@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
 
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -62,5 +63,9 @@ public class RedisKit {
                 srt.delete(List.of(key));
             }
         }
+    }
+    // 查询keys
+    public static Collection<String> keys(String pattern) {
+        return srt.keys(pattern);
     }
 }

@@ -36,6 +36,7 @@ public class WebSecurityConfig  {
     @Resource private LosAuthenticationTokenFilter losAuthenticationTokenFilter;
 
     // TODO 2024/3/24 : 学习此处 spring security 的配置
+    // TODO 2024/4/1 : 如何配置spring-security 是否开启
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http

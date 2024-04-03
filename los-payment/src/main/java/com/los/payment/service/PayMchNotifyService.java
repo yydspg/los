@@ -70,6 +70,7 @@ public class PayMchNotifyService {
             /* 推送到MQ */
 
             Long notifyId = mchNotifyRecord.getNotifyId();
+            // TODO 2024/4/1 : 此处是否可以使用延时队列,如果可以,如何升级呢
             mqSender.send(PayOrderMchNotifyMQ.build(notifyId));
 
         } catch (Exception e) {
