@@ -119,4 +119,13 @@ public class JSONKit {
     public static JSONObject parseObj(String str) {
         return JSONObject.parseObject(str);
     }
+    public static JSONArray convert(String key,String[] values) {
+        JSONArray jsonArray = new JSONArray();
+        for (String value : values) {
+            JSONObject entry = new JSONObject();
+            entry.put(key,value);
+            jsonArray.add(entry);
+        }
+        return jsonArray;
+    }
 }

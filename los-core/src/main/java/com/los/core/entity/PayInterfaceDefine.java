@@ -1,5 +1,6 @@
 package com.los.core.entity;
 
+import com.alibaba.fastjson2.JSONArray;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -63,7 +64,7 @@ public class PayInterfaceDefine extends BaseModel implements Serializable {
     private String normalMchParams;
 
     @Schema(description = "支持的支付方式")
-    private String wayCodes;
+    private JSONArray wayCodes;
 
     @Schema(description = "页面展示：卡片-图标")
     private String icon;

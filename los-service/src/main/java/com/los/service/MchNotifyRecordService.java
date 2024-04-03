@@ -22,5 +22,6 @@ public interface MchNotifyRecordService extends IService<MchNotifyRecord> {
     public MchNotifyRecord findByTransferOrder(String transferId);
     /* 更新商户回调的结果即状态 **/
     public Integer updateNotifyResult(Long notifyId, Byte state, String resResult);
-
+    /* 更新通知状态->ing && 限制次数 */
+    public Integer updateToIngWithLimit(long notifyId);
 }

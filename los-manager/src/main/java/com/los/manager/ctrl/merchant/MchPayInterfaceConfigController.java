@@ -1,12 +1,16 @@
 package com.los.manager.ctrl.merchant;
 
+import com.alibaba.fastjson.JSONObject;
+import com.los.components.mq.model.ResetIsvMchAppInfoConfigMQ;
 import com.los.components.mq.vender.IMQSender;
+import com.los.core.constants.ApiCodeEnum;
 import com.los.core.constants.CS;
 import com.los.core.entity.MchApp;
 import com.los.core.entity.MchInfo;
 import com.los.core.entity.PayInterfaceConfig;
 import com.los.core.entity.PayInterfaceDefine;
 import com.los.core.model.ApiRes;
+import com.los.core.model.DBApplicationConfig;
 import com.los.core.model.params.NormalMchParams;
 import com.los.core.utils.StringKit;
 import com.los.manager.ctrl.CommonCtrl;
@@ -94,6 +98,69 @@ public class MchPayInterfaceConfigController extends CommonCtrl {
     @PreAuthorize("hasAuthority('ENT_MCH_PAY_CONFIG_VIEW')")
     @RequestMapping(value = "/{appId}/{ifCode}",method = RequestMethod.POST)
     public ApiRes saveOrUpdate() {
-        return null;
+        String infoId = getValStringRequired("infoId");
+        String ifCode = getValStringRequired("ifCode");
+
+        MchApp mchApp = mchAppService.getById(infoId);
+        if (mchApp == null || mchApp.getState() != CS.YES) {
+            return ApiRes.fail(ApiCodeEnum.SYS_OPERATION_FAIL_SELECT);
+        }
+
+        PayInterfaceConfig payInterfaceConfig = getObject(PayInterfaceConfig.class);
+        payInterfaceConfig.setInfoType(CS.INFO_TYPE_MCH_APP);
+        payInterfaceConfig.setInfoId(infoId);
+
+        // 存入真实费率
+        if (payInterfaceConfig.getIfRate() != null) {
+            payInterfaceConfig.setIfRate(payInterfaceConfig.getIfRate().divide(new BigDecimal("100"), 6, BigDecimal.ROUND_HALF_UP));
+        }
+
+        //添加更新者信息
+        Long userId = getCurrentUser().getSysUser().getSysUserId();
+        String realName = getCurrentUser().getSysUser().getRealname();
+        payInterfaceConfig.setUpdatedUid(userId);
+        payInterfaceConfig.setUpdatedBy(realName);
+
+        //根据 商户号、接口类型 获取商户参数配置
+        PayInterfaceConfig dbRecoed = payInterfaceConfigService.getByInfoIdAndIfCode(CS.INFO_TYPE_MCH_APP, infoId, ifCode);
+        //若配置存在，为saveOrUpdate添加ID，第一次配置添加创建者
+        if (dbRecoed != null) {
+            payInterfaceConfig.setId(dbRecoed.getId());
+            // 合并支付参数
+            payInterfaceConfig.setIfParams(StringKit.merge(dbRecoed.getIfParams(), payInterfaceConfig.getIfParams()));
+        }else {
+            payInterfaceConfig.setCreatedUid(userId);
+            payInterfaceConfig.setCreatedBy(realName);
+        }
+
+        boolean result = payInterfaceConfigService.saveOrUpdate(payInterfaceConfig);
+        if (!result) {
+            return ApiRes.fail(ApiCodeEnum.SYSTEM_ERROR, "configureFail");
+        }
+
+        // 推送mq到目前节点进行更新数据
+        mqSender.send(ResetIsvMchAppInfoConfigMQ.build(ResetIsvMchAppInfoConfigMQ.RESET_TYPE_MCH_APP, null, mchApp.getMchNo(), infoId));
+
+        return ApiRes.success();
     }
+    @Operation(summary = "查询商户授权URL")
+    @Parameters({
+            @Parameter(name = "iToken", description = "用户身份凭证", required = true, in = ParameterIn.HEADER),
+            @Parameter(name = "mchAppId", description = "应用ID", required = true)
+    })
+    @GetMapping("/alipayIsvsubMchAuthUrls/{mchAppId}")
+    public ApiRes queryAlipayIsvSubMchAuthUrl(@PathVariable String mchAppId) {
+
+        MchApp mchApp = mchAppService.getById(mchAppId);
+        MchInfo mchInfo = mchInfoService.getById(mchApp.getMchNo());
+        DBApplicationConfig dbApplicationConfig = sysConfigService.getDBApplicationConfig();
+        String authUrl = dbApplicationConfig.genAlipayIsvsubMchAuthUrl(mchInfo.getIsvNo(), mchAppId);
+        String authQrImgUrl = dbApplicationConfig.genScanImgUrl(authUrl);
+
+        JSONObject result = new JSONObject();
+        result.put("authUrl", authUrl);
+        result.put("authQrImgUrl", authQrImgUrl);
+        return ApiRes.success(result);
+    }
+
 }

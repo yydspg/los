@@ -45,4 +45,9 @@ public class MchNotifyRecordServiceImpl extends ServiceImpl<MchNotifyRecordMappe
         return baseMapper.updateNotifyResult(notifyId,state,resResult);
     }
 
+    @Override
+    public Integer updateToIngWithLimit(long notifyId) {
+        return baseMapper.updateIngAndAddNotifyCountLimit(notifyId);
+    }
+
 }

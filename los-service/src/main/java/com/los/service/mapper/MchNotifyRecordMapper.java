@@ -14,5 +14,5 @@ import org.apache.ibatis.annotations.Param;
 */
 public interface MchNotifyRecordMapper extends BaseMapper<MchNotifyRecord> {
      Integer updateNotifyResult(@Param("notifyId") Long notifyId, @Param("state") Byte state, @Param("resResult") String resResult);
-
+     Integer updateIngAndAddNotifyCountLimit(@Param("notifyId") Long notifyId);
 }

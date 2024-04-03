@@ -21,9 +21,5 @@
         <result column="updated_at" property="updatedAt" />
     </resultMap>
 
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        mch_no, mch_name, mch_short_name, type, isv_no, contact_name, contact_tel, contact_email, state, remark, init_user_id, created_uid, created_by, created_at, updated_at
-    </sql>
 
 </mapper>

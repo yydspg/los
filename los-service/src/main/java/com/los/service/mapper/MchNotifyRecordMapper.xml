@@ -33,7 +33,6 @@
     </update>
 
 
-
     <!-- 更改为通知中 & 增加允许重发通知次数  -->
     <update id="updateIngAndAddNotifyCountLimit">
         update t_mch_notify_record
