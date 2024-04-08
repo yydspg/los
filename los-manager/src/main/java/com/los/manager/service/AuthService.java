@@ -70,6 +70,7 @@ public class AuthService {
         String cacheKeyToken = CS.getCacheKeyToken(sysUser.getSysUserId(), IdUtil.fastUUID());
         // put into redis
         // TODO 2024/4/3 : 保存信息cacheKeyToken在 redis 中,是否可以做分布式
+        // TODO 2024/4/5 : 目前将此处修改,执行redis config配置升级
         ITokenService.processTokenCache(userDetails,cacheKeyToken);
         // put into spring-context
         UsernamePasswordAuthenticationToken authenticationRest = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

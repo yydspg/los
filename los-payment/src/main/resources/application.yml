@@ -28,12 +28,16 @@ spring:
       # 配置监控统计拦截的filters，去掉后监控界面sql无法统计 通过connectProperties属性来打开mergeSql功能；慢SQL记录
       filters: stat,wall
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-
+  data:
+    redis:
+      host: 192.168.152.139
+      port: 6379
+      database: 0
+      password: 1234
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
     tags-sorter: alpha
-    #operations-sorter: order
     enabled: true
   api-docs:
     path: /v3/api-docs
@@ -46,6 +50,7 @@ springdoc:
 
 #系统业务参数
 isys:
+
 
   #是否允许跨域请求 [生产环境建议关闭， 若api与前端项目没有在同一个域名下时，应开启此配置或在nginx统一配置允许跨域]
   allow-cors: true
@@ -72,6 +77,8 @@ isys:
 
   mq:
     vender: rocketMQ  #  切换MQ厂商， 支持：【 activeMQ  rabbitMQ  rocketMQ  aliYunRocketMQ 】， 需正确配置 【对应的yml参数】 和 【jeepay-components-mq项目下pom.xml中的依赖包】。
+  timeout: 1000
+  prefix: redis://
 # rocketmq配置 ( 注意：rocketmq配置项请放置到根目录， 不是spring的二级配置！  )
 rocketmq:
   name-server: 172.20.0.11:9876

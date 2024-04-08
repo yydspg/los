@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
-import com.los.payment.config.SystemYmlConfig;
+import com.los.payment.config.SysYmlConfig;
 import com.los.service.impl.SysConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,13 +27,13 @@ import java.util.Date;
 @Component
 public class InitRunner implements CommandLineRunner {
     @Autowired
-    private SystemYmlConfig systemYmlConfig;
+    private SysYmlConfig sysYmlConfig;
 
     @Override
     public void run(String... args) throws Exception {
 
 //         配置是否使用缓存模式 TODO 此句未实现
-        SysConfigService.IS_USE_CACHE = systemYmlConfig.getCacheConfig();
+        SysConfigService.IS_USE_CACHE = sysYmlConfig.getCacheConfig();
 
 //        初始化处理fastjson格式 TODO 使用fastjson2改造
         SerializeConfig serializeConfig = SerializeConfig.getGlobalInstance();
