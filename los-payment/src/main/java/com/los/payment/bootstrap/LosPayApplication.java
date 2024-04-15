@@ -1,6 +1,6 @@
 package com.los.payment.bootstrap;
 
-import com.los.payment.config.SysYmlConfig;
+import com.los.payment.config.SysConfig;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
@@ -23,17 +23,15 @@ import java.net.InetAddress;
 @SpringBootApplication
 @EnableScheduling
 @MapperScan("com.los.service.mapper")
-@ComponentScan(basePackages = "com.los.*") //由于MainApplication没有在项目根目录， 需要配置basePackages属性使得成功扫描所有Spring组件；
+@ComponentScan(basePackages = "com.los.*")
 public class LosPayApplication {
     @Autowired
-    private SysYmlConfig sysYmlConfig;
-
+    private SysConfig sysConfig;
 
     @SneakyThrows
     public static void main(String[] args) {
         SpringApplication app=new SpringApplication(LosPayApplication.class);
         ConfigurableApplicationContext application=app.run(args);
-        //ConfigurableApplicationContext application=SpringApplication.run(Knife4jSpringBootDemoApplication.class, args);
         Environment env = application.getEnvironment();
         log.info("\n----------------------------------------------------------\n\t" +
                         "Application '{}' is running! Access URLs:\n\t" +

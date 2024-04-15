@@ -2,7 +2,7 @@ package com.los.payment.cache.config.redis;
 
 
 import com.los.core.utils.StringKit;
-import com.los.payment.config.SysYmlConfig;
+import com.los.payment.config.SysConfig;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.Redisson;
@@ -11,7 +11,6 @@ import org.redisson.config.ClusterServersConfig;
 import org.redisson.config.Config;
 import org.redisson.config.SentinelServersConfig;
 import org.redisson.config.SingleServerConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -40,18 +39,18 @@ import java.util.List;
 @ConditionalOnClass(RedisOperations.class)
 @EnableConfigurationProperties(RedisProperties.class)
 public class RedisConfig  {
-    @Resource private FastJson2RedisSerializer<Object> fastJson2RedisSerializer;
-    @Resource private SysYmlConfig sysYmlConfig;
+    @Resource private SysRedisSerializer<Object> sysRedisSerializer;
+    @Resource private SysConfig sysConfig;
     @Resource private LettuceConnectionFactory lettuceConnectionFactory;
     @Bean(name = "redisTemplate")
     @ConditionalOnMissingBean(name = "redisTemplate")
     public RedisTemplate<Object, Object> getRedisTemplate() {
         RedisTemplate<Object, Object> template = new RedisTemplate<>();
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-        //value值的序列化采用fastJsonRedisSerializer
-        template.setValueSerializer(fastJson2RedisSerializer);
-        template.setHashValueSerializer(fastJson2RedisSerializer);
-        //key的序列化采用StringRedisSerializer
+        //value serializer --> fastJsonRedisSerializer
+        template.setValueSerializer(sysRedisSerializer);
+        template.setHashValueSerializer(sysRedisSerializer);
+        //key serializer --> StringRedisSerializer
         template.setKeySerializer(stringRedisSerializer);
         template.setHashKeySerializer(stringRedisSerializer);
         template.setConnectionFactory(lettuceConnectionFactory);
@@ -61,9 +60,9 @@ public class RedisConfig  {
     @Bean
     @Primary
     public RedisCacheManager getRedisCacheManager() {
-        RedisSerializationContext.SerializationPair<Object> pair = RedisSerializationContext.SerializationPair.fromSerializer(fastJson2RedisSerializer);
+        RedisSerializationContext.SerializationPair<Object> pair = RedisSerializationContext.SerializationPair.fromSerializer(sysRedisSerializer);
         // TODO 2024/4/1 : 建造者模式
-        return RedisCacheManager.builder().cacheDefaults(RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair).entryTtl(Duration.ofSeconds(sysYmlConfig.getTimeout())))
+        return RedisCacheManager.builder().cacheDefaults(RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(pair).entryTtl(Duration.ofSeconds(sysConfig.getTimeout())))
                 .cacheWriter(RedisCacheWriter.nonLockingRedisCacheWriter(lettuceConnectionFactory))
                 .build();
     }
@@ -71,31 +70,31 @@ public class RedisConfig  {
     @Bean(destroyMethod = "shutdown")
     public RedissonClient redissonClient(RedisProperties redisProperties) {
         Config redissonConfig = new Config();
-        // 集群模式
+        // cluster
         if(redisProperties.getCluster() != null && !redisProperties.getCluster().getNodes().isEmpty()) {
             ClusterServersConfig clusterServersConfig = redissonConfig.useClusterServers();
             List<String> clusterNodes = new ArrayList<>();
             for (String node : redisProperties.getCluster().getNodes()) {
-                clusterNodes.add(sysYmlConfig.getPrefix()+ node);
+                clusterNodes.add(sysConfig.getPrefix()+ node);
             }
             clusterServersConfig.setNodeAddresses(clusterNodes);
             if(StringKit.isNotEmpty(redisProperties.getPassword())) clusterServersConfig.setPassword(redisProperties.getPassword());
         }
-        // 哨兵模式
+        // sentinel
         else if (redisProperties.getSentinel() != null && !redisProperties.getSentinel().getNodes().isEmpty()) {
             SentinelServersConfig sentinelServersConfig = redissonConfig.useSentinelServers();
             sentinelServersConfig.setMasterName(redisProperties.getSentinel().getMaster());
             List<String> sentinelAddress = new ArrayList<>();
             for (String node : redisProperties.getCluster().getNodes()) {
-                sentinelAddress.add(sysYmlConfig.getPrefix()+ node);
+                sentinelAddress.add(sysConfig.getPrefix()+ node);
             }
             sentinelServersConfig.setSentinelAddresses(sentinelAddress);
             if(StringKit.isNotEmpty(redisProperties.getSentinel().getPassword())) sentinelServersConfig.setPassword(redisProperties.getSentinel().getPassword());
         }
-        //单机
+        // standalone
         else {
             SingleServerConfig singleServerConfig = redissonConfig.useSingleServer();
-            singleServerConfig.setAddress(sysYmlConfig.getPrefix()+redisProperties.getHost()+":"+redisProperties.getPort());
+            singleServerConfig.setAddress(sysConfig.getPrefix()+redisProperties.getHost()+":"+redisProperties.getPort());
             if(StringKit.isNotEmpty(redisProperties.getPassword())) singleServerConfig.setPassword(redisProperties.getPassword());
             singleServerConfig.setPingConnectionInterval(1000);
         }

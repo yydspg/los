@@ -1,7 +1,7 @@
 package com.los.merchant.ctrl;
 
 import com.los.core.ctrls.AbstractCtrl;
-import com.los.core.model.security.LosUserDetails;
+import com.los.merchant.security.LosUserDetails;
 import com.los.merchant.config.SystemYmlConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

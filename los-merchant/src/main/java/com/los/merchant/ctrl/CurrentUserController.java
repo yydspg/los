@@ -2,7 +2,6 @@ package com.los.merchant.ctrl;
 
 
 import cn.hutool.core.codec.Base64;
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.los.core.aop.MethodLog;
@@ -12,7 +11,7 @@ import com.los.core.entity.SysEntitlement;
 import com.los.core.entity.SysUser;
 import com.los.core.exception.BizException;
 import com.los.core.model.ApiRes;
-import com.los.core.model.security.LosUserDetails;
+import com.los.merchant.security.LosUserDetails;
 import com.los.core.utils.StringKit;
 import com.los.core.utils.TreeDataBuilder;
 import com.los.service.SysEntitlementService;

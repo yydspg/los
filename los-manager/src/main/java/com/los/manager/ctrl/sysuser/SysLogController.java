@@ -50,7 +50,7 @@ public class SysLogController extends CommonCtrl {
     @RequestMapping(value="", method = RequestMethod.GET)
     public ApiPageRes<SysLog> page() {
         SysLog sysLog = super.getObject(SysLog.class);
-        JSONObject paramJSON = super.getReqParamJSON();
+        JSONObject paramJSON = super.getParams();
 
         LambdaQueryWrapper<SysLog> condition = SysLog.gw();
         if(sysLog.getUserId() != null) condition.eq(SysLog::getUserId,sysLog.getUserId());

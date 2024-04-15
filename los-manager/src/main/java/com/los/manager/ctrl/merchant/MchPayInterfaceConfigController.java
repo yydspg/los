@@ -1,6 +1,6 @@
 package com.los.manager.ctrl.merchant;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.los.components.mq.model.ResetIsvMchAppInfoConfigMQ;
 import com.los.components.mq.vender.IMQSender;
 import com.los.core.constants.ApiCodeEnum;

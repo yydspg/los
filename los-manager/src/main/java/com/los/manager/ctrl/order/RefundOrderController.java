@@ -51,7 +51,7 @@ public class RefundOrderController extends CommonCtrl {
     public ApiPageRes<RefundOrder> list() {
 
         RefundOrder refundOrder = getObject(RefundOrder.class);
-        JSONObject paramJSON = super.getReqParamJSON();
+        JSONObject paramJSON = super.getParams();
         LambdaQueryWrapper<RefundOrder> wrapper = RefundOrder.gw();
         IPage<RefundOrder> pages = refundOrderService.pageList(getIPage(), wrapper, refundOrder, paramJSON);
 

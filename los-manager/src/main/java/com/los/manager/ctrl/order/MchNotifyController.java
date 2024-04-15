@@ -57,7 +57,7 @@ public class MchNotifyController extends CommonCtrl {
     public ApiPageRes<MchNotifyRecord> list() {
 
         MchNotifyRecord mchNotify = getObject(MchNotifyRecord.class);
-        JSONObject paramJSON = getReqParamJSON();
+        JSONObject paramJSON = getParams();
         LambdaQueryWrapper<MchNotifyRecord> wrapper = MchNotifyRecord.gw();
         if (StringKit.isNotEmpty(mchNotify.getOrderId())) {
             wrapper.eq(MchNotifyRecord::getOrderId, mchNotify.getOrderId());

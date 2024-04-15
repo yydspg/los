@@ -66,7 +66,7 @@ public class SysConfigController extends CommonCtrl {
     @MethodLog(remark = "系统配置修改")
     @RequestMapping(value="/{groupKey}", method = RequestMethod.PUT)
     public ApiRes update(@PathVariable("groupKey") String groupKey) {
-        JSONObject reqParamJSON = super.getReqParamJSON();
+        JSONObject reqParamJSON = super.getParams();
         // TODO 2024/3/31 : 将对于jsonObject的操作赋予对象
         Map<String, String> updateMap = reqParamJSON.toJavaObject(Map.class);
         if(sysConfigService.updateByConfigKey(updateMap) <= 0) {

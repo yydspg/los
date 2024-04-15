@@ -5,7 +5,7 @@ import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.lang.UUID;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 import com.los.core.aop.MethodLog;
 import com.los.core.cache.RedisKit;
 import com.los.core.constants.CS;

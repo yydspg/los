@@ -46,7 +46,7 @@
 
     最后，通过`inner join`连接`pid`表和`pic`表，连接条件为`pid.if_code = pic.if_code`，确保查询结果是基于同一个支付接口定义及其配置信息的。
     -->
-    <select id="selectAvailablePayInterfaceList" resultType="com.alibaba.fastjson.JSONObject" parameterType="java.util.Map">
+    <select id="selectAvailablePayInterfaceList" resultType="com.alibaba.fastjson2.JSONObject" parameterType="java.util.Map">
         select pid.if_code ifCode, pid.if_name ifName, pid.config_page_type configPageType, pid.bg_color bgColor, pid.icon icon, pic.if_params ifParams, pic.if_rate ifRate from t_pay_interface_define pid
         inner join t_pay_interface_config pic on pid.if_code = pic.if_code
         where JSON_CONTAINS(pid.way_codes, JSON_OBJECT('wayCode', #{wayCode}))

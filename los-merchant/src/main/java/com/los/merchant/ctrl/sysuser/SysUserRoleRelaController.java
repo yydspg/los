@@ -1,6 +1,6 @@
 package com.los.merchant.ctrl.sysuser;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson2.JSONArray;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.los.core.aop.MethodLog;

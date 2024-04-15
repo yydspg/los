@@ -190,9 +190,9 @@ public class MchInfoController extends CommonCtrl {
         }
 
         //判断是否重置密码
-        if (getReqParamJSON().getBooleanValue("resetPass")) {
+        if (getParams().getBooleanValue("resetPass")) {
             // 待更新的密码
-            String updatePwd = getReqParamJSON().getBoolean("defaultPass") ? CS.DEFAULT_PWD : Base64.decodeStr(getValStringRequired("confirmPwd")) ;
+            String updatePwd = getParams().getBoolean("defaultPass") ? CS.DEFAULT_PWD : Base64.decodeStr(getValStringRequired("confirmPwd")) ;
             // 获取商户超管
             Long mchAdminUserId = sysUserService.findMchAdminUserId(mchNo);
 

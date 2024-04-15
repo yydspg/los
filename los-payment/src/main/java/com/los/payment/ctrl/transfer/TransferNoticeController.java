@@ -3,7 +3,7 @@ package com.los.payment.ctrl.transfer;
 import com.los.core.ctrls.AbstractCtrl;
 import com.los.core.entity.TransferOrder;
 import com.los.core.exception.BizException;
-import com.los.core.exception.ResponseException;
+import com.los.core.exception.ResException;
 import com.los.core.utils.SpringBeansKit;
 import com.los.core.utils.StringKit;
 import com.los.payment.channel.ITransferNoticeService;
@@ -11,7 +11,6 @@ import com.los.payment.model.MchAppConfigContext;
 import com.los.payment.rqrs.msg.ChannelRetMsg;
 import com.los.payment.service.ConfigContextQueryService;
 import com.los.payment.service.OrderProcessService;
-import com.los.payment.service.PayMchNotifyService;
 import com.los.service.TransferOrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -23,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -114,8 +112,8 @@ public class TransferNoticeController extends AbstractCtrl {
             log.error("{}transferId=[{}]BizException", logPrefix, transferId, e);
             return ResponseEntity.badRequest().body(e.getMessage());
 
-        } catch (ResponseException e) {
-            log.error("{}transferId=[{}]ResponseException", logPrefix, transferId, e);
+        } catch (ResException e) {
+            log.error("{}transferId=[{}]ResException", logPrefix, transferId, e);
             return e.getResponseEntity();
 
         } catch (Exception e) {

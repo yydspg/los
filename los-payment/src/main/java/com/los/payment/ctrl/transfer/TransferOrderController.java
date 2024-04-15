@@ -22,6 +22,8 @@ import com.los.service.PayInterfaceConfigService;
 import com.los.service.TransferOrderService;
 import io.netty.handler.codec.compression.Bzip2Decoder;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

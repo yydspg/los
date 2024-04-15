@@ -9,9 +9,6 @@ import lombok.Data;
 /*
  * 支付方式： UP_JSAPI
  *
- * @author jmdhappy
- * @site https://www.jeequan.com
- * @date 2022/3/17 12:34
  */
 @Data
 public class UpJsapiOrderRS extends UnifiedOrderRS {
@@ -26,7 +23,7 @@ public class UpJsapiOrderRS extends UnifiedOrderRS {
 
     @Override
     public String buildPayData(){
-        return JSONKit.newJsonObject("redirectUrl", redirectUrl).toString();
+        return JSONKit.convert("redirectUrl", redirectUrl).toString();
     }
 
 }

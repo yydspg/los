@@ -143,9 +143,9 @@ public class SecKit {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             if (null != entry.getValue() && !"".equals(entry.getValue())) {
                 list.add(tem.append(entry.getKey()).append("=").append(entry.getValue()).append("&").toString());
-                tem.delete(0,tem.length()-1);
             }
         }
+        tem.delete(0,tem.length()-1);
         int size = list.size();
         /*
         将列表转换为String数组 arrayToSort，并按字母顺序进行排序（忽略大小写）

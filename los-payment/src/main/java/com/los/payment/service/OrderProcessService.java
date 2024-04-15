@@ -1,14 +1,13 @@
 package com.los.payment.service;
 
-import com.los.core.constants.ApiCodeEnum;
 import com.los.core.entity.RefundOrder;
 import com.los.core.entity.TransferOrder;
 import com.los.core.exception.BizException;
 import com.los.payment.rqrs.msg.ChannelRetMsg;
 import com.los.service.RefundOrderService;
 import com.los.service.TransferOrderService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,9 +17,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderProcessService {
 
-    @Autowired private RefundOrderService refundOrderService;
-    @Autowired private PayMchNotifyService payMchNotifyService;
-    @Autowired private TransferOrderService transferOrderService;
+    @Resource private RefundOrderService refundOrderService;
+    @Resource private PayMchNotifyService payMchNotifyService;
+    @Resource private TransferOrderService transferOrderService;
 
 
     // 此接口 目的是同步 渠道返回的信息 ,与本系统保持一致,并且参数 needInitToIng 表示不同使用场景

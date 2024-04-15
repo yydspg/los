@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix="isys")
+@ConfigurationProperties(prefix="isys.oss")
+// TODO 2024/4/11 : 修改工程逻辑,oss不适合独立作为一个 module ,应该附属于 core 内部
 public class OssYmlConfig {
 
     @NestedConfigurationProperty //指定该属性为嵌套值, 否则默认为简单值导致对象为空（外部类不存在该问题， 内部static需明确指定）

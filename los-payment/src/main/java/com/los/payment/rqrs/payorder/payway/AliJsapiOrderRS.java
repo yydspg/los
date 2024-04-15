@@ -24,7 +24,7 @@ public class AliJsapiOrderRS extends UnifiedOrderRS {
 
     @Override
     public String buildPayData(){
-        return JSONKit.newJsonObject("alipayTradeNo", alipayTradeNo).toString();
+        return JSONKit.convert("alipayTradeNo", alipayTradeNo).toString();
     }
 
 }

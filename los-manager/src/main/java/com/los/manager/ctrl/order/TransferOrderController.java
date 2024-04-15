@@ -52,7 +52,7 @@ public class TransferOrderController extends CommonCtrl {
     public ApiPageRes<TransferOrder> list() {
 
         TransferOrder transferOrder = getObject(TransferOrder.class);
-        JSONObject paramJSON = super.getReqParamJSON();
+        JSONObject paramJSON = super.getParams();
         LambdaQueryWrapper<TransferOrder> wrapper = TransferOrder.gw();
         IPage<TransferOrder> pages = transferOrderService.pageList(getIPage(), wrapper, transferOrder, paramJSON);
 

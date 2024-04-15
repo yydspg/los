@@ -19,7 +19,7 @@ import com.los.core.exception.BizException;
 import com.los.core.exception.LosAuthenticationException;
 import com.los.core.jwt.JwtKit;
 import com.los.core.jwt.JwtPayload;
-import com.los.core.model.security.LosUserDetails;
+import com.los.merchant.security.LosUserDetails;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;

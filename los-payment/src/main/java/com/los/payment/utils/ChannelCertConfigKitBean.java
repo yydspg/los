@@ -5,6 +5,7 @@ import com.los.components.oss.constant.OssSavePlaceEnum;
 import com.los.components.oss.constant.OssServiceTypeEnum;
 import com.los.components.oss.service.IOssService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,10 +13,9 @@ import java.io.IOException;
 /**
  * @author paul 2024/2/28
  */
-
+@Component
 public class ChannelCertConfigKitBean {
-    @Autowired
-    private OssYmlConfig ossYmlConfig;
+    @Autowired private OssYmlConfig ossYmlConfig;
     @Autowired private IOssService ossService;
 
     public String getCertFilePath(String certFilePath){

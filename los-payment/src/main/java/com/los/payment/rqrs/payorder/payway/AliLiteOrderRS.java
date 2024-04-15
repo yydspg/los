@@ -9,7 +9,6 @@ import lombok.Data;
 /*
  * 支付方式： ALI_LITE
  *
-
  */
 @Data
 public class AliLiteOrderRS extends UnifiedOrderRS {
@@ -24,7 +23,7 @@ public class AliLiteOrderRS extends UnifiedOrderRS {
 
     @Override
     public String buildPayData(){
-        return JSONKit.newJsonObject("alipayTradeNo", alipayTradeNo).toString();
+        return JSONKit.convert("alipayTradeNo", alipayTradeNo).toString();
     }
 
 }

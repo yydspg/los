@@ -6,12 +6,14 @@ import lombok.Data;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
 
 /*
     申请转账 请求参数
  * @author paul 2024/2/27
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class TransferOrderRQ  extends AbstractMchAppRQ {
     /* 商户订单号 **/
     @NotBlank(message="商户订单号不能为空")

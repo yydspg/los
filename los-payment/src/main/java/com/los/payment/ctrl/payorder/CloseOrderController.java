@@ -39,25 +39,26 @@ public class CloseOrderController extends ApiController {
 
         // 获取请求 && 验签
         ClosePayOrderRQ rq = getRQByMchSign(ClosePayOrderRQ.class);
-
         if(StringKit.isAnyBlank(rq.getMchOrderNo(),rq.getMchOrderNo())) {
             throw new BizException("mchOrderNoOrMchOrderNoIsEmpty");
         }
 
         PayOrder payOrder = payOrderService.queryMchOrder(rq.getMchNo(), rq.getPayOrderId(), rq.getMchOrderNo());
-
         if(payOrder == null) {
             throw new BizException("PayOrderNoExists");
         }
+
         byte state = payOrder.getState();
+        //Real Scene: create Order Without pay
         if(state != PayOrder.STATE_ING && state!= PayOrder.STATE_INIT) {
             throw new BizException("PayOrderCanNotBeClosed");
         }
+
         ClosePayOrderRS closePayOrderRS = new ClosePayOrderRS();
 
-        //初始化 --> 关闭
-
+        //inti || ing --> close
         String payOrderId = payOrder.getPayOrderId();
+
         if(state == PayOrder.STATE_INIT) {
             payOrderService.updateIng2Close(payOrderId);
             closePayOrderRS.setChannelRetMsg(ChannelRetMsg.confirmSuccess(payOrder.getChannelOrderNo()));
@@ -67,6 +68,7 @@ public class CloseOrderController extends ApiController {
         try {
 
             // 查询退款接口是否存在
+            // TODO 2024/4/11 : 静态工厂解决 获取Bean的问题
             IPayOrderCloseService closeService = SpringBeansKit.getBean(payOrder.getIfCode() + "PayOrderCloseService", IPayOrderCloseService.class);
 
             if (closeService == null) {

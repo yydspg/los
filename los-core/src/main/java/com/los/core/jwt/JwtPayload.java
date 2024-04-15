@@ -1,6 +1,5 @@
 package com.los.core.jwt;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.los.core.model.security.LosUserDetails;
 import lombok.Getter;

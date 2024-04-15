@@ -24,7 +24,6 @@ import com.los.payment.channel.IPaymentService;
 import com.los.payment.ctrl.ApiController;
 import com.los.payment.exception.ChannelException;
 import com.los.payment.model.MchAppConfigContext;
-import com.los.payment.rqrs.AbstractRS;
 import com.los.payment.rqrs.msg.ChannelRetMsg;
 import com.los.payment.rqrs.payorder.UnifiedOrderRQ;
 import com.los.payment.rqrs.payorder.UnifiedOrderRS;
@@ -44,6 +43,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 @Slf4j
 public abstract class AbstractPayOrderController extends ApiController {
+
     @Autowired private MchPayPassageService mchPayPassageService;
     @Autowired private PayOrderService payOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;

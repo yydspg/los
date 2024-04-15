@@ -4,7 +4,7 @@ package com.los.payment.ctrl.refund;
 import com.los.core.ctrls.AbstractCtrl;
 import com.los.core.entity.RefundOrder;
 import com.los.core.exception.BizException;
-import com.los.core.exception.ResponseException;
+import com.los.core.exception.ResException;
 import com.los.core.utils.SpringBeansKit;
 import com.los.core.utils.StringKit;
 import com.los.payment.channel.IChannelRefundNoticeService;
@@ -12,28 +12,20 @@ import com.los.payment.model.MchAppConfigContext;
 import com.los.payment.rqrs.msg.ChannelRetMsg;
 import com.los.payment.service.ConfigContextQueryService;
 import com.los.payment.service.OrderProcessService;
-
 import com.los.service.RefundOrderService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
  * @author paul 2024/3/14
  */
 @Slf4j
-@Controller
-@Tag(name = "退款")
+@RestController
 public class RefundNoticeController extends AbstractCtrl {
     @Autowired private RefundOrderService refundOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
@@ -42,9 +34,8 @@ public class RefundNoticeController extends AbstractCtrl {
 
     // 异步回调
     // TODO 2024/3/14 :  未检查
-    @Operation(summary = "退款回调")
     @ResponseBody
-    @GetMapping(value = {"/api/refund/notify/{ifCode}","/api/refund/notify/{ifCode}/{refundId}"})
+    @RequestMapping(value = {"/api/refund/notify/{ifCode}","/api/refund/notify/{ifCode}/{refundId}"},method = RequestMethod.GET)
     public ResponseEntity<?> doNotify(HttpServletRequest request, @PathVariable("ifCode") String ifCode, @PathVariable(value = "refundId",required = false)String urlOrderId ){
         String refundId = null;
 
@@ -112,8 +103,8 @@ public class RefundNoticeController extends AbstractCtrl {
             log.error("{}refundId=[{}]BizException", logPrefix, refundId, e);
             return ResponseEntity.badRequest().body(e.getMessage());
 
-        } catch (ResponseException e) {
-            log.error("{}refundId=[{}]ResponseException", logPrefix, refundId, e);
+        } catch (ResException e) {
+            log.error("{}refundId=[{}]ResException", logPrefix, refundId, e);
             return e.getResponseEntity();
 
         } catch (Exception e) {

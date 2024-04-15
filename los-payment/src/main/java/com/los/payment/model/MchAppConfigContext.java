@@ -38,8 +38,6 @@ public class MchAppConfigContext {
     /* 缓存 wxServiceWrapper 对象 */
     private WxServiceWrapper wxServiceWrapper;
 
-    /* 缓存 Paypal 对象 **/
-    private PaypalWrapper paypalWrapper;
 
 
     /* 获取普通商户配置信息 **/

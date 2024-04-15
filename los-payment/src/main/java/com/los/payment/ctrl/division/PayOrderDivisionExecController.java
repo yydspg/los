@@ -20,7 +20,6 @@ public class PayOrderDivisionExecController {
     private MchPayPassageService mchPayPassageService;
     @Autowired private PayOrderService payOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
-    //TODO 暂时注释防止报错
     @Autowired private PayOrderProcessService payOrderProcessService;
     @Autowired private SysConfigService sysConfigService;
     @Autowired private IMQSender mqSender;

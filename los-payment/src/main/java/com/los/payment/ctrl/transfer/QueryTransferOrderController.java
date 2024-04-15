@@ -15,23 +15,23 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author paul 2024/3/13
  */
 @RestController
-@Tag(name = "转账")
 public class QueryTransferOrderController extends ApiController {
 
     @Autowired private TransferOrderService transferOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
 
 
-    @Operation(summary = "查询转账")
-    @PostMapping("/api/transfer/query")
+
+    @RequestMapping(value = "/api/transfer/query",method = RequestMethod.POST)
     public ApiRes queryTransferOrder() {
-        // 获取请求request,并对其参数校验
+
         QueryTransferOrderRQ rq = super.getRQByMchSign(QueryTransferOrderRQ.class);
 
         if(StringKit.isAllEmpty(rq.getMchOrderNo(),rq.getTransferId())) {

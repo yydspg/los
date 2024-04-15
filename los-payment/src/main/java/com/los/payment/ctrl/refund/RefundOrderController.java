@@ -2,6 +2,7 @@ package com.los.payment.ctrl.refund;
 
 import cn.hutool.core.date.DateUtil;
 import com.alipay.api.domain.SummaryBillOpenApiDTO;
+import com.los.core.constants.ApiCodeEnum;
 import com.los.core.entity.MchApp;
 import com.los.core.entity.MchInfo;
 import com.los.core.entity.PayOrder;
@@ -25,10 +26,13 @@ import com.los.service.PayOrderService;
 import com.los.service.RefundOrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -38,19 +42,15 @@ import java.util.Date;
  */
 @Slf4j
 @RestController
-@Tag(name = "退款")
 public class RefundOrderController extends ApiController {
-    @Autowired private PayOrderService payOrderService;
-    @Autowired private RefundOrderService refundOrderService;
-    @Autowired private ConfigContextQueryService configContextQueryService;
-    @Autowired private OrderProcessService orderProcessService;
-
-    @Operation(summary = "执行退款")
-    @PostMapping("/api/refund/refundOrder")
+    @Resource private PayOrderService payOrderService;
+    @Resource private RefundOrderService refundOrderService;
+    @Resource private ConfigContextQueryService configContextQueryService;
+    @Resource private OrderProcessService orderProcessService;
+    @RequestMapping(value = "/api/refund/refundOrder",method = RequestMethod.POST)
     public ApiRes refundOrder(){
-        RefundOrder refundOrder = null;
 
-        // 验签 && 获取参数
+        RefundOrder refundOrder = null;
         RefundOrderRQ rq = super.getRQByMchSign(RefundOrderRQ.class);
 
         try {
@@ -60,6 +60,7 @@ public class RefundOrderController extends ApiController {
             if(StringKit.isEmpty(rq.getNotifyUrl()) && StringKit.isAvailableUrl(rq.getNotifyUrl())) {
                 throw new BizException("NotifyUrlNotSupport");
             }
+
             PayOrder payOrder = payOrderService.queryMchOrder(rq.getMchNo(), rq.getPayOrderId(), rq.getMchOrderNo());
 
             if(payOrder == null) {
@@ -92,10 +93,11 @@ public class RefundOrderController extends ApiController {
             String mchNo = rq.getMchNo();
             String appId = rq.getAppId();
 
-            // 校验退款单号是否重复
+            // interface anti-shake
             if(refundOrderService.count(RefundOrder.gw().eq(RefundOrder::getMchNo,mchNo).eq(RefundOrder::getMchRefundNo,rq.getMchRefundNo())) > 0) {
                 throw new BizException("MchRefundNo["+rq.getMchRefundNo()+"]AlreadyExists");
             }
+
             MchAppConfigContext mchAppConfigContext = configContextQueryService.queryMchInfoAndAppInfo(mchNo, appId);
             if(mchAppConfigContext == null){
                 throw new BizException("MchAppConfigContextNoExists");
@@ -103,9 +105,10 @@ public class RefundOrderController extends ApiController {
             MchApp mchApp = mchAppConfigContext.getMchApp();
             MchInfo mchInfo = mchAppConfigContext.getMchInfo();
             // 获取退款接口
+            // TODO 2024/4/11 : 静态工厂方法优化
             IRefundService refundService = SpringBeansKit.getBean(payOrder.getIfCode() + "RefundService", IRefundService.class);
             if(refundService == null) {
-                throw new BizException("");
+                throw new BizException("GetRefundServiceFail");
             }
 
             refundOrder = this.genRefundOrder(rq,payOrder,mchInfo,mchApp);
@@ -138,7 +141,7 @@ public class RefundOrderController extends ApiController {
         }catch (Exception e) {
 
             log.error("[{}]systemError",e.getMessage());
-            return ApiRes.customFail("systemError");
+            return ApiRes.fail(ApiCodeEnum.SYSTEM_ERROR);
         }
     }
     private RefundOrder genRefundOrder(RefundOrderRQ rq, PayOrder payOrder, MchInfo mchInfo, MchApp mchApp){

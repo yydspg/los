@@ -62,7 +62,7 @@ public class PayOrderController extends CommonCtrl {
     public ApiPageRes<PayOrder> list() {
 
         PayOrder payOrder = getObject(PayOrder.class);
-        JSONObject paramJSON = getReqParamJSON();
+        JSONObject paramJSON = getParams();
         LambdaQueryWrapper<PayOrder> wrapper = PayOrder.gw();
 
         IPage<PayOrder> pages = payOrderService.listByPage(getIPage(), payOrder, paramJSON, wrapper);

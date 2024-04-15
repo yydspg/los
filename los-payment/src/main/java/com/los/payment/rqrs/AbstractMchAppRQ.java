@@ -11,6 +11,6 @@ import lombok.Data;
 public class AbstractMchAppRQ extends AbstractRQ {
     @NotBlank(message = "商户号mchNo不能为空")
     private String mchNo;
-    @NotBlank(message = "商户应用applicationId不能为空")
+    @NotBlank(message = "商户应用appId不能为空")
     private String appId;
 }

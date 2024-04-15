@@ -1,5 +1,7 @@
 package com.los.payment.ctrl.payorder;
 
+import com.alibaba.fastjson2.JSONObject;
+import com.los.core.constants.ApiCodeEnum;
 import com.los.core.constants.CS;
 import com.los.core.entity.PayOrder;
 import com.los.core.entity.PayWay;
@@ -9,12 +11,13 @@ import com.los.core.utils.BeanKit;
 import com.los.core.utils.SecKit;
 import com.los.payment.rqrs.payorder.UnifiedOrderRQ;
 import com.los.payment.rqrs.payorder.UnifiedOrderRS;
-import com.los.payment.rqrs.payorder.payway.AutoBarOrderRQ;
+import com.los.payment.rqrs.payorder.payway.*;
 import com.los.payment.service.ConfigContextQueryService;
 import com.los.service.PayWayService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,13 +62,13 @@ public class UnifiedOrderController extends AbstractPayOrderController {
 
         // 若为 收银台聚合支付 (不校验是否存在 payWayCode )
         if(CS.PAY_WAY_CODE.QR_CASHIER.equals(wayCode)) {
-            return rq.buildBizRQ();
+            return this.getRQByType(rq);
         }
 
         // 若为自动分类条码
 
         if(CS.PAY_WAY_CODE.AUTO_BAR.equals(wayCode)) {
-            AutoBarOrderRQ autoBarOrderRQ = (AutoBarOrderRQ) rq.buildBizRQ();
+            AutoBarOrderRQ autoBarOrderRQ = (AutoBarOrderRQ) this.getRQByType(rq);
             wayCode = SecKit.getPayWayCodeByBarCode(autoBarOrderRQ.getAuthCode());
             rq.setWayCode(wayCode.trim());
         }
@@ -74,6 +77,32 @@ public class UnifiedOrderController extends AbstractPayOrderController {
         }
 
         // 转化为 bizRq
-        return rq.buildBizRQ();
+        return this.getRQByType(rq);
+    }
+    private UnifiedOrderRQ getRQByType(UnifiedOrderRQ rq){
+        String wayCode = rq.getWayCode();
+        Class<?> requireClz = switch (wayCode) {
+            case CS.PAY_WAY_CODE.ALI_BAR -> AliBarOrderRQ.class;
+            case CS.PAY_WAY_CODE.ALI_JSAPI -> AliJsapiOrderRQ.class;
+            case CS.PAY_WAY_CODE.ALI_LITE -> AliLiteOrderRQ.class;
+            case CS.PAY_WAY_CODE.QR_CASHIER -> QrCashierOrderRQ.class;
+            case CS.PAY_WAY_CODE.WX_JSAPI -> WxJsapiOrderRQ.class;
+            case CS.PAY_WAY_CODE.WX_LITE ->  WxLiteOrderRQ.class;
+            case CS.PAY_WAY_CODE.WX_BAR -> WxBarOrderRQ.class;
+            case CS.PAY_WAY_CODE.WX_NATIVE -> WxNativeOrderRQ.class;
+            case CS.PAY_WAY_CODE.WX_H5 -> WxH5OrderRQ.class;
+            case CS.PAY_WAY_CODE.YSF_BAR -> YsfBarOrderRQ.class;
+            case CS.PAY_WAY_CODE.YSF_JSAPI ->  YsfJsapiOrderRQ.class;
+            case CS.PAY_WAY_CODE.AUTO_BAR -> AutoBarOrderRQ.class;
+            case CS.PAY_WAY_CODE.ALI_APP -> AliAppOrderRQ.class;
+            case CS.PAY_WAY_CODE.ALI_WAP -> AliWapOrderRQ.class;
+            case CS.PAY_WAY_CODE.ALI_PC ->  AliPcOrderRQ.class;
+            case CS.PAY_WAY_CODE.ALI_QR -> AliQrOrderRQ.class;
+            case CS.PAY_WAY_CODE.PP_PC -> PPPcOrderRQ.class;
+            default -> throw new BizException(ApiCodeEnum.PARAMS_ERROR);
+        };
+        Object bizRQ = JSONObject.parseObject(StringUtils.defaultIfEmpty(rq.getChannelExtra(), "{}"), requireClz);
+        BeanKit.copyProperties(rq,bizRQ);
+        return (UnifiedOrderRQ) bizRQ;
     }
 }

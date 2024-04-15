@@ -133,9 +133,9 @@ public class SysUserController extends CommonCtrl {
             throw new BizException("系统不允许禁用当前登陆用户！");
         }
         //判断是否重置密码
-        Boolean resetPass = getReqParamJSON().getBoolean("resetPass");
+        Boolean resetPass = getParams().getBoolean("resetPass");
         if (resetPass != null && resetPass) {
-            String updatePwd = !super.getReqParamJSON().getBoolean("defaultPass") ? Base64.decodeStr(getValStringRequired("confirmPwd")) : CS.DEFAULT_PWD;
+            String updatePwd = !super.getParams().getBoolean("defaultPass") ? Base64.decodeStr(getValStringRequired("confirmPwd")) : CS.DEFAULT_PWD;
             sysUserAuthService.resetPwd(recordId, updatePwd, CS.SYS_TYPE.MGR);
             // 删除用户redis缓存信息
             authService.delAuthentication(List.of(recordId));
