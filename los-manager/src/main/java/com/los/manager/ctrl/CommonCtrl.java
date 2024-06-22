@@ -1,8 +1,8 @@
 package com.los.manager.ctrl;
 
 import com.los.core.ctrls.AbstractCtrl;
-import com.los.core.model.security.LosUserDetails;
 import com.los.manager.config.SystemYmlConfig;
+import com.los.manager.security.LosUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

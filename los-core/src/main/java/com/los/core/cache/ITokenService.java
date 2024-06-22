@@ -1,7 +1,6 @@
 package com.los.core.cache;
 
 import com.los.core.constants.CS;
-import com.los.core.model.security.LosUserDetails;
 
 /**
  * @author paul 2024/3/24

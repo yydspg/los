@@ -16,6 +16,7 @@ public class QueryPayOrderRS extends AbstractRS {
      */
     private String payOrderId;
 
+
     /*
      * 商户号
      */

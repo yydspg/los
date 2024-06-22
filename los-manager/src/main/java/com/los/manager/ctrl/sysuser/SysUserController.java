@@ -165,9 +165,10 @@ public class SysUserController extends CommonCtrl {
         }
 
         //判断是否自己删除自己
-        if(recordId.equals(getCurrentUser().getSysUser().getSysUserId())){
-            throw new BizException("系统不允许删除当前登陆用户！");
-        }
+        // TODO  :  error
+//        if(recordId.equals(getCurrentUser().getSysUser().getSysUserId())){
+//            throw new BizException("系统不允许删除当前登陆用户！");
+//        }
         // 删除用户
         sysUserService.removeUser(sysUser, CS.SYS_TYPE.MGR);
 
