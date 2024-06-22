@@ -20,14 +20,6 @@
             <artifactId>los-service</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.pg</groupId>
-            <artifactId>los-components-mq</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.pg</groupId>
-            <artifactId>los-components-oss</artifactId>
-        </dependency>
         <!-- 依赖 spring-boot-web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -93,10 +85,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>
