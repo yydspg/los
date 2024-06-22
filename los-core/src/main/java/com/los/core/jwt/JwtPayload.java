@@ -1,7 +1,7 @@
 package com.los.core.jwt;
 
 import com.alibaba.fastjson2.JSONObject;
-import com.los.core.model.security.LosUserDetails;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,11 +26,7 @@ public class JwtPayload {
 
     protected JwtPayload(){}
 
-    public JwtPayload(LosUserDetails losUserDetails){
-        this.setSysUserId(losUserDetails.getSysUser().getSysUserId());
-        this.setCreated(System.currentTimeMillis());
-        this.setCacheKey(losUserDetails.getCacheKey());
-    }
+
 
 
     /* toMap **/

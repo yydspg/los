@@ -1,6 +1,6 @@
 package com.los.payment.ctrl.transfer;
 
-import com.los.core.ctrls.AbstractCtrl;
+import com.los.payment.ctrl.AbstractCtrl;
 import com.los.core.entity.TransferOrder;
 import com.los.core.exception.BizException;
 import com.los.core.exception.ResException;

@@ -3,7 +3,7 @@ package com.los.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.los.core.constants.CS;
 import com.los.core.entity.SysUserAuth;
-import com.los.core.model.security.LosUserDetails;
+
 import com.los.core.utils.StringKit;
 import com.los.service.mapper.SysUserAuthMapper;
 import com.los.service.SysUserAuthService;

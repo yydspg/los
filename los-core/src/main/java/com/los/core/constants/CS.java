@@ -21,8 +21,8 @@ public class CS {
         Map<String, String> SYS_TYPE_MAP = new HashMap<>();
     }
     static {
-        SYS_TYPE.SYS_TYPE_MAP.put(SYS_TYPE.MCH, "商户系统");
-        SYS_TYPE.SYS_TYPE_MAP.put(SYS_TYPE.MGR, "运营平台");
+        SYS_TYPE.SYS_TYPE_MAP.put(SYS_TYPE.MCH, "merchant");
+        SYS_TYPE.SYS_TYPE_MAP.put(SYS_TYPE.MGR, "management");
     }
 
     /* yes or no **/
@@ -35,8 +35,8 @@ public class CS {
 
     public static final Map<Integer, String> PUB_USABLE_MAP = new HashMap<>();
     static {
-        PUB_USABLE_MAP.put(PUB_USABLE, "正常");
-        PUB_USABLE_MAP.put(PUB_DISABLE, "停用");
+        PUB_USABLE_MAP.put(PUB_USABLE, "normal");
+        PUB_USABLE_MAP.put(PUB_DISABLE, "baned");
     }
 
     /*

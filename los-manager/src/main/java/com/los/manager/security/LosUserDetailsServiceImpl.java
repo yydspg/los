@@ -3,8 +3,7 @@ package com.los.manager.security;
 import com.los.core.constants.CS;
 import com.los.core.entity.SysUser;
 import com.los.core.entity.SysUserAuth;
-import com.los.core.exception.LosAuthenticationException;
-import com.los.core.model.security.LosUserDetails;
+
 import com.los.core.utils.RegKit;
 import com.los.service.SysUserAuthService;
 import com.los.service.SysUserService;

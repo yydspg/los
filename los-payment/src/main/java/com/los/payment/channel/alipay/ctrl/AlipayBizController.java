@@ -9,7 +9,7 @@ import com.alipay.api.response.AlipayOpenAuthTokenAppResponse;
 import com.los.components.mq.model.ResetIsvMchAppInfoConfigMQ;
 import com.los.components.mq.vender.IMQSender;
 import com.los.core.constants.CS;
-import com.los.core.ctrls.AbstractCtrl;
+import com.los.payment.ctrl.AbstractCtrl;
 import com.los.core.entity.MchApp;
 import com.los.core.entity.PayInterfaceConfig;
 import com.los.core.exception.BizException;

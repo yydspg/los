@@ -1,7 +1,6 @@
 package com.los.payment.ctrl.payorder.payway;
 
 import com.los.core.constants.CS;
-import com.los.core.ctrls.AbstractCtrl;
 import com.los.core.model.ApiRes;
 import com.los.payment.ctrl.payorder.AbstractPayOrderController;
 import com.los.payment.rqrs.payorder.payway.YsfBarOrderRQ;

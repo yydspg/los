@@ -23,4 +23,5 @@ public class PayOrderDivisionExecController {
     @Autowired private PayOrderProcessService payOrderProcessService;
     @Autowired private SysConfigService sysConfigService;
     @Autowired private IMQSender mqSender;
+
 }

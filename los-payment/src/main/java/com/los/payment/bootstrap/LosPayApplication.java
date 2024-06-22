@@ -46,7 +46,6 @@ public class LosPayApplication {
                 InetAddress.getLocalHost().getHostAddress(),
                 env.getProperty("server.port"));
     }
-    //todo 配置fastjson2 和 mybatis plus 分页插件
-    /* 允许跨域请求 **/
+
 
 }

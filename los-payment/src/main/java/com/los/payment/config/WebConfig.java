@@ -23,6 +23,7 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer{
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        //set json convert
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
         FastJsonConfig config = new FastJsonConfig();
         config.setDateFormat("yyyy-MM-dd HH:mm:ss");

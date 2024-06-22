@@ -4,7 +4,7 @@ import com.los.core.cache.RedisKit;
 import com.los.core.constants.CS;
 import com.los.core.jwt.JwtKit;
 import com.los.core.jwt.JwtPayload;
-import com.los.core.model.security.LosUserDetails;
+
 import com.los.core.utils.SpringBeansKit;
 import com.los.core.utils.StringKit;
 import com.los.manager.config.SystemYmlConfig;

@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix="isys")
 public class SysConfig {
 
-    private Boolean allowCors;
+    public Boolean allowCors;
 
-    private Boolean cacheConfig;
+    public Boolean cacheConfig;
 
     /* 超时时间 **/
-    private Integer timeout;
+    public Integer timeout;
     /* redis 前缀 **/
-    private String Prefix;
+    public String Prefix;
 }

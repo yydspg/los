@@ -1,7 +1,7 @@
 package com.los.payment.ctrl;
 
 import cn.hutool.core.codec.Base64;
-import com.los.core.ctrls.AbstractCtrl;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/common")
 public class CommonController extends AbstractCtrl {
 
+
+    private final HttpServletRequest httpServletRequest;
+
+    public CommonController(HttpServletRequest httpServletRequest) {
+        super();
+        this.httpServletRequest = httpServletRequest;
+    }
 
     //网关支付form 表单输出
     @RequestMapping(value = "/payForm/{payData}")

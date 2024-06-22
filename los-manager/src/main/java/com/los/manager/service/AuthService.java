@@ -1,15 +1,13 @@
 package com.los.manager.service;
 
 import cn.hutool.core.util.IdUtil;
-import com.los.core.cache.ITokenService;
 import com.los.core.cache.RedisKit;
 import com.los.core.constants.CS;
 import com.los.core.entity.SysUser;
 import com.los.core.exception.BizException;
-import com.los.core.exception.LosAuthenticationException;
 import com.los.core.jwt.JwtKit;
 import com.los.core.jwt.JwtPayload;
-import com.los.core.model.security.LosUserDetails;
+
 import com.los.manager.config.SystemYmlConfig;
 import com.los.service.SysRoleEntRelaService;
 import com.los.service.SysRoleService;

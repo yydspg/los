@@ -26,12 +26,6 @@
             <version>8.0.33</version>
         </dependency>
 
-        <!-- Druid 连接池 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.20</version>
-        </dependency>
         <!-- orm映射框架：mybatis-plus,  自动引入spring-tx -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -50,12 +44,7 @@
             <version>3.0.3</version>
         </dependency>
 
-        <!-- Spring Security -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
+
 
     </dependencies>
 

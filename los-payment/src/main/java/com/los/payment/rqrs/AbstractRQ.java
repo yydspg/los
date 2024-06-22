@@ -34,18 +34,18 @@ public abstract  class AbstractRQ implements Serializable {
         字符串经过trim()方法处理后，其长度大于0，即字符串中至少包含一个非空白字符（换言之，不允许仅由空白字符组成的字符串）。
      */
     /* 版本号 */
-    @NotBlank(message="版本号不能为空")
+    @NotBlank(message="version can not be null ")
     protected String version;
 
     /* 签名类型 */
-    @NotBlank(message="签名类型不能为空")
+    @NotBlank(message="sign type can not be null")
     protected String signType;
 
     /* 签名值 */
-    @NotBlank(message="签名值不能为空")
+    @NotBlank(message="sign value can not be null")
     protected String sign;
 
     /* 接口请求时间 */
-    @NotBlank(message="时间戳不能为空")
+    @NotBlank(message="timeStamp can not be null")
     protected String reqTime;
 }

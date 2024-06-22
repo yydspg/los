@@ -29,20 +29,4 @@ public class QueryRefundOrderController extends ApiController {
     @Autowired private RefundOrderService refundOrderService;
     @Autowired private ConfigContextQueryService configContextQueryService;
 
-    @RequestMapping(value = "/api/refund/query",method = RequestMethod.POST)
-    public ApiRes queryTransferOrder() {
 
-        QueryRefundOrderRQ rq = super.getRQByMchSign(QueryRefundOrderRQ.class);
-
-        if(StringKit.isAllEmpty(rq.getMchRefundNo(),rq.getRefundOrderId())) {
-            throw new BizException("mchOrder&&refundOrderIdMayBeNull");
-        }
-        RefundOrder refundOrder = refundOrderService.queryMchOrder(rq.getMchNo(), rq.getMchRefundNo(),rq.getRefundOrderId());
-
-        if (refundOrder == null) {
-            throw new BizException("RefundOrderNoExists");
-        }
-        QueryRefundOrderRS res = QueryRefundOrderRS.buildByRefundOrder(refundOrder);
-        return ApiRes.successWithSign(res,configContextQueryService.queryMchApp(rq.getMchNo(),rq.getAppId()).getAppSecret());
-    }
-}

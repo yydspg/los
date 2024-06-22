@@ -22,7 +22,6 @@
         <module>los-payment</module>
         <module>los-service</module>
         <module>los-manager</module>
-        <module>los-merchant</module>
         <module>los-core</module>
     </modules>
 

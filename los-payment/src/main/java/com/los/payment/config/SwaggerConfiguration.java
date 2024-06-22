@@ -18,7 +18,7 @@ public class SwaggerConfiguration {
                         .title("los pay system")
                         .version("1.0")
                         .description( "paymentSystemApi")
-                        .termsOfService("http://doc.xiaominfo.com")
+                        .termsOfService("http://www.laryops.cn")
                         .license(new License().name("Apache 2.0")
                                 .url("http://doc.xiaominfo.com")));
     }

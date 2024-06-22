@@ -19,6 +19,6 @@ public class InitRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         SysConfigService.IS_USE_CACHE = sysConfig.getCacheConfig();
-
+        // TODO  :  load cache in memory or build data in redis
     }
 }
